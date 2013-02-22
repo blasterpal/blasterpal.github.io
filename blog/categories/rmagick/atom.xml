@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: RMagick | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/rmagick/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Building & Install RMagick on OS X, lessons learned]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/"/>
+    <updated>2007-12-18T09:01:55-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned</id>
+    <content type="html"><![CDATA[<p>There are several ways out there to install RMagick: via ports, package installer, etc. My advice: before you even start working on these.</p>
+
+<ol>
+<li><p>Install ALL updates from Apple for your OSX.</p></li>
+<li><p>Update XCode to the latest downloadable version.</p></li>
+</ol>
+
+
+<p>Doing the above will save you a whole weekend and avoid weird errors like this:
+.libs/libMagick.dylib must have a ':' between its file names
+H</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Compiling RMagick on Westhost => TIPS]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/09/24/compiling-rmagick-on-westhost-tips/"/>
+    <updated>2007-09-24T07:23:42-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/09/24/compiling-rmagick-on-westhost-tips</id>
+    <content type="html"><![CDATA[<ol>
+<li><p>Create a working directory, I made ~/app-src.</p></li>
+<li><p>cd to this dir.</p></li>
+<li><p>wget 'http://rubyforge.org/frs/download.php/25349/RMagick-1.15.10.tar.gz' or latest.</p></li>
+<li><p>create a symlink from the current version of  libMagick.so. to no version extension :</p></li>
+</ol>
+
+
+<p>ln -s /usr/local/ImageMagick-6.3.3/lib/libMagick.so.10.0.7 /usr/local/ImageMagick-6.3.3/lib/libMagick.so</p>
+
+<ol>
+<li>export the base ImageMagick directory above as LD_LIBRARY_PATH in the current shell you are going to compile in: export LD_LIBRARY_PATH=/usr/local/ImageMagick-6.3.3/</li>
+<li>./configure --disable-htmldoc (The HTML doc creation kept failing so I needed to do the above option.) <strong>NOTE: this is a double dash "- - " in front of disable-htmldoc.</strong></li>
+<li><p>make</p></li>
+<li><p>make install</p></li>
+<li><p>irb; require 'RMagick'. so far so good.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

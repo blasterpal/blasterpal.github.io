@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB GridFS Sanity Checks]]></title>
+    <link href="http://blasterpal.github.com/blog/2011/08/09/mongodb-gridfs-sanity-checks/"/>
+    <updated>2011-08-09T08:19:42-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2011/08/09/mongodb-gridfs-sanity-checks</id>
+    <content type="html"><![CDATA[<p>I want to verify that the data is what I expect across two systems for binaries. Here&#8217;s some sanity check examples:</p>
+
+<p>1) Verify fs.files object count:</p>
+
+<pre><code>mongofiles -d cms list | wc -l
+</code></pre>
+
+<p>Example output:</p>
+
+<pre><code>connected to: 127.0.0.1
+3700 
+</code></pre>
+
+<p>(should be > 3000)
+2) Verify Meta data:</p>
+
+<pre><code>&gt; db.fs.files.stats();
+
+Example output:
+{
+    "ns" : "cms.fs.files",
+    "count" : 3700,
+    "size" : 899348,
+    "storageSize" : 1196800,
+    "numExtents" : 4,
+    "nindexes" : 3,
+    "lastExtentSize" : 901120,
+    "paddingFactor" : 1,
+    "flags" : 1,
+    "totalIndexSize" : 966656,
+    "indexSizes" : {
+        "_id_" : 163840,
+        "filename_1_uploadDate_-1" : 425984,
+        "filename_1" : 376832
+    },
+    "ok" : 1
+}
+</code></pre>
+
+<p>Should be same as mongofiles -d cms list | wc -l</p>
+
+<p>3) Verify Binary data:</p>
+
+<pre><code>&gt; db.fs.chunks.stats();
+
+Example output:
+{
+    "ns" : "cms.fs.chunks",
+    "count" : 13009,
+    "size" : 2878929012,
+    "storageSize" : 3436553216,
+    "numExtents" : 28,
+    "nindexes" : 2,
+    "lastExtentSize" : 576252672,
+    "paddingFactor" : 1,
+    "flags" : 1,
+    "totalIndexSize" : 1122304,
+    "indexSizes" : {
+        "_id_" : 548864,
+        "files_id_1_n_1" : 573440
+    },
+    "ok" : 1
+}
+</code></pre>
+
+<p>size should be > 2,500,000,000  (2.5 GB)</p>
+
+<p>4) Save a binary from Mongo:</p>
+
+<p>a) pick a file from list</p>
+
+<pre><code>mongofiles -d cms list
+</code></pre>
+
+<p>b) restore it to /tmp/</p>
+
+<pre><code>mongofiles -d cms get 'carouselimages/4bc24ba5fa7e1c75b10000d5/image/tradeshow_placeholder.jpg' -l /tmp/tradeshow_placeholder.jpg
+</code></pre>
+
+<p>View file.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[JRuby - the watershed for enterprise Ruby?]]></title>
+    <link href="http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
+    <updated>2011-07-14T03:18:01-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
+    <content type="html"><![CDATA[<p>It&#8217;s very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it&#8217;s becoming moot.</p>
+
+<p><a href="http://www.youtube.com/watch?v=qZcmF3yonjs">http://www.youtube.com/watch?v=qZcmF3yonjs</a>
+<a href="http://www.infoq.com/articles/linkedin-scala-jruby-voldemort">http://www.infoq.com/articles/linkedin-scala-jruby-voldemort</a></p>
+
+<p>In the past few weeks I&#8217;ve had a few situations where integrating with Java or within JVM environments is unavoidable. JRuby is now becoming more viable for us Ruby folk. Instead of fighting against Java-centric organizations, the Ruby community who has Java experience, needs to be open to the idea of JRuby as a true platform and live in harmony with Java, Scala,etc. I think the pivot point might be here for Ruby as it relates to the enterprise.</p>
+
+<p>Please take time to view the articles above and consider Ruby and the JVM together. And the next time a client or project emerges that mentions Java, don&#8217;t cringe, but get excited.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Learnings 1.1]]></title>
+    <link href="http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1/"/>
+    <updated>2011-01-26T04:14:56-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1</id>
+    <content type="html"><![CDATA[<p>Today&#8217;s topic, <a href="http://wiki.opscode.com/display/chef/Libraries">Libraries</a> and including them in multiple Cookbooks. Any custom library loaded into a single Cookbook is available to all Cookbooks within your Node. So for example, let&#8217;s say you have a custom function that operates on Data Bags (like I do), it is available to all recipes. For example, if you include in a library one of your base/default cookbooks (like IPTables), then any other recipe can access those methods. The trick is that in your first recipe where you include your custom library, you have monkey patched Chef to include it thereafter:</p>
+
+<pre><code>class Chef::Recipe
+  include DataBagHelper
+end
+</code></pre>
+
+<p>So nice, now I have my custom library available everywhere. This makes me think, why not just have a custom library cookbook, or make my custom libraries part of my base/default recipe included in ALL nodes? So now I have my own methods and functionality available everywhere.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
+    <updated>2010-12-01T10:31:48-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
+    <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I&#8217;d like to share.</p>
+
+<ol>
+<li><p>Learn how to use <a href="http://wiki.opscode.com/display/chef/Shef">Shef</a>, to inspect node. It replaces &#8216;debug&#8217; statements when doing runs in templates or recipes.</p>
+
+<p> &#8216;shef -z&#8217;</p></li>
+<li><p>If using <a href="http://wiki.opscode.com/display/chef/Knife">Kinfe</a> and a node is acting funny, inspect it via show or edit. For example, you might have to manually edit a run list or a default set of attributes that are an array instead of a hash (both real examples).</p></li>
+<li>Stop using symbols for hash keys in recipes, cookbooks, etc. The Opscode default will be a double quoted string and older versions can just not work.</li>
+<li>Upgrade to latest chef when overrides are not behaving as desired correctly OR override all the attributes for a recipe (even one&#8217;s you don&#8217;t want to override) if you are &lt; 0.9.10. However, the latter solution is obviously less desirable.</li>
+</ol>
+
+
+<p>That&#8217;s all for now.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Easy,super funny recipe]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe/"/>
+    <updated>2010-11-17T14:21:50-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe</id>
+    <content type="html"><![CDATA[<p>A wonderful winter treat, sure to deliver fun and scolding!</p>
+
+<p>Required: children,2 thermometers for both purposes, a spouse who wants his/her temp. checked.
+Execute Fun: give them thermometer, right as thermometer touches tongue, say, with a little hesitation and urgency at once, &#8216;oh , wait&#8230;&#8217;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Tonight, a dream]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/06/28/tonight-a-dream/"/>
+    <updated>2010-06-28T18:24:41-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/06/28/tonight-a-dream</id>
+    <content type="html"><![CDATA[<p>This weekend Jill, Jude and I visited Chris Kenney to watch his band perform on his front porch in Villa Rica. To say Chris plays guitar well is an understatement. I&#8217;ve Spent time with him and now witnessed him play electric. For his set, he clearly had a distinct style.
+Jill thought he might be offended by this but I could close my eyes and clearly hear Joe Satriani. And it got me recalling my days of listening to him on cassette with my Sony Walkman with a 3 band graphic EQ. Thanks Chris.</p>
+
+<p><a href="Http://www.youtube.com/watch?v=U-zjnVmuTzs&amp;feature=youtube_gdata">flying in a blue dream</a></p>
+
+<p>I was taken back to when I was in high school and playing guitar was the only thing that mattered to me. I was neither a jock nor a band geek, I was a lone guitar guy in high school it seemed. Where now everyone plays. Not in blairsville did they in 1987.</p>
+
+<p>So much of our lives change from adolescence and for the most part our dreams of ourselves are sucked into the vortex of responsibility.</p>
+
+<p>For the rare few who escape this, I send this song. It is not cool by many standards but I have no shame. It is just what I held at the time to be my dream to make music like this. Thus the irony of the title.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My perfect music creation platform]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
+    <updated>2010-04-19T15:55:35-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve kept this blog purely in the programming realm and today I shall diverge from this. I have been a musician for many years prior to becoming a programmer. Today&#8217;s topic will revolve around computer-based music software.</p>
+
+<p>For sometime I&#8217;ve become more and more frustrated with my Tracking and Sequencing setup. Secondly, my plugins and just all around workflow were lacking. I really don&#8217;t have time to sort through lists of plugins that are mediocre or get frustrated when my program would suddenly crash ( I am omitting the tracking/sequencer I use, because it doesn&#8217;t matter anymore to me).</p>
+
+<p>I did have two pieces of plugin software I love that I carried over, everything else was tossed away:</p>
+
+<p>MOTU Symphonic Instrument
+Toontracks EZDrummer</p>
+
+<p>What I found to be very surprising is that refactoring (sorry for programming term) my entire songwriting and music creation setup didn&#8217;t take much cash nor time at all. In fact, most of it was free and I did it last weekend out of frustration of one last crash when a song was in my head.</p>
+
+<p>To be fair, everyone has different needs.. These were the same before I started this endeavor.</p>
+
+<p><strong>CRITERIA/NEEDS:</strong></p>
+
+<p>1) I want to have a &#8216;rock&#8217; template ready to go loaded with everything, including plugins.
+2) I want to said template record ready for guitar or bass on separate tracks.
+3) Drums are ready to go in a MIDI track.<br/>
+4) Setup is robust and quick.
+5) It can&#8217;t cost a lot, I do this for fun.</p>
+
+<p>I am focused on music that varies in a few styles, but can be classified as college rock, indie rock, post-punk, experimental and also for scoring films.</p>
+
+<p>The most important piece of all of this is the tracking and sequencing. I thought for certain I&#8217;d have to shell out some cash to find something. The last time I looked there were no viable options for OSX that did both from what I saw. This weekend I stumbled upon a few that did. I chose Reaper (www.cockos.com/reaper/).</p>
+
+<p>Reaper caught my eye immediately when I learned a guy from earlier versions of Winamp was on the very,very small team in San Francisco called Cockos (www.cockos.com). Their software is very intriguing and they have some innovative ideas. In particular Jesusonic (http://www.jesusonic.com/) which is basically a PC or Mac software system for creating your own effects/stomp box system. Take a look at the site and you&#8217;ll see. The upside for Reaper is that all the Jesusonic plugins are included.</p>
+
+<p>The only glitch had to do with a plugin not in the below list that made random noise. I will report on this later.</p>
+
+<p>So enough with all the talk, here is the list of software that I&#8217;m using and am very happy to report I&#8217;ve had no crashes and am feeling like I will be more creating soon.</p>
+
+<p><strong>TRACKING/SEQUENCING</strong> (very,very affordable): <br/>
+Reaper
+http://reaper.fm/</p>
+
+<p><strong>REVERB</strong> (FREE):      <br/>
+LVImpulse
+http://audio.lernvall.com/</p>
+
+<p>There are normal reverbs included with Reaper, but to get a very natural room/hall sound for drums, mix, etc. I think impulse reverbs are they way to go. Grab some for the plugin above using these links. You need interleaved WAV files so be aware of that.</p>
+
+<p><strong>Impulses</strong> (FREE):
+http://www.1-1-1-1.net/pages/impulses/index.htm#mpx1
+http://www.xs4all.nl/~fokkie/IR.htm#smallfactoryhall
+http://noisevault.com/nv/index.php?option=com_remository&Itemid;=29&func;=selectcat&cat;=17&page;=1
+http://www.irlibrary.org/
+http://www.macosxaudio.com/forums/viewtopic.php?t=14100</p>
+
+<p><strong>GUITAR/BASS AM</strong>P (FREE for 1 year):     <br/>
+Waves GTR Solo 3
+http://www.wavesgtr.com/html/product_gtr_solo.html</p>
+
+<p>This is a Waves product that is free for a year and $145 thereafter. It sounds amazing. I&#8217;ll ride that pony for a year and then figure something out later. The install is a little arduous, but worth it.</p>
+
+<p><strong>BAD ASS SYNTH AND OTHER</strong> (FREE):
+MRAlias2
+http://www.thepiz.org/mralias2/</p>
+
+<p>This plugin surprised me. I was wrapping up for the night and stumbled upon it. This will be my goto plugin for synths and synth-effects for some time.</p>
+
+<p><strong>OTHER INSTRUMENTS</strong>:
+MOTU Symphonic Instrument       <br/>
+http://www.motu.com/products/software/msi/</p>
+
+<p>I mentioned earlier, I score for film. I also enjoy adding some strings or a realistic piano to an arrangement. When I bought this in 2005-ish it was one of the best out there. This may not be the case for the money now, but I recommend you give it a listen.</p>
+
+<p><strong>BAD ASS DRUM</strong>S (not free, worth the money):  <br/>
+Toontracks EZDrummer Vintage Rock EZX
+http://www.toontrack.com/products.asp?item=9 (need EZDrummer too)</p>
+
+<p>Last but not least are the all important drums. If you are trying to create organic music in your home that sounds akin to real band, you need a realistic drums. Jordan from Snowden, while he may not recall, turned me on to EZDrummer. By itself, the built in sounds are very good, the beats are not close to what I like and I have to tweak them. However, if you also shell out the cash and get the Vintage Rock drums too, you will find John Bonham (and others) in a box. I rest my case.</p>
+
+<p><strong>HARDWARE</strong>:
+MacBook 2.4 Ghz, 4GB Ram</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Testing Varnish VCL Syntax]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/11/02/testing-varnish-vcl-syntax/"/>
+    <updated>2009-11-02T07:15:00-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/11/02/testing-varnish-vcl-syntax</id>
+    <content type="html"><![CDATA[<p>The simplest way to test syntax is to use the administration console via telnet on a Dev/QA Varnish machine. Your current running Varnish should allow your IP/localhost to connect if you have implemented a Varnish ACL.</p>
+
+<ul>
+<li><p>Start up Varnish with single command-line</p></li>
+<li><p>Login to console via telnet</p></li>
+<li><p>Load the config you wish to test</p></li>
+<li><p>Use the config.</p></li>
+</ul>
+
+
+<p>On OSX:</p>
+
+<pre><code>sudo /usr/local/sbin/varnishd -F  -a localhost:3000 -b localhost:6081 -T localhost:6082
+</code></pre>
+
+<p>From another console/shell/ open connection to Varnish management console:</p>
+
+<pre><code>telnet localhost 6082
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+</code></pre>
+
+<p>Load config and try to use (the config used in this example has a syntax problem. Therefore, you will see compilation errors:</p>
+
+<pre><code>vcl.load error /Users/hbeaver/code/varnish_demo/config/syntax_error.vcl  
+106 181     
+Message from VCC-compiler:
+Expected one of
+    'acl', 'sub', 'backend',  or 'director'
+Found: '}' at
+(input Line 12 Pos 1)
+}
+#
+Running VCC-compiler failed, exit 1VCL compilation failed
+</code></pre>
+
+<p>Conversely, if the VCL has good syntax you should see no errors:</p>
+
+<pre><code>vcl.load good_config /Users/hbeaver/code/varnish_demo/config/default.vcl 
+200 13      
+VCL compiled.
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Starting specific version of thin web server]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/10/15/starting-specific-version-of-thin-web-server/"/>
+    <updated>2009-10-15T02:40:37-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/10/15/starting-specific-version-of-thin-web-server</id>
+    <content type="html"><![CDATA[<p>You may find yourself needing to test something with a specific version of thin, for whatever reason. If you need start up thin with a specific version of gem you have installed this is how you do it:</p>
+
+<pre>thin _1.2.4_ -R config.ru -p 3001 start</pre>
+
+
+<p>The first argument represents the gem version prefixed and post-fixed with &#8220;_&#8221;.</p>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Beware asserting against Rspec @params]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
+    <updated>2009-10-01T02:40:43-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
+    <content type="html"><![CDATA[<p>Spent a little time scratching my head on this week. @params is reserved in Rspec controller tests apparently much like Rails. @params will contain extra keys like &#8220;controller&#8221; and &#8220;action&#8221; which if you try and assert against will fail of you do something like this:</p>
+
+<pre>
+
+@params = {:id => 'niceid'}
+...
+Model.expects(:method).with(@params)
+
+</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using Rails for custom applications and avoiding the CMS trap.]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
+    <updated>2009-09-03T07:38:23-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
+    <content type="html"><![CDATA[<p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
+
+<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
+
+<pre><code>wordpress_template.php
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
+//end of wordpress.php
+...
+//function included elsewhere
+function include_rails_service(service_url,type){
+//could return any of following for the resource url
+ switch (type) {
+  case ESI_INCLUDE:
+   return "&lt;esi include ='" + service_url + "'&gt;";
+   break;
+  case SERVICE:
+   include service_url;
+   break;
+  case AJAX:
+//javascript include with service js, doing doc.write
+}
+}
+</code></pre>
+
+<p>The point is Wordpress doesn&#8217;t know about Rails and Rails doesn&#8217;t know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql::Error: MySQL server has gone away with Sinatra + ActiveRecord]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
+    <updated>2009-08-10T07:17:12-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
+    <content type="html"><![CDATA[<p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  &#8220;Mysql::Error: MySQL server has gone away&#8221; message. The resolution is pretty simple:</p>
+
+<pre><code>class NewApp &lt; Sinatra::Default   
+
+  before do
+    ActiveRecord::Base.connection.verify!
+  end
+...
+end #end of Sinatra class
+</code></pre>
+
+<p>I created a Lighthouse ticket before I discovered the resolution. There are also more technical details here: <a href="https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4">https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Varnish cache purge Rake task]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
+    <updated>2009-07-15T16:28:24-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
+    <content type="html"><![CDATA[<p>This example uses Ruby to telnet into Varnish and issue the &#8220;url.purge .*&#8221; command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
+
+<pre><code>require 'rubygems'
+
+namespace "varnish" do
+
+  desc "Purge ALL urls from Varnish"
+  task :global_purge =&gt; :environment do
+
+    #It WILL timeout, just accept it. Varnish does not have a command prompt.
+    require 'net/telnet'
+    @result = ""
+    begin
+      localhost = Net::Telnet::new("Host" =&gt; "localhost",
+      "Port" =&gt; 6082,
+      "Timeout" =&gt; 5)
+      localhost.cmd("url.purge .*") { |c| @result = c}
+    rescue Exception
+      if @result.include? ("200 0")
+        puts "varnish purged OK."
+      else
+        raise "Varnish not purged."
+      end
+    end
+  end
+
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Reminder to self and world: Varnish uses POSIX regex.]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
+    <updated>2009-07-14T09:26:45-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
+    <content type="html"><![CDATA[<p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don&#8217;t work! So putting this in your Varnish VCL will silently do nothing:</p>
+
+<pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>whereas this match:</p>
+
+<pre><code>if (req.url ~ "/[0-9]+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[F5/BigIP Healthcheck against Thin/Sinatra app]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app/"/>
+    <updated>2009-06-05T05:18:01-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app</id>
+    <content type="html"><![CDATA[<p>When using a BigIP to load balance a Sinatra app via Thin you will need to provide more than just the GET request string in F5&#8217;s &#8220;send string&#8221; field OR you might get &#8220;Request Invalid!&#8221; error message. Heads up.</p>
+
+<h4>Using this will cause issue:</h4>
+
+<h4></h4>
+
+<pre><code>GET /ops/heartbeat
+</code></pre>
+
+<p><strong>This works:</strong></p>
+
+<h4></h4>
+
+<pre><code>GET /ops/heartbeat HTTP/1.1\r\nHost: \r\nConnection: Close\r\n\r\n
+</code></pre>
+
+<h4></h4>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Realtime response time reporting from Rails logs using regex.]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex/"/>
+    <updated>2009-06-05T05:12:20-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex</id>
+    <content type="html"><![CDATA[<p>Simple but effective regex to monitor when there are issues. In my example below, this will show all response times > 1 second:</p>
+
+<pre><code> tail -f production.log | egrep "Completed in [0-9]{3,10}"
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[links for 2009-06-03]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/06/03/links-for-2009-06-03/"/>
+    <updated>2009-06-03T14:05:52-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/06/03/links-for-2009-06-03</id>
+    <content type="html"><![CDATA[<ul>
+<li></li>
+</ul>
+
+
+<p><a href="http://smartrics.blogspot.com/2009/04/jmeter-to-test-robustness-of-system.html">smartrics: JMeter to test robustness of system exposing REST APIs</a></p>
+
+<p>(tags: <a href="http://delicious.com/blasterpal/REST">REST</a> <a href="http://delicious.com/blasterpal/uri">uri</a> <a href="http://delicious.com/blasterpal/jmeter">jmeter</a> <a href="http://delicious.com/blasterpal/sampler">sampler</a>)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging/Troubleshooting Rails Applications in Production Enviroments]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
+    <updated>2009-05-29T12:55:37-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
+    <content type="html"><![CDATA[<p><strong>Introduction</strong></p>
+
+<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I&#8217;ve compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
+
+<p><strong>Non-Technical (READ FIRST)</strong></p>
+
+<ol>
+<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
+<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
+<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
+</ol>
+
+
+<p><strong>Technical</strong></p>
+
+<p>Elimination + log files is my troubleshooting method of choice.</p>
+
+<ol>
+<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
+<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
+<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
+<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
+<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
+<li>The logs should give status regarding database(s), but especially look for the words &#8220;timeout&#8221; if you have any custom network libraries that fetch data (we do) or &#8220;ActiveRecord&#8221;.  Perhaps even, grep for it.</li>
+<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
+</ol>
+
+
+<p><strong>Other</strong></p>
+
+<ol>
+<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[links for 2009-05-26]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/05/26/links-for-2009-05-26/"/>
+    <updated>2009-05-26T14:07:52-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/05/26/links-for-2009-05-26</id>
+    <content type="html"><![CDATA[<ul>
+<li></li>
+</ul>
+
+
+<p><a href="http://www.igvita.com/2008/02/19/live-mongrel-debugging-and-recovery/">Live Mongrel Debugging and Recovery - igvita.com</a></p>
+
+<p>(tags: <a href="http://delicious.com/blasterpal/mongrel">mongrel</a> <a href="http://delicious.com/blasterpal/debugging">debugging</a> <a href="http://delicious.com/blasterpal/live">live</a> <a href="http://delicious.com/blasterpal/recovery">recovery</a>)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[links for 2009-05-23]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/05/23/links-for-2009-05-23/"/>
+    <updated>2009-05-23T14:34:41-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/05/23/links-for-2009-05-23</id>
+    <content type="html"><![CDATA[<ul>
+<li></li>
+</ul>
+
+
+<p><a href="http://developer.apple.com/documentation/Darwin/Reference/Manpages/man1/launchctl.1.html">Mac OS X Manual Page For launchctl(1)</a></p>
+
+<p>(tags: <a href="http://delicious.com/blasterpal/launchctl">launchctl</a> <a href="http://delicious.com/blasterpal/osx">osx</a> <a href="http://delicious.com/blasterpal/service">service</a> <a href="http://delicious.com/blasterpal/control">control</a> <a href="http://delicious.com/blasterpal/command">command</a> <a href="http://delicious.com/blasterpal/line">line</a>)</p>
+]]></content>
+  </entry>
+  
+</feed>

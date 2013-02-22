@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: linux | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Where the heck is my .profile on Westhost?]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/10/02/where-the-heck-is-my-profile-on-westhost/"/>
+    <updated>2008-10-02T02:57:21-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/10/02/where-the-heck-is-my-profile-on-westhost</id>
+    <content type="html"><![CDATA[<p>~/.bash_profile does not work.</p>
+
+<p>It's actually /.bashrc.</p>
+
+<p>So for me. I do this:</p>
+
+<pre><code>ln -s /.bashrc ~/.bash_profile
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA['OTP' based sudo, with per process restrictions.]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions/"/>
+    <updated>2008-07-30T13:05:08-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions</id>
+    <content type="html"><![CDATA[<p><strong>Is it possible to audit Unix/Linux server root access per task and on temporary basis?</strong></p>
+
+<p>Yes.</p>
+
+<p>Years ago I wrote a 'sudo' equivalent in W32, but with a big twist. It was called "RunAuth". It used the API "run as" mechanisms. It gave admin access based on an OTP (http://en.wikipedia.org/wiki/One_time_password). The OTP was NOT automatic. The person had to call the helpdesk to get a code. It was based on a shared secret and MD5. Secondly, the code provided  defined the exact process that could be executed by the RunAuth client.</p>
+
+<p><strong>Use Case:</strong>
+Field Sales Person wants to install a new HP Printer. User does NOT have local admin. How to install a printer driver without shipping computer to IT?</p>
+
+<p><strong>Solution:</strong>
+Start RunAuth, choose install printer driver, a challenge code is presented. Tell the IT person over the phone the code. They provide a response that immediately executes the install printer wizard as admin. The actual MD5 signature of the DLL or EXE is also validated before running to ensure no trojan or backdoor is created. Upon completion of task, the machine logs out the user or requires reboot.</p>
+
+<p><strong>Point:</strong>
+The same can be accomplished in Linux.
+Think of sudo with one time password access. Why is this important? Because that means admins don't have single control over root access. It requires "dual" access. Someone else who is not an admin, has to consent to the changes or stated objective to provide the admin a one time sudo password. So if the automated provisioning cannot handle a task or an emergency occurs, there is still a regimented procedure to perform ad hoc tasks,but there is change control enforced at the OS.</p>
+
+<p>I'd like to have opinions?</p>
+
+<p>H</p>
+]]></content>
+  </entry>
+  
+</feed>

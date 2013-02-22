@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Security | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/security/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA['OTP' based sudo, with per process restrictions.]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions/"/>
+    <updated>2008-07-30T13:05:08-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions</id>
+    <content type="html"><![CDATA[<p><strong>Is it possible to audit Unix/Linux server root access per task and on temporary basis?</strong></p>
+
+<p>Yes.</p>
+
+<p>Years ago I wrote a 'sudo' equivalent in W32, but with a big twist. It was called "RunAuth". It used the API "run as" mechanisms. It gave admin access based on an OTP (http://en.wikipedia.org/wiki/One_time_password). The OTP was NOT automatic. The person had to call the helpdesk to get a code. It was based on a shared secret and MD5. Secondly, the code provided  defined the exact process that could be executed by the RunAuth client.</p>
+
+<p><strong>Use Case:</strong>
+Field Sales Person wants to install a new HP Printer. User does NOT have local admin. How to install a printer driver without shipping computer to IT?</p>
+
+<p><strong>Solution:</strong>
+Start RunAuth, choose install printer driver, a challenge code is presented. Tell the IT person over the phone the code. They provide a response that immediately executes the install printer wizard as admin. The actual MD5 signature of the DLL or EXE is also validated before running to ensure no trojan or backdoor is created. Upon completion of task, the machine logs out the user or requires reboot.</p>
+
+<p><strong>Point:</strong>
+The same can be accomplished in Linux.
+Think of sudo with one time password access. Why is this important? Because that means admins don't have single control over root access. It requires "dual" access. Someone else who is not an admin, has to consent to the changes or stated objective to provide the admin a one time sudo password. So if the automated provisioning cannot handle a task or an emergency occurs, there is still a regimented procedure to perform ad hoc tasks,but there is change control enforced at the OS.</p>
+
+<p>I'd like to have opinions?</p>
+
+<p>H</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Port Knocking + OTP]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/02/15/port-knocking-otp/"/>
+    <updated>2008-02-15T08:34:32-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/02/15/port-knocking-otp</id>
+    <content type="html"><![CDATA[<p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
+
+<p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I'm going to play with this. The idea:</p>
+
+<ul>
+<li><p>Port knock sequence numbers are based on a secret key and a cipher to create an 16 bit sequence or port numbers. ex. "7111 31189 40922".</p>
+
+<ol>
+<li><p>That is UDP knock: 7111, 31189, and 40922.</p></li>
+<li><p>These numbers change approx. every 1-2 minutes. based on secret key and cipher and date/time seed.</p></li>
+</ol>
+</li>
+<li><p>The payload of each packet is a sequence number + 2 digit OTP number.
+ex: packet 1: "1|3dz", packet 2: "2|js9", packet 3: "3|34m"</p></li>
+<li><p>There is a REQUEST packet that goes on another port based on cipher, ex. 5433 (changes daily?)
+The request packet provides the next sequence number,asks for what port to open: 22, ssh in this example that is ENCRYPTED also with IP Address. like so: "4|22|67.100.40.23" => encrypted as "f321a0a5eb48f2ef2f89f52124bcc11a"</p></li>
+<li><p>The entire sequence is started by a START port number and END port number that changes every day with a simple string as payload. ex: START port: 8765,END port: 64100.So the entire OTP +port knock sequence from my OTP+port knock client:</p></li>
+<li><ul>
+<li><p>UDP:8765=>"START_PK_SEQ"</p></li>
+<li><p>UDP: 7111 -> "1|3dz"</p></li>
+<li><p>UDP: 31189 => "2|js9"</p></li>
+<li><p>UDP: 40922 => "3|34m"</p></li>
+<li><p>UDP: 5433 => 'f321a0a5eb48f2ef2f89f52124bcc11a"</p></li>
+<li><p>UDP:64100=>"END_PK_SEQ"Port 22 is now open on the host firewall for the requesting ip based on successfully decrypting packet #5.</p></li>
+</ul>
+</li>
+<li><p>In theory this would be resistant against man-in-the-middle and reply attacks.</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby Extension for GRC's Perfect Paper Passwords V3]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/"/>
+    <updated>2007-12-10T09:25:48-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords</id>
+    <content type="html"><![CDATA[<p>This is DEPRECATED, because Gavin Stark wrote a native ruby class last month. I will leave this up if someone wants a C implementation for OSX, but after that Gavin did the work in Ruby and I encourage looking there:</p>
+
+<p><a href="http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/"> http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/</a></p>
+
+<p>Ruby Extension for GRC’s Perfect Paper Passwords V3.
+UPDATE 12/11/2007, current version only supports Mac OSX, I will be creating a Linux version shortly. Not sure if I'll wrap a Windows version.
+Ruby Extension for GRC’s Perfect Paper Passwords/PPP C (<a href="http://www.grc.com/ppp/">http://www.grc.com/ppp/</a>) implementation by John Graham-Cumming.
+Create with SWIG.
+Version .01
+CODE/LIB: <a href="http://www.1000fires.com/ppp3-Ruby-extension.zip">http://www.1000fires.com/ppp3-Ruby-extension.zip</a>
+C Ref: <a href="http://www.jgc.org/blog/2007/11/steve-gibsons-ppp-new-version-3-in-java.html">http://www.jgc.org/blog/2007/11/steve-gibsons-ppp-new-version-3-in-java.html</a>
+NOTE: Because of the way C works, the first argument must be a space (not a null char).</p>
+
+<p>Entry point to ppp3 is “Ppp3.main” Ruby call after include with a Ruby array as argument.</p>
+
+<p>USAGE in ruby:</p>
+
+<blockquote><p>require ‘ppp3' #ppp3.bundle#Usage 1, just get a random sequence key.
+Ppp3.main([” “,” “])</p></blockquote>
+
+<h1>Usage 2, create an array and call with arguments.</h1>
+
+<h1>call the Ppp3.main call with this array:</h1>
+
+<p>a = Array[”",”efbda242bd1db23fd343b516a2a10d0eed08250e542a789811307f2011a92df6″,”0″,”2″]
+Ppp3.main(a)</p>
+
+<h1>Usage 3, call with implied array string.</h1>
+
+<p>Ppp3.main([”",”efbda242bd1db23fd343b516a2a10d0eed08250e542a789811307f2011a92df6″,”0″,”70″])</p>
+
+<p>TODO. Add a Ruby convenience library to do some parsing and pretty printing as well as prepare for Rails integration.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Quick and Dirty HTTP packet sniffing / inspection on OSX]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx/"/>
+    <updated>2007-11-09T04:55:42-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx</id>
+    <content type="html"><![CDATA[<p>For the life of me I can't get ethereal or any variant to work on my OS X 10.4 ( yes I have X11 installed). So for some method I get ethereal which comes with tethereal ( a command line variant ). The below is how I sniffed my Rails app in action.</p>
+
+<p>/sw/bin/tethereal -V -S -i lo0 -d 'tcp.port==3000,http'</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Logins Simple Action Permissions System]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/09/30/rails-logins-simple-action-permissions-system/"/>
+    <updated>2007-09-30T11:51:08-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/09/30/rails-logins-simple-action-permissions-system</id>
+    <content type="html"><![CDATA[<p>applications.rb implements :before_filter that will</p>
+
+<p>model for actions: 'action_permissions'</p>
+
+<p>model for user permissions: 'user_permissions'</p>
+
+<p>the session level user permission variable: 'user_permission_sum' using the previously discussed base2 sum of all allowed permissions .
+check that the user can execute the controller/action using 'permission_token'</p>
+]]></content>
+  </entry>
+  
+</feed>

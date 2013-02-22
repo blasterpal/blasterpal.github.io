@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mysql | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to find a date in past in mysql]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql/"/>
+    <updated>2008-10-28T09:12:28-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql</id>
+    <content type="html"><![CDATA[<p>SELECT SUBDATE(NOW(),INTERVAL 1 HOUR);</p>
+
+<p>SELECT SUBDATE(NOW(),INTERVAL 1 DAY);</p>
+]]></content>
+  </entry>
+  
+</feed>

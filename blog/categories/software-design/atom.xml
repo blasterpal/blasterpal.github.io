@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: software design | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/software-design/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[New favorite tool in toolbox for web development: Charles Web Debugging Proxy]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/"/>
+    <updated>2008-12-19T04:41:21-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy</id>
+    <content type="html"><![CDATA[<p>I will not regurgitate what <a href="http://www.charlesproxy.com/">Charles' website</a> can already tell you. Charles is a great tool. Moreover, let me add some obvious points for people like myself:</p>
+
+<ul>
+<li><p>It runs on OSX and quickly.</p></li>
+<li><p>It is affordable (we are getting licenses here this week)</p></li>
+<li><p>It has TONS of features (especially allowing filtering of anything in URL)</p></li>
+<li><p>It auto-magically acts a HTTP Proxy after reboot when Charles is started on ALL HTTP based applications.</p></li>
+</ul>
+
+
+<p>Why you may ask not use <a href="http://getfirebug.com/">Firebug</a>, it's free!</p>
+
+<p>If you are doing Javascript work and trying to naildown activity on the wire (outside of the browser), you have to rely on a proxy or sniffer, especially if you are testing many browsers at once. The heavyweight option is indeed to use <a href="http://www.wireshark.org">Wireshark</a> on OSX, like I initially did. But this can add complexity when you are under a deadline.</p>
+
+<p>Also, Firebug has soooo many great features I need to use concurrently, having a good proxy monitor allows me to use Firebugs other incredible features in tandem.</p>
+
+<p>Last week I had such deadlines at my paid gig rewriting a<a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> .NET</a><a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> 3.5</a> site into <a href="http://www.rubyonrails.org/">Rails 2.1.2</a> . I had to (in a hurry) integrate a slew of user/tracking Javascript events that fired off GET requests to an external site. The query string and/or request HAD to include the variables exactly to ensure our internal datawarehouses didn't get borked. Secondly, integrating the tags had to NOT break existing AJAX functionality surrounding the same buttons and links.</p>
+
+<p>Using Firebug to monitor the happiness of Javascript, investigate the DOM and use the console to query, took up most of the Firebug interface and time. Having Charles running in a separate monitor (with the required URLS filtered) made for much,much quicker development and debugging.</p>
+
+<p>Take a look at this example call (notice the Filter line that has part of the host addres). This GET request was fired when a user click a button. Charles verified the request had all the key/value pairs expected: <a href="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7.png"><img src="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7-300x135.png" alt="" /></a></p>
+
+<p>Using Charles and Firebug together rounds out Frontend web development, in my case using Rails 2.1.2 and JQuery, and helps keep your velocity up.</p>
+
+<p>Lastly, there are features I have not even explored with Charles. I applaud the guys from Charles for writing such a great tool that saved my week and sanity.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[My software mantra...]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/09/24/my-software-mantra/"/>
+    <updated>2008-09-24T10:45:50-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/09/24/my-software-mantra</id>
+    <content type="html"><![CDATA[<p>See this:</p>
+
+<p><a href="http://1000fires.com/wordpress/?page_id=46">My Software Mantras</a></p>
+]]></content>
+  </entry>
+  
+</feed>

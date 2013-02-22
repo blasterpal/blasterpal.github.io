@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="
+">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/page/7/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/">The Mostest Bestest Web Security , ACL Idea Ever, Maybe. Sum of Exponents Required.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-20T14:16:28-04:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content">
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/20/people-fight-back-against-phishers-and-interjerks/">People Fight Back Against Phishers and Interjerks.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-20T13:44:49-04:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, this is a very idealistic concept. We all hate SPAM and phishing!! Would you not install an application that would attack BACK at the phishing sites? I would, damn skippy!</p>
+
+<p>If you have not heard of Seti, or SETI do a google and come back.</p>
+
+<p>The idea is simple. A program that runs in the background and when you are not doing anything, like a screensaver. This program will work with other computers to shutdown known phishing web sites by flooding then with web requests.</p>
+
+<p>I can explain the technology later, but suffice, I think it might work.</p>
+
+<p>Comments?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout/">Cheap - Easy - Simple - and Dirty - Rails Background Jobs That Don&#8217;t Timeout.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-20T13:38:29-04:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Not to toot my own horn, but you might want to read my post about my Setting pattern b/c I make use of it extensively in all my Rails code as you can see below. I do this to avoid hardcoding anything.</p>
+
+<h1>cheap background jobs in rails</h1>
+
+<ol>
+<li>fork and exec</li>
+</ol>
+
+
+<h1>START RAILS CODE</h1>
+
+<h1>in my controller</h1>
+
+<p>touch_file = Setting.get_rails_home + &#8220;DONE&#8221; #used to debug
+script_runner = &#8220;export RAILS_ENV=&#8217;#{Setting.get_rails_env}&#8217;; #{Setting.get_runner_script_path}&#8221;</p>
+
+<h1>this controller runs an Actionmailer that batches through a VERY large list of emails.</h1>
+
+<p>cmd = script_runner + &#8221; &#34;app = ActionController::Integration::Session.new; app.get &#8216;mailing_list_emails/blast_batch_bcc_list&#8217;&#34; &#8221;
+logger.debug(&#8220;blast_background to run: [#{cmd}]&#8221;)</p>
+
+<h1>logger.debug(&#8220;touching files to run: #{touch_file}&#8221;)</h1>
+
+<p>fork do</p>
+
+<h1>exec &#8220;#{cmd}&#8221;</h1>
+
+<p>exec &#8220;echo running #{cmd} >> #{touch_file}&#8221;  #you need the quotes, because any characters like > or | need to be let through</p>
+
+<p>end</p>
+
+<h1>Process.wait # process wait will make the Rails process wait and the process WILL timeout in CGI.</h1>
+
+<p>redirect_to :action => &#8220;index&#8221;</p>
+
+<h1>END RAILS CODE</h1>
+
+<ol>
+<li>Because I am doing a fork and exec zombie process WILL be created. So use cron to fix that.
+59 * * * * /home/scripts/zombie.sh &#8211;cron</li>
+</ol>
+
+
+<p>There are examples for the zombie.sh on the web. I used this one, thanks.
+(http://www.linuxscrew.com/2007/08/17/automatic-zombie-processes-killing-shell-script/)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/16/security-rails-table-and-restricted-job-security/">Security: Rails Table and Restricted Job Security.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T15:02:06-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok I&#8217;m a little of a freak about security. I realize using a system like Rails and trusting everything works as advertised takes a leap of faith anyway. And with allowing users to provide future web output ( or any input for that matter ) is inherently insecure.</p>
+
+<p>This is a simple idea that if anyone peruses the web and would like to comment on, please do. I will be implementing this in my current in future projects. Especially on my &#8220;settings&#8221; tables and anything that has the potential for injection above and beyond normal forms.</p>
+
+<p>Each table in your model will implement a signature field.</p>
+
+<p>In the example of my rcron idea of table columns:</p>
+
+<p>dayofweek,month,dayofmonth,hour,minute,
+signature,update_on,created_at,lock_type</p>
+
+<ol>
+<li>environment.rb contains a private key/passphrase = &#8220;1234&#8221;. For non Rails people this file is not viewable from the web and is a config file.</li>
+</ol>
+
+
+<p>1.1 OR more strongly, put it in a separate file, in the not web root, and have ONLY one call to it in a library. That way the variable is not global and goes out of scope after being used (make the call a class method). So nothing can access the key other than this code.</p>
+
+<ol>
+<li><p>All tables have a signature field that is an encrypted string of command. This in effect like a digital signature, I work with VeriSign so it makes sense I think about this.</p></li>
+<li><p>BEFORE command is run the signature is verified always. This means a cracker could not simply replace the contents of the table through a future exploit.</p></li>
+<li><p>So in theory, you can sleep a little easier knowing IF someone access your DB tables, they can&#8217;t cause havoc or insert a &#8216;rm -Rf&#8217; into a table that actually reads the values and executes them. Like a background job table or an rcron table.</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/16/rails-settings-pattern-if-you-want-to-call-it-that/">Rails &#8216;Settings&#8217; Pattern (if You Want to Call It That)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T15:01:16-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Disclaimer: The below concepts may be a plugin or something I missed in Rails and believe me I&#8217;ve read the manual and API pretty well. I have them bookmarked locally. As a Java programmer, I have the Rails and Ruby APIs open when I work. But again, if all my below is DRY within Rails, please let me know.</p>
+
+<p>Problem: Lot&#8217;s of site wide global settings and variables that should not be repeated. And even more important, they SHOULD NOT be hard-coded. On top of that, we want the globals to be dynamic. Think DRY. Go ahead, scratch your head and maybe even scoff at me.</p>
+
+<p>History:
+Let&#8217;s back up a little and think some C coding. Think #defines. I really like #defines in C. They are a simple way of keep your globals in a logical place. They are even nicely, by convention UPPER_CASE, I like that too. In Java, we have static public variables and as long they are in the inheritance chain or imported, again, same idea. I know ruby has static variables too.</p>
+
+<p>My problem:</p>
+
+<ol>
+<li>I don&#8217;t want static public variables or #defines in my code. I want them in my model, they by and large represent a business or application setting anyway.</li>
+<li>I want them to be editable and reinitialized at runtime or dynamically. Later on that.</li>
+<li>And I want them to be accessible from anywhere that can view a model.</li>
+</ol>
+
+
+<p>Solution:
+A Setting model. Simple and easy to use:</p>
+
+<p>&#8211;>Schema:
+id           | int(11)      | NO   | PRI | NULL                | auto_increment |
+| name         | varchar(32)  | YES  |     | NULL                |                |
+| setting_desc | varchar(255) | YES  |     | NULL                |                |
+| value        | varchar(255) | NO   |     |                     |                |
+| created_at   | datetime     | NO   |     | 0000-00-00 00:00:00 |                |
+| updated_on   | datetime     | NO   |     | 0000-00-00 00:00:00 |                |
+| lock_type    | int(11)      | YES  |     | 0                   |                |</p>
+
+<p>Example entry:
+| 74 | META_KEYWORDS                 | Meta setting for front end pages for &#8216;keywords&#8217; content tag.                                                       | blah, blah,blah | 2007-06-03 08:26:57 | 2007-06-03 08:26:57 |         0 |</p>
+
+<p>Another Example:
+55 | ALWAYS_ADVANCE_SONG           | Debug setting to force song advance everytime listen is called for radio                                           | TRUE</p>
+
+<p>LAst example:
+-24 21:32:00 | 2007-03-25 11:22:35 |         0 |
+| 49 | MAX_TICKETING_LISTING         | Maximum number of events per page                                                                                  | 200</p>
+
+<p>Three distinctly different types of &#8220;settings&#8221;, one is purely view, one affects the behavior of a controller, the other affects the number of results in a model. Either way, I get a centralized place to keep all these settings and configuration and have much easier to maintain code.</p>
+
+<p>Here is an example of calling one of the above in your code:</p>
+
+<p>@meta_keywords = Setting.get_setting(&#8220;META_KEYWORDS&#8221;)</p>
+
+<p>Now you can have your code clean and easy to update from a backend, protected url.</p>
+
+<p>Comments?</p>
+
+<p>H</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/09/16/rails-cron-railscron-running-real-system-jobs-andor-scheduling/">Rails Cron, Railscron, Running &#8216;Real&#8217; System Jobs And/or Scheduling.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T14:41:12-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;ve looked briefly at the backgrounrb. I think for me it might be overkill. I was thinking I want a REAL cron emulation in Rails nothing more. Nothing fancy, just run jobs from the shell and not in Rails/Web environment. These are my notes to myself before I start writing code:</p>
+
+<p>rCronToo or whatever to call it. Since Rails Cron went dead.</p>
+
+<p>table/model (notice, it&#8217;s really almost 1:1 for a cron entry):</p>
+
+<p>dayofweek,month,dayofmonth,hour,minute,signature,update_on,created_at,lock_type</p>
+
+<p>crontab -> rCronExec.sh::
+runs every min. searches for eligible jobs to run:</p>
+
+<p>need to simplify the SQL ( HANK: look at C source for cron)</p>
+
+<p>a)select from rcron_jobs where dayofweek = &#8216;thisday&#8217; AND month = &#8216;thismonth&#8217; AND &#8230;
+b) select from rcron_jobs where dayofweek = &#8220;*&#8221; &#8230; AND min = &#8216;thismin&#8217;&#8230;</p>
+
+<p>View and FrontEnd:
+Fill in cron rails view just like real cron. All jobs are saved in the future 1 min + BUFFER sec. to avoid race conditions.</p>
+
+<p>SECURITY: See next post on Rails table and restricted job security.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/25/integrating-rails-into-authorizenet-some-pointers/">Integrating Rails Into Authorize.NET, Some Pointers.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-25T10:59:09-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If need to do your shopping system or not use one of the carts/checkout systems out there, then this will help you get started. I have a custom CMS that is integrated with the items to buy which are tickets to rock shows for a club I work with for example.</p>
+
+<p>I try to follow the DRY principle and put any generic utility functions I may call more than 1X into a module and drop into /lib/. Then I can reuse for any project.</p>
+
+<p>For simplicity while testing, I put the authorize.net transaction key in my environment.rb -> AUTHORIZE_KEY=&#8221;xxxxx&#8221;. I&#8217;m still thinking on better ways to do this.</p>
+
+<p>Here are some Authorize functions and code to help you start posting transactions.</p>
+
+<ol>
+<li>create a couple of modules, one for your general purpose functions like md5 and one for authorize only:
+Here is code from authorize module that I called &#8220;authorize_util.rb&#8221;</li>
+</ol>
+
+
+<h2>START CODE</h2>
+
+<p>module AuthorizeUtil</p>
+
+<p>require &#8216;onekfires_lib&#8217;</p>
+
+<p>def self.create_authorize_fp(x_login,x_num,x_fp_timestamp,x_amount,delim)</p>
+
+<h1>$fingerprint = hmac ($x_tran_key, $loginid . &#8221;<sup>&#8221;</sup> . $sequence . &#8221;<sup>&#8221;</sup> . $tstamp . &#8221;<sup>&#8221;</sup> . $amount . &#8221;<sup>&#8221;</sup> . $currency);</h1>
+
+<p>OneKFiresUtil.get_hmac_md5(self.get_authorize_x_key,self.create_fp_no_md5(x_login,x_num,x_fp_timestamp,x_amount,delim))</p>
+
+<p>end</p>
+
+<h1>this is purely to look at the constructed string if you want to actually</h1>
+
+<h1>test like so &#8220;md5 -s &#8216;this string&#8217; for example&#8221;</h1>
+
+<p>def self.create_fp_no_md5(x_login,x_num,x_fp_timestamp,x_amount,delim)</p>
+
+<p>&#8221;#{x_login}#{delim}#{x_num}#{delim}#{x_fp_timestamp}#{delim}#{x_amount}#{delim}&#8221;
+end</p>
+
+<p>private</p>
+
+<h1>this is extremely sensative and should not be able to be called except by these methods, I put this in</h1>
+
+<h1>my environment.rb as a constant.</h1>
+
+<p>#
+def self.get_authorize_x_key</p>
+
+<p>AUTHORIZE_KEY
+end</p>
+
+<h2>end</h2>
+
+<p>END CODE</p>
+
+<p>Here&#8217;s the md5 part of my lib:</p>
+
+<h2>START CODE</h2>
+
+<p>module OneKFiresUtil</p>
+
+<p>require &#8220;openssl&#8221;
+require &#8216;digest/md5&#8217;
+require &#8216;md5&#8217;</p>
+
+<p>def self.get_hmac_md5(key,msg)</p>
+
+<p>OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(&#8220;md5&#8221;), key, msg)</p>
+
+<p>end</p>
+
+<h2>&#8230;</h2>
+
+<p>END CODE</p>
+
+<ol>
+<li>Call like so in your controller:
+START CODE</li>
+</ol>
+
+
+<hr />
+
+<p>require &#8216;onekfires_lib&#8217;
+require &#8216;authorize_util&#8217;</p>
+
+<p>def index</p>
+
+<h1>x_login,x_num,x_fp_timestamp,x_amount,delim</h1>
+
+<p>@x_login = &#8220;your transaction login&#8221;
+@x_fp_sequence = &#8220;ets0001&#8221;
+@x_invoice_num = @x_fp_sequence</p>
+
+<h1>@x_fp_timestamp = &#8220;Thu Aug 23 21:05:14 UTC 2007&#8221;</h1>
+
+<h1>@x_fp_timestamp = Time.new</h1>
+
+<p>@x_fp_timestamp = OneKFiresUtil.time_in_utc.to_i
+@x_amount = &#8220;0.01&#8221;
+@x_description = &#8220;Some Description&#8221;</p>
+
+<p>@x_email = &#8220;hbeaver@gmail.com&#8221;
+@x_email_customer = &#8220;TRUE&#8221;</p>
+
+<p>@finger_print_plain = AuthorizeUtil.create_fp_no_md5(@x_login,@x_fp_sequence,@x_fp_timestamp,@x_amount,&#8221;<sup>&#8221;)</sup></p>
+
+<h1>md5 hash fingerprint for authorize</h1>
+
+<p>@md5out = AuthorizeUtil.create_authorize_fp(@x_login,@x_fp_sequence,@x_fp_timestamp,@x_amount,&#8221;<sup>&#8221;)</sup></p>
+
+<h2>end</h2>
+
+<p>END CODE</p>
+
+<ol>
+<li>create the &#8220;index&#8221; view that will post to authorize:
+START CODE</li>
+</ol>
+
+
+<hr />
+
+<p>@x_login = &lt;%=@x_login %></p>
+
+<p>@x_fp_sequence = &lt;%=@x_fp_sequence%></p>
+
+<p>@x_fp_timestamp = &lt;%=@x_fp_timestamp%></p>
+
+<p>@x_amount = &lt;%=@x_amount%></p>
+
+<p>Authorize Fingerprint Plain Text:   [&lt;%=@finger_print_plain%>]</p>
+
+<p>Authorize Fingerprint MD5:   [&lt;%=@md5out%>]</p>
+
+<hr />
+
+<p>END CODE</p>
+
+<p>Enjoy and good luck.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/23/doing-cryptography-when-youve-had-a-couple-of-beers-bad/">Doing Cryptography When You&#8217;ve Had a Couple of beers->Bad!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-23T11:34:22-04:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>So i&#8217;m trying to port the sample code for a credit card processing gateway from PHP to ruby. You&#8217;d think that doing MD5 in any language would yield the same results.</p>
+
+<p>Let me be clear. When it comes to cryptography and hashing: there is ZERO margin for error. If the hash doesn&#8217;t match, then you might as well call Georgia a color. Case in point. Do these match?</p>
+
+<p>dd419504095a2f81a59aebd86ce2b75f</p>
+
+<p>4b10c62d108c31227356b3953d19be28</p>
+
+<p>Uh, no, they don&#8217;t. Let me give you a little example on hashing using MD5. The idea of a hash like MD5 is that if you give it an input, it can create a UNIQUE sequence of characters that can NEVER be repeated given the input.</p>
+
+<p>Here is MD5 for &#8220;Hank&#8221;:  ba02b1e3410f72ad50c76f9c144d6b34</p>
+
+<p>and &#8220;hank&#8221;:</p>
+
+<p>b6dfea72ba631c88abe4a1d17114bfcf</p>
+
+<p>enjoy.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam/">Lessons on Preventing YOUR Valid Biz Email Becoming SPAM</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-21T12:38:06-04:00" pubdate data-updated="true">Aug 21<span>st</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ol>
+<li><p>Set up a SPF record at your DNS for your domain. google this word: &#8220;SPF&#8221;.</p></li>
+<li><p>Get a mail server / host with Domainkeys. Again google the word &#8220;DomainKeys&#8221; for more info.
+For the quick &amp; dirty solution, Google mail now supports business apps for free on lower volume accounts. You can forward your MX record to them and use Gmail for business. Add the SPF and you are in business avoiding spam filters, unless your mail <em>looks</em> like SPAM.</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2007/08/20/if-your-rails-application-fails-to-start/">If Your Rails Application Fails to Start/</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-20T04:58:50-04:00" pubdate data-updated="true">Aug 20<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ERROR:
+&#8220;Application error</p>
+
+<p>Rails application failed to start properly&#8221;</p>
+
+<p>Get to command line and run &#8216;./dispatch.fcgi&#8217; this will show you the error which is likely in one of the startup/boot.rb files.</p>
+
+<p>When you do this, you need to set the RAILS_ENV variable before running to ensure it runs in the correct environment:</p>
+
+<p>export RAILS_ENV=test</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/6/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

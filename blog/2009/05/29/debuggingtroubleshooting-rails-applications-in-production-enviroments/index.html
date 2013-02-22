@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Debugging/Troubleshooting Rails Applications in Production Enviroments - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="Introduction At my current gig with Primedia, we have some pretty high volume Rails sites. Since having highly available sites are essential for our &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Debugging/Troubleshooting Rails Applications in Production Enviroments</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-29T12:55:37-04:00" pubdate data-updated="true">May 29<span>th</span>, 2009</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><strong>Introduction</strong></p>
+
+<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I&#8217;ve compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
+
+<p><strong>Non-Technical (READ FIRST)</strong></p>
+
+<ol>
+<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
+<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
+<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
+</ol>
+
+
+<p><strong>Technical</strong></p>
+
+<p>Elimination + log files is my troubleshooting method of choice.</p>
+
+<ol>
+<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
+<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
+<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
+<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
+<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
+<li>The logs should give status regarding database(s), but especially look for the words &#8220;timeout&#8221; if you have any custom network libraries that fetch data (we do) or &#8220;ActiveRecord&#8221;.  Perhaps even, grep for it.</li>
+<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
+</ol>
+
+
+<p><strong>Other</strong></p>
+
+<ol>
+<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
+</ol>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-29T12:55:37-04:00" pubdate data-updated="true">May 29<span>th</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/" data-via="" data-counturl="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2009/05/26/links-for-2009-05-26/" title="Previous Post: links for 2009-05-26">&laquo; links for 2009-05-26</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2009/06/03/links-for-2009-06-03/" title="Next Post: links for 2009-06-03">links for 2009-06-03 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

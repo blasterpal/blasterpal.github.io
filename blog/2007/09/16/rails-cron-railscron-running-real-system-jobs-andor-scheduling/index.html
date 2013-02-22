@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rails cron, Railscron, running 'real' system jobs and/or scheduling. - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="I&#8217;ve looked briefly at the backgrounrb. I think for me it might be overkill. I was thinking I want a REAL cron emulation in Rails nothing more &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/09/16/rails-cron-railscron-running-real-system-jobs-andor-scheduling/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rails Cron, Railscron, Running 'Real' System Jobs And/or Scheduling.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T14:41:12-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;ve looked briefly at the backgrounrb. I think for me it might be overkill. I was thinking I want a REAL cron emulation in Rails nothing more. Nothing fancy, just run jobs from the shell and not in Rails/Web environment. These are my notes to myself before I start writing code:</p>
+
+<p>rCronToo or whatever to call it. Since Rails Cron went dead.</p>
+
+<p>table/model (notice, it&#8217;s really almost 1:1 for a cron entry):</p>
+
+<p>dayofweek,month,dayofmonth,hour,minute,signature,update_on,created_at,lock_type</p>
+
+<p>crontab -> rCronExec.sh::
+runs every min. searches for eligible jobs to run:</p>
+
+<p>need to simplify the SQL ( HANK: look at C source for cron)</p>
+
+<p>a)select from rcron_jobs where dayofweek = &#8216;thisday&#8217; AND month = &#8216;thismonth&#8217; AND &#8230;
+b) select from rcron_jobs where dayofweek = &#8220;*&#8221; &#8230; AND min = &#8216;thismin&#8217;&#8230;</p>
+
+<p>View and FrontEnd:
+Fill in cron rails view just like real cron. All jobs are saved in the future 1 min + BUFFER sec. to avoid race conditions.</p>
+
+<p>SECURITY: See next post on Rails table and restricted job security.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-16T14:41:12-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/09/16/rails-cron-railscron-running-real-system-jobs-andor-scheduling/" data-via="" data-counturl="http://blasterpal.github.com/blog/2007/09/16/rails-cron-railscron-running-real-system-jobs-andor-scheduling/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/08/25/integrating-rails-into-authorizenet-some-pointers/" title="Previous Post: Integrating Rails into Authorize.NET, some pointers.">&laquo; Integrating Rails into Authorize.NET, some pointers.</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/09/16/rails-settings-pattern-if-you-want-to-call-it-that/" title="Next Post: Rails 'Settings' Pattern (if you want to call it that)">Rails 'Settings' Pattern (if you want to call it that) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

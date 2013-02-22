@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: regex | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/regex/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Reminder to self and world: Varnish uses POSIX regex.]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
+    <updated>2009-07-14T09:26:45-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
+    <content type="html"><![CDATA[<p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don't work! So putting this in your Varnish VCL will silently do nothing:</p>
+
+<pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>whereas this match:</p>
+
+<pre><code>if (req.url ~ "/[0-9]+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>Enjoy.</p>
+]]></content>
+  </entry>
+  
+</feed>

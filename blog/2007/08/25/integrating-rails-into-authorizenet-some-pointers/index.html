@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Integrating Rails into Authorize.NET, some pointers. - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="If need to do your shopping system or not use one of the carts/checkout systems out there, then this will help you get started. I have a custom CMS &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/08/25/integrating-rails-into-authorizenet-some-pointers/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Integrating Rails Into Authorize.NET, Some Pointers.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-25T10:59:09-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If need to do your shopping system or not use one of the carts/checkout systems out there, then this will help you get started. I have a custom CMS that is integrated with the items to buy which are tickets to rock shows for a club I work with for example.</p>
+
+<p>I try to follow the DRY principle and put any generic utility functions I may call more than 1X into a module and drop into /lib/. Then I can reuse for any project.</p>
+
+<p>For simplicity while testing, I put the authorize.net transaction key in my environment.rb -> AUTHORIZE_KEY=&#8221;xxxxx&#8221;. I&#8217;m still thinking on better ways to do this.</p>
+
+<p>Here are some Authorize functions and code to help you start posting transactions.</p>
+
+<ol>
+<li>create a couple of modules, one for your general purpose functions like md5 and one for authorize only:
+Here is code from authorize module that I called &#8220;authorize_util.rb&#8221;</li>
+</ol>
+
+
+<h2>START CODE</h2>
+
+<p>module AuthorizeUtil</p>
+
+<p>require &#8216;onekfires_lib&#8217;</p>
+
+<p>def self.create_authorize_fp(x_login,x_num,x_fp_timestamp,x_amount,delim)</p>
+
+<h1>$fingerprint = hmac ($x_tran_key, $loginid . &#8221;<sup>&#8221;</sup> . $sequence . &#8221;<sup>&#8221;</sup> . $tstamp . &#8221;<sup>&#8221;</sup> . $amount . &#8221;<sup>&#8221;</sup> . $currency);</h1>
+
+<p>OneKFiresUtil.get_hmac_md5(self.get_authorize_x_key,self.create_fp_no_md5(x_login,x_num,x_fp_timestamp,x_amount,delim))</p>
+
+<p>end</p>
+
+<h1>this is purely to look at the constructed string if you want to actually</h1>
+
+<h1>test like so &#8220;md5 -s &#8216;this string&#8217; for example&#8221;</h1>
+
+<p>def self.create_fp_no_md5(x_login,x_num,x_fp_timestamp,x_amount,delim)</p>
+
+<p>&#8221;#{x_login}#{delim}#{x_num}#{delim}#{x_fp_timestamp}#{delim}#{x_amount}#{delim}&#8221;
+end</p>
+
+<p>private</p>
+
+<h1>this is extremely sensative and should not be able to be called except by these methods, I put this in</h1>
+
+<h1>my environment.rb as a constant.</h1>
+
+<p>#
+def self.get_authorize_x_key</p>
+
+<p>AUTHORIZE_KEY
+end</p>
+
+<h2>end</h2>
+
+<p>END CODE</p>
+
+<p>Here&#8217;s the md5 part of my lib:</p>
+
+<h2>START CODE</h2>
+
+<p>module OneKFiresUtil</p>
+
+<p>require &#8220;openssl&#8221;
+require &#8216;digest/md5&#8217;
+require &#8216;md5&#8217;</p>
+
+<p>def self.get_hmac_md5(key,msg)</p>
+
+<p>OpenSSL::HMAC.hexdigest(OpenSSL::Digest::Digest.new(&#8220;md5&#8221;), key, msg)</p>
+
+<p>end</p>
+
+<h2>&#8230;</h2>
+
+<p>END CODE</p>
+
+<ol>
+<li>Call like so in your controller:
+START CODE</li>
+</ol>
+
+
+<hr />
+
+<p>require &#8216;onekfires_lib&#8217;
+require &#8216;authorize_util&#8217;</p>
+
+<p>def index</p>
+
+<h1>x_login,x_num,x_fp_timestamp,x_amount,delim</h1>
+
+<p>@x_login = &#8220;your transaction login&#8221;
+@x_fp_sequence = &#8220;ets0001&#8221;
+@x_invoice_num = @x_fp_sequence</p>
+
+<h1>@x_fp_timestamp = &#8220;Thu Aug 23 21:05:14 UTC 2007&#8221;</h1>
+
+<h1>@x_fp_timestamp = Time.new</h1>
+
+<p>@x_fp_timestamp = OneKFiresUtil.time_in_utc.to_i
+@x_amount = &#8220;0.01&#8221;
+@x_description = &#8220;Some Description&#8221;</p>
+
+<p>@x_email = &#8220;hbeaver@gmail.com&#8221;
+@x_email_customer = &#8220;TRUE&#8221;</p>
+
+<p>@finger_print_plain = AuthorizeUtil.create_fp_no_md5(@x_login,@x_fp_sequence,@x_fp_timestamp,@x_amount,&#8221;<sup>&#8221;)</sup></p>
+
+<h1>md5 hash fingerprint for authorize</h1>
+
+<p>@md5out = AuthorizeUtil.create_authorize_fp(@x_login,@x_fp_sequence,@x_fp_timestamp,@x_amount,&#8221;<sup>&#8221;)</sup></p>
+
+<h2>end</h2>
+
+<p>END CODE</p>
+
+<ol>
+<li>create the &#8220;index&#8221; view that will post to authorize:
+START CODE</li>
+</ol>
+
+
+<hr />
+
+<p>@x_login = &lt;%=@x_login %></p>
+
+<p>@x_fp_sequence = &lt;%=@x_fp_sequence%></p>
+
+<p>@x_fp_timestamp = &lt;%=@x_fp_timestamp%></p>
+
+<p>@x_amount = &lt;%=@x_amount%></p>
+
+<p>Authorize Fingerprint Plain Text:   [&lt;%=@finger_print_plain%>]</p>
+
+<p>Authorize Fingerprint MD5:   [&lt;%=@md5out%>]</p>
+
+<hr />
+
+<p>END CODE</p>
+
+<p>Enjoy and good luck.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-08-25T10:59:09-04:00" pubdate data-updated="true">Aug 25<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/08/25/integrating-rails-into-authorizenet-some-pointers/" data-via="" data-counturl="http://blasterpal.github.com/blog/2007/08/25/integrating-rails-into-authorizenet-some-pointers/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/08/23/doing-cryptography-when-youve-had-a-couple-of-beers-bad/" title="Previous Post: Doing cryptography when you've had a couple of beers->Bad!">&laquo; Doing cryptography when you've had a couple of beers->Bad!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/09/16/rails-cron-railscron-running-real-system-jobs-andor-scheduling/" title="Next Post: Rails cron, Railscron, running 'real' system jobs and/or scheduling.">Rails cron, Railscron, running 'real' system jobs and/or scheduling. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

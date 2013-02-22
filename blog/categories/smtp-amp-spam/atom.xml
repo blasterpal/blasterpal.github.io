@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SMTP &amp; Spam | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/smtp-amp-spam/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[You need a SMTP mail server to test ActionMailer, which one? James]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james/"/>
+    <updated>2007-10-29T14:39:47-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james</id>
+    <content type="html"><![CDATA[<p>This is to share my opinion. A very good alternative SMTP server that is cross platform and simple, James from the apache project: <strong>james</strong>.<strong>apache</strong>.org/. You'll need Java installed (but who doesn't these days?)</p>
+
+<p>It's a little bit confusing when you extract it. James is a module that sits on top of Avalon/Pheonix. To get to the nitty gritty and actually configure your server:</p>
+
+<p>[where you extracted]/apps/james/SAR-INF/</p>
+
+<p>the config.xml is where you want to make a few changes.</p>
+
+<p>On my mac I created a script to start it up. You need to sudo b/c it uses lower ports.</p>
+
+<h1>my script</h1>
+
+<p>sudo /Applications/james-2.3.1/bin/run.sh</p>
+
+<p>To manage the server, it creates console app on port 4555. just "telnet localhost 4555" and login with the root user you configured in the config.xml. Type 'HELP' and follow commands. Add a user and now you can use Thunderbird, Apple Mail or Outlook to connect locally and test email.</p>
+
+<p>Enjoy.</p>
+
+<p>H</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cheap - Easy - Simple - And Dirty - Rails Background jobs that don't timeout.]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout/"/>
+    <updated>2007-09-20T13:38:29-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout</id>
+    <content type="html"><![CDATA[<p>Not to toot my own horn, but you might want to read my post about my Setting pattern b/c I make use of it extensively in all my Rails code as you can see below. I do this to avoid hardcoding anything.</p>
+
+<h1>cheap background jobs in rails</h1>
+
+<ol>
+<li>fork and exec</li>
+</ol>
+
+
+<h1>START RAILS CODE</h1>
+
+<h1>in my controller</h1>
+
+<p>touch_file = Setting.get_rails_home + "DONE" #used to debug
+script_runner = "export RAILS_ENV='#{Setting.get_rails_env}'; #{Setting.get_runner_script_path}"</p>
+
+<h1>this controller runs an Actionmailer that batches through a VERY large list of emails.</h1>
+
+<p>cmd = script_runner + " \"app = ActionController::Integration::Session.new; app.get 'mailing_list_emails/blast_batch_bcc_list'\" "
+logger.debug("blast_background to run: [#{cmd}]")</p>
+
+<h1>logger.debug("touching files to run: #{touch_file}")</h1>
+
+<p>fork do</p>
+
+<h1>exec "#{cmd}"</h1>
+
+<p>exec "echo running #{cmd} >> #{touch_file}"  #you need the quotes, because any characters like > or | need to be let through</p>
+
+<p>end</p>
+
+<h1>Process.wait # process wait will make the Rails process wait and the process WILL timeout in CGI.</h1>
+
+<p>redirect_to :action => "index"</p>
+
+<h1>END RAILS CODE</h1>
+
+<ol>
+<li>Because I am doing a fork and exec zombie process WILL be created. So use cron to fix that.
+59 * * * * /home/scripts/zombie.sh --cron</li>
+</ol>
+
+
+<p>There are examples for the zombie.sh on the web. I used this one, thanks.
+(http://www.linuxscrew.com/2007/08/17/automatic-zombie-processes-killing-shell-script/)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons on preventing YOUR valid biz email becoming SPAM]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam/"/>
+    <updated>2007-08-21T12:38:06-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam</id>
+    <content type="html"><![CDATA[<ol>
+<li><p>Set up a SPF record at your DNS for your domain. google this word: "SPF".</p></li>
+<li><p>Get a mail server / host with Domainkeys. Again google the word "DomainKeys" for more info.
+For the quick &amp; dirty solution, Google mail now supports business apps for free on lower volume accounts. You can forward your MX record to them and use Gmail for business. Add the SPF and you are in business avoiding spam filters, unless your mail <em>looks</em> like SPAM.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>

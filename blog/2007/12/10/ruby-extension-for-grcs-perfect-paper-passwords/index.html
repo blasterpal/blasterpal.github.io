@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby Extension for GRC's Perfect Paper Passwords V3 - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="This is DEPRECATED, because Gavin Stark wrote a native ruby class last month. I will leave this up if someone wants a C implementation for OSX, but &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby Extension for GRC's Perfect Paper Passwords V3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-10T09:25:48-05:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This is DEPRECATED, because Gavin Stark wrote a native ruby class last month. I will leave this up if someone wants a C implementation for OSX, but after that Gavin did the work in Ruby and I encourage looking there:</p>
+
+<p><a href="http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/"> http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/</a></p>
+
+<p>Ruby Extension for GRC’s Perfect Paper Passwords V3.
+UPDATE 12/11/2007, current version only supports Mac OSX, I will be creating a Linux version shortly. Not sure if I&#8217;ll wrap a Windows version.
+Ruby Extension for GRC’s Perfect Paper Passwords/PPP C (<a href="http://www.grc.com/ppp/">http://www.grc.com/ppp/</a>) implementation by John Graham-Cumming.
+Create with SWIG.
+Version .01
+CODE/LIB: <a href="http://www.1000fires.com/ppp3-Ruby-extension.zip">http://www.1000fires.com/ppp3-Ruby-extension.zip</a>
+C Ref: <a href="http://www.jgc.org/blog/2007/11/steve-gibsons-ppp-new-version-3-in-java.html">http://www.jgc.org/blog/2007/11/steve-gibsons-ppp-new-version-3-in-java.html</a>
+NOTE: Because of the way C works, the first argument must be a space (not a null char).</p>
+
+<p>Entry point to ppp3 is “Ppp3.main” Ruby call after include with a Ruby array as argument.</p>
+
+<p>USAGE in ruby:</p>
+
+<blockquote><p>require ‘ppp3&#8217; #ppp3.bundle#Usage 1, just get a random sequence key.
+Ppp3.main([” “,” “])</p></blockquote>
+
+<h1>Usage 2, create an array and call with arguments.</h1>
+
+<h1>call the Ppp3.main call with this array:</h1>
+
+<p>a = Array[”&#8221;,”efbda242bd1db23fd343b516a2a10d0eed08250e542a789811307f2011a92df6″,”0″,”2″]
+Ppp3.main(a)</p>
+
+<h1>Usage 3, call with implied array string.</h1>
+
+<p>Ppp3.main([”&#8221;,”efbda242bd1db23fd343b516a2a10d0eed08250e542a789811307f2011a92df6″,”0″,”70″])</p>
+
+<p>TODO. Add a Ruby convenience library to do some parsing and pretty printing as well as prepare for Rails integration.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-10T09:25:48-05:00" pubdate data-updated="true">Dec 10<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/security/'>Security</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/" data-via="" data-counturl="http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/11/30/rails-error-argumenterror-interning-empty-string-running-integration-test/" title="Previous Post: Rails error 'ArgumentError: interning empty string' running integration test">&laquo; Rails error 'ArgumentError: interning empty string' running integration test</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/" title="Next Post: Building & Install RMagick on OS X, lessons learned">Building & Install RMagick on OS X, lessons learned &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

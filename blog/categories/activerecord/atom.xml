@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: activerecord | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Mysql::Error: MySQL server has gone away with Sinatra + ActiveRecord]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
+    <updated>2009-08-10T07:17:12-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
+    <content type="html"><![CDATA[<p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  "Mysql::Error: MySQL server has gone away" message. The resolution is pretty simple:</p>
+
+<pre><code>class NewApp &lt; Sinatra::Default   
+
+  before do
+    ActiveRecord::Base.connection.verify!
+  end
+...
+end #end of Sinatra class
+</code></pre>
+
+<p>I created a Lighthouse ticket before I discovered the resolution. There are also more technical details here: <a href="https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4">https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4</a></p>
+]]></content>
+  </entry>
+  
+</feed>

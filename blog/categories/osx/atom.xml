@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OSX | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/osx/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Running Finder as root on OSX - to solve app install issues]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues/"/>
+    <updated>2008-08-22T07:28:07-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues</id>
+    <content type="html"><![CDATA[<blockquote><p>open terminal
+sudo sh
+killall Finder
+/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder</p></blockquote>
+
+<p>Why? I've found sometimes certain applications require root to run/install. Office 2004 and an HP Officejet software are two examples.</p>
+
+<p>UPDATE: Realize this <em>may</em> bork your login/session after this and you are likely going to want to reboot.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Coding/Developing Rails troubleshooting 101]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101/"/>
+    <updated>2008-01-29T07:19:58-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101</id>
+    <content type="html"><![CDATA[<p>All the Agile folks would say if you run/create your tests you might not even get this far. However, that's not always reality for me.</p>
+
+<ol>
+<li>'tail -f /development.log'</li>
+</ol>
+
+
+<p>If you are on OSX, the above is easy.
+On Windows, I'd suggest looking at Cygwin and getting tail working. It's worth it.</p>
+
+<p>a) open terminal.
+b) Clear the screen before you reattempt what is broken. (Use Apple + K on OSX)
+c) Stop tail right after getting the error (CTRL + C)
+d) Look for the first line that is not normal Rails and debug output. See next area.</p>
+
+<ol>
+<li>Skip all the fluff and go for Ruby errors. You will learn to see "stacktraces" and errors in Ruby/Rails after a little practice.</li>
+</ol>
+
+
+<p>They will look something akin to this:</p>
+
+<p>1)An error
+2)The file that the error occurred in...
+3)the line number/and problem code...
+4)A sample of the code at and around the error.
+...
+5) A bunch of code that was run prior to this happening.</p>
+
+<ol>
+<li><p>Did you recently change the file in question? If so, revert what you did?</p></li>
+<li><p>Use logger.debug to print out something right before the error to see if your code is making it that far.</p></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building & Install RMagick on OS X, lessons learned]]></title>
+    <link href="http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/"/>
+    <updated>2007-12-18T09:01:55-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned</id>
+    <content type="html"><![CDATA[<p>There are several ways out there to install RMagick: via ports, package installer, etc. My advice: before you even start working on these.</p>
+
+<ol>
+<li><p>Install ALL updates from Apple for your OSX.</p></li>
+<li><p>Update XCode to the latest downloadable version.</p></li>
+</ol>
+
+
+<p>Doing the above will save you a whole weekend and avoid weird errors like this:
+.libs/libMagick.dylib must have a ':' between its file names
+H</p>
+]]></content>
+  </entry>
+  
+</feed>

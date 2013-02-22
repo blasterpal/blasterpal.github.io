@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: recording | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/recording/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My perfect music creation platform]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
+    <updated>2010-04-19T15:55:35-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
+    <content type="html"><![CDATA[<p>I've kept this blog purely in the programming realm and today I shall diverge from this. I have been a musician for many years prior to becoming a programmer. Today's topic will revolve around computer-based music software.</p>
+
+<p>For sometime I've become more and more frustrated with my Tracking and Sequencing setup. Secondly, my plugins and just all around workflow were lacking. I really don't have time to sort through lists of plugins that are mediocre or get frustrated when my program would suddenly crash ( I am omitting the tracking/sequencer I use, because it doesn't matter anymore to me).</p>
+
+<p>I did have two pieces of plugin software I love that I carried over, everything else was tossed away:</p>
+
+<p>MOTU Symphonic Instrument
+Toontracks EZDrummer</p>
+
+<p>What I found to be very surprising is that refactoring (sorry for programming term) my entire songwriting and music creation setup didn't take much cash nor time at all. In fact, most of it was free and I did it last weekend out of frustration of one last crash when a song was in my head.</p>
+
+<p>To be fair, everyone has different needs.. These were the same before I started this endeavor.</p>
+
+<p><strong>CRITERIA/NEEDS:</strong></p>
+
+<p>1) I want to have a 'rock' template ready to go loaded with everything, including plugins.
+2) I want to said template record ready for guitar or bass on separate tracks.
+3) Drums are ready to go in a MIDI track.<br/>
+4) Setup is robust and quick.
+5) It can't cost a lot, I do this for fun.</p>
+
+<p>I am focused on music that varies in a few styles, but can be classified as college rock, indie rock, post-punk, experimental and also for scoring films.</p>
+
+<p>The most important piece of all of this is the tracking and sequencing. I thought for certain I'd have to shell out some cash to find something. The last time I looked there were no viable options for OSX that did both from what I saw. This weekend I stumbled upon a few that did. I chose Reaper (www.cockos.com/reaper/).</p>
+
+<p>Reaper caught my eye immediately when I learned a guy from earlier versions of Winamp was on the very,very small team in San Francisco called Cockos (www.cockos.com). Their software is very intriguing and they have some innovative ideas. In particular Jesusonic (http://www.jesusonic.com/) which is basically a PC or Mac software system for creating your own effects/stomp box system. Take a look at the site and you'll see. The upside for Reaper is that all the Jesusonic plugins are included.</p>
+
+<p>The only glitch had to do with a plugin not in the below list that made random noise. I will report on this later.</p>
+
+<p>So enough with all the talk, here is the list of software that I'm using and am very happy to report I've had no crashes and am feeling like I will be more creating soon.</p>
+
+<p><strong>TRACKING/SEQUENCING</strong> (very,very affordable): <br/>
+Reaper
+http://reaper.fm/</p>
+
+<p><strong>REVERB</strong> (FREE):      <br/>
+LVImpulse
+http://audio.lernvall.com/</p>
+
+<p>There are normal reverbs included with Reaper, but to get a very natural room/hall sound for drums, mix, etc. I think impulse reverbs are they way to go. Grab some for the plugin above using these links. You need interleaved WAV files so be aware of that.</p>
+
+<p><strong>Impulses</strong> (FREE):
+http://www.1-1-1-1.net/pages/impulses/index.htm#mpx1
+http://www.xs4all.nl/~fokkie/IR.htm#smallfactoryhall
+http://noisevault.com/nv/index.php?option=com_remository&Itemid;=29&func;=selectcat&cat;=17&page;=1
+http://www.irlibrary.org/
+http://www.macosxaudio.com/forums/viewtopic.php?t=14100</p>
+
+<p><strong>GUITAR/BASS AM</strong>P (FREE for 1 year):     <br/>
+Waves GTR Solo 3
+http://www.wavesgtr.com/html/product_gtr_solo.html</p>
+
+<p>This is a Waves product that is free for a year and $145 thereafter. It sounds amazing. I'll ride that pony for a year and then figure something out later. The install is a little arduous, but worth it.</p>
+
+<p><strong>BAD ASS SYNTH AND OTHER</strong> (FREE):
+MRAlias2
+http://www.thepiz.org/mralias2/</p>
+
+<p>This plugin surprised me. I was wrapping up for the night and stumbled upon it. This will be my goto plugin for synths and synth-effects for some time.</p>
+
+<p><strong>OTHER INSTRUMENTS</strong>:
+MOTU Symphonic Instrument       <br/>
+http://www.motu.com/products/software/msi/</p>
+
+<p>I mentioned earlier, I score for film. I also enjoy adding some strings or a realistic piano to an arrangement. When I bought this in 2005-ish it was one of the best out there. This may not be the case for the money now, but I recommend you give it a listen.</p>
+
+<p><strong>BAD ASS DRUM</strong>S (not free, worth the money):  <br/>
+Toontracks EZDrummer Vintage Rock EZX
+http://www.toontrack.com/products.asp?item=9 (need EZDrummer too)</p>
+
+<p>Last but not least are the all important drums. If you are trying to create organic music in your home that sounds akin to real band, you need a realistic drums. Jordan from Snowden, while he may not recall, turned me on to EZDrummer. By itself, the built in sounds are very good, the beats are not close to what I like and I have to tweak them. However, if you also shell out the cash and get the Vintage Rock drums too, you will find John Bonham (and others) in a box. I rest my case.</p>
+
+<p><strong>HARDWARE</strong>:
+MacBook 2.4 Ghz, 4GB Ram</p>
+]]></content>
+  </entry>
+  
+</feed>

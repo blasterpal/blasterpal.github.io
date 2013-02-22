@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rspec | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/rspec/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Beware asserting against Rspec @params]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
+    <updated>2009-10-01T02:40:43-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
+    <content type="html"><![CDATA[<p>Spent a little time scratching my head on this week. @params is reserved in Rspec controller tests apparently much like Rails. @params will contain extra keys like "controller" and "action" which if you try and assert against will fail of you do something like this:</p>
+
+<pre>
+
+@params = {:id => 'niceid'}
+...
+Model.expects(:method).with(@params)
+
+</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using gem dependencies with Rspec == BAD ! !]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/"/>
+    <updated>2008-11-17T06:29:42-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad</id>
+    <content type="html"><![CDATA[<p>We had an issue the last couple of weeks on a new Rails project we started here at my gig. All Rails exceptions were quietly logged without showing any stack trace to browser. This was very annoying. Secondly, the RAILS_ENV was reported as "test". mmmm, very suspicious. After some investigation I found the culprit on rails.rb line #1 of rails-rspec gem installed in our vendor dir:</p>
+
+<p>silence_warnings { RAILS_ENV = "test" }</p>
+
+<p>Take a look at this to get a little context:</p>
+
+<p>http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies</p>
+
+<p>How can rspec affect your actual Rails environment, script/server, script/console, script/about? I'll show you. enter our environment.rb:</p>
+
+<p>config.gem 'rspec-rails',
+:version => '>= 1.1.11', :lib => 'spec/rails'
+config.gem 'rspec',
+:version => '>= 1.1.11', :lib => 'spec'</p>
+
+<p>Aha! So effectively, by including our gems here too (and gaining the added benefits noted above at ryandaigle.com )rather than simply in our spec_helper, we replaced our RAILS_ENV and invoked the Rails equivalent of an exception black hole.</p>
+]]></content>
+  </entry>
+  
+</feed>

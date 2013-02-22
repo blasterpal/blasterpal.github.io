@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Using Rails for custom applications and avoiding the CMS trap.]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
+    <updated>2009-09-03T07:38:23-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
+    <content type="html"><![CDATA[<p>I'm am still captivated by the perfect, simple CMS solution in Ruby/Rails (I'll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
+
+<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer's time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
+
+<pre><code>wordpress_template.php
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
+//end of wordpress.php
+...
+//function included elsewhere
+function include_rails_service(service_url,type){
+//could return any of following for the resource url
+ switch (type) {
+  case ESI_INCLUDE:
+   return "&lt;esi include ='" + service_url + "'&gt;";
+   break;
+  case SERVICE:
+   include service_url;
+   break;
+  case AJAX:
+//javascript include with service js, doing doc.write
+}
+}
+</code></pre>
+
+<p>The point is Wordpress doesn't know about Rails and Rails doesn't know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging/Troubleshooting Rails Applications in Production Enviroments]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
+    <updated>2009-05-29T12:55:37-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
+    <content type="html"><![CDATA[<p><strong>Introduction</strong></p>
+
+<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I've compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
+
+<p><strong>Non-Technical (READ FIRST)</strong></p>
+
+<ol>
+<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
+<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
+<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
+</ol>
+
+
+<p><strong>Technical</strong></p>
+
+<p>Elimination + log files is my troubleshooting method of choice.</p>
+
+<ol>
+<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
+<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
+<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
+<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
+<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
+<li>The logs should give status regarding database(s), but especially look for the words "timeout" if you have any custom network libraries that fetch data (we do) or "ActiveRecord".  Perhaps even, grep for it.</li>
+<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
+</ol>
+
+
+<p><strong>Other</strong></p>
+
+<ol>
+<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[New favorite tool in toolbox for web development: Charles Web Debugging Proxy]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/"/>
+    <updated>2008-12-19T04:41:21-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy</id>
+    <content type="html"><![CDATA[<p>I will not regurgitate what <a href="http://www.charlesproxy.com/">Charles' website</a> can already tell you. Charles is a great tool. Moreover, let me add some obvious points for people like myself:</p>
+
+<ul>
+<li><p>It runs on OSX and quickly.</p></li>
+<li><p>It is affordable (we are getting licenses here this week)</p></li>
+<li><p>It has TONS of features (especially allowing filtering of anything in URL)</p></li>
+<li><p>It auto-magically acts a HTTP Proxy after reboot when Charles is started on ALL HTTP based applications.</p></li>
+</ul>
+
+
+<p>Why you may ask not use <a href="http://getfirebug.com/">Firebug</a>, it's free!</p>
+
+<p>If you are doing Javascript work and trying to naildown activity on the wire (outside of the browser), you have to rely on a proxy or sniffer, especially if you are testing many browsers at once. The heavyweight option is indeed to use <a href="http://www.wireshark.org">Wireshark</a> on OSX, like I initially did. But this can add complexity when you are under a deadline.</p>
+
+<p>Also, Firebug has soooo many great features I need to use concurrently, having a good proxy monitor allows me to use Firebugs other incredible features in tandem.</p>
+
+<p>Last week I had such deadlines at my paid gig rewriting a<a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> .NET</a><a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> 3.5</a> site into <a href="http://www.rubyonrails.org/">Rails 2.1.2</a> . I had to (in a hurry) integrate a slew of user/tracking Javascript events that fired off GET requests to an external site. The query string and/or request HAD to include the variables exactly to ensure our internal datawarehouses didn't get borked. Secondly, integrating the tags had to NOT break existing AJAX functionality surrounding the same buttons and links.</p>
+
+<p>Using Firebug to monitor the happiness of Javascript, investigate the DOM and use the console to query, took up most of the Firebug interface and time. Having Charles running in a separate monitor (with the required URLS filtered) made for much,much quicker development and debugging.</p>
+
+<p>Take a look at this example call (notice the Filter line that has part of the host addres). This GET request was fired when a user click a button. Charles verified the request had all the key/value pairs expected: <a href="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7.png"><img src="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7-300x135.png" alt="" /></a></p>
+
+<p>Using Charles and Firebug together rounds out Frontend web development, in my case using Rails 2.1.2 and JQuery, and helps keep your velocity up.</p>
+
+<p>Lastly, there are features I have not even explored with Charles. I applaud the guys from Charles for writing such a great tool that saved my week and sanity.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Notes on MerbDay Atlanta 2008]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/12/07/notes-on-merbday-atlanta-2008/"/>
+    <updated>2008-12-07T13:48:37-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/12/07/notes-on-merbday-atlanta-2008</id>
+    <content type="html"><![CDATA[<p>Ironically, the two most interesting items for me personally were not directory related to <a href="http://merbivore.com/">Merb</a> at all. I was quite impressed with the CSS capabilities of <a href="http://haml.hamptoncatlin.com/docs/rdoc/classes/Sass.html">SASS</a> and <a href="http://www.rubyslacker.com/wp-admin/incubator.apache.org/couchdb">CouchDB</a> gave me hope that being stuck in the rigidity of columns in SQL is not always my path. Here's my my Merbday summary,  iteration retrospective format:</p>
+
+<p>STOP:</p>
+
+<ul>
+<li>Assuming Merb is "fragmentation" (so said someone smarter than me ) of the Rails community and a real effort to improve on Ruby as the defacto web programming language.</li>
+</ul>
+
+
+<p>START:</p>
+
+<ul>
+<li><p>Using <a href="http://ruby-prof.rubyforge.org/">ruby-prof</a> in Rails projects and <a href="http://cfis.savagexi.com/2007/07/10/how-to-profile-your-rails-application">Kcachegrind</a> to profile apps. (thanks for <a href="http://yehudakatz.com/">Yehuda Katz</a> at <a href="http://www.rubyslacker.com/wp-admin/www.engineyard.com">www.engineyard.com </a>)</p></li>
+<li><p>Playing with Merb on a real project and focus on understand slices and interaction with other slices.</p></li>
+<li><p>Investigate writing an Admin or basic CMS slice with someone else.</p></li>
+</ul>
+
+
+<p>CONTINUE:</p>
+
+<ul>
+<li>Loving Rails and not abandon it as yet.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using gem dependencies with Rspec == BAD ! !]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/"/>
+    <updated>2008-11-17T06:29:42-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad</id>
+    <content type="html"><![CDATA[<p>We had an issue the last couple of weeks on a new Rails project we started here at my gig. All Rails exceptions were quietly logged without showing any stack trace to browser. This was very annoying. Secondly, the RAILS_ENV was reported as "test". mmmm, very suspicious. After some investigation I found the culprit on rails.rb line #1 of rails-rspec gem installed in our vendor dir:</p>
+
+<p>silence_warnings { RAILS_ENV = "test" }</p>
+
+<p>Take a look at this to get a little context:</p>
+
+<p>http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies</p>
+
+<p>How can rspec affect your actual Rails environment, script/server, script/console, script/about? I'll show you. enter our environment.rb:</p>
+
+<p>config.gem 'rspec-rails',
+:version => '>= 1.1.11', :lib => 'spec/rails'
+config.gem 'rspec',
+:version => '>= 1.1.11', :lib => 'spec'</p>
+
+<p>Aha! So effectively, by including our gems here too (and gaining the added benefits noted above at ryandaigle.com )rather than simply in our spec_helper, we replaced our RAILS_ENV and invoked the Rails equivalent of an exception black hole.</p>
+]]></content>
+  </entry>
+  
+</feed>

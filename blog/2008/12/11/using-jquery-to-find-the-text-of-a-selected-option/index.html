@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Using JQuery to find the text of a selected option. - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="Jquery makes a lot of things really easy. This one, not so much. Take this Select as an example: Best Match Property Name A to Z SOURCE: &lt;select &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2008/12/11/using-jquery-to-find-the-text-of-a-selected-option/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Using JQuery to Find the Text of a Selected Option.</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-11T11:42:18-05:00" pubdate data-updated="true">Dec 11<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Jquery makes a lot of things really easy. This one, not so much. Take this Select as an example:</p>
+
+<p>Best Match Property Name A to Z</p>
+
+<p>SOURCE:</p>
+
+<pre><code>&lt;select id="sort_by" name="sort_by"&gt;&lt;option value="F%3Dlistingid%3A1%7Csmallphotos%3A1%7Clistingseopath%3A1%7Cpropertyname%3A1%7Cpropertycity%3A1%7Cpropertystate%3A1%7Clistingpricelow%3A1%7Clistingpricehigh%3A1%7Clistingbedlow%3A1%7Clistingbedhigh%3A1%7Cwebtollfree%3A1%7Clatitude%3A1%7Clongitude%3A1%7Cgeocode%3A1%7Ccityseopath%3A1%7Cfrontcover%3A1%7Cmsa_code%3A1%26N%3D5875%26Nao%3D0%26Nf%3Dgeocode%7CGCLT+48.803100%2C-102.245600+5%26Ns%3Dsortpropertyname%7C1%26Ntk%3Dshowapartment%26Ntt%3D1%26Nu%3Dlistingid%26Ns%3Dsortorder%7C0"&gt;Best Match&lt;/option&gt;
+&lt;option value="F%3Dlistingid%3A1%7Csmallphotos%3A1%7Clistingseopath%3A1%7Cpropertyname%3A1%7Cpropertycity%3A1%7Cpropertystate%3A1%7Clistingpricelow%3A1%7Clistingpricehigh%3A1%7Clistingbedlow%3A1%7Clistingbedhigh%3A1%7Cwebtollfree%3A1%7Clatitude%3A1%7Clongitude%3A1%7Cgeocode%3A1%7Ccityseopath%3A1%7Cfrontcover%3A1%7Cmsa_code%3A1%26N%3D5875%26Nao%3D0%26Nf%3Dgeocode%7CGCLT+48.803100%2C-102.245600+5%26Ns%3Dsortpropertyname%7C1%26Ntk%3Dshowapartment%26Ntt%3D1%26Nu%3Dlistingid%26Ns%3Dsortpropertyname%7C0"&gt;Property Name A to Z&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>When you perform a selection and want to do some onclick magic, how to get the current selected option text? Like this:</p>
+
+<pre><code>$('#sort_by')[0].options[$('#sort_by')[0].selectedIndex].text
+</code></pre>
+
+<p>Told it wasn&#8217;t pretty. Thanks Troy for helping.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-12-11T11:42:18-05:00" pubdate data-updated="true">Dec 11<span>th</span>, 2008</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2008/12/11/using-jquery-to-find-the-text-of-a-selected-option/" data-via="" data-counturl="http://blasterpal.github.com/blog/2008/12/11/using-jquery-to-find-the-text-of-a-selected-option/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2008/12/07/notes-on-merbday-atlanta-2008/" title="Previous Post: Notes on MerbDay Atlanta 2008">&laquo; Notes on MerbDay Atlanta 2008</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/" title="Next Post: New favorite tool in toolbox for web development: Charles Web Debugging Proxy">New favorite tool in toolbox for web development: Charles Web Debugging Proxy &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

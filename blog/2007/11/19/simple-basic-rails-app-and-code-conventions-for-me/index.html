@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Simple / Basic Rails app and code conventions for ME - Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="I&#8217;m writing these rules for my own projects and because I have yet to see anything concrete. method names should be ALL lower case with &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/11/19/simple-basic-rails-app-and-code-conventions-for-me/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Simple / Basic Rails App and Code Conventions for ME</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-19T17:39:06-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2007</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I&#8217;m writing these rules for my own projects and because I have yet to see anything concrete.</p>
+
+<ol>
+<li>method names should be ALL lower case with underscores. Use standard verbs for the purpose of the method if possible, ie. get, set, create, add,etc with the item acted upon also as part of method. Examples:</li>
+</ol>
+
+
+<p>&#8216;get_profile_names&#8217;, &#8216;set_profile_pictures&#8217;</p>
+
+<ol>
+<li><p>DON&#8217;t BE redudant. no method names with &#8216;method or function&#8217;.</p></li>
+<li><p>Keep variables names meaningful. NO: x,y,i unless it&#8217;s simply part of a loop increment. Make them: pic_count, event_name.</p></li>
+<li><p>About commenting. Actually this is the part I find most confounding about Ruby and Rails. There is no standard way other than RDoc. I AM NOT suggesting Hungarian notation. Yuck! BUT. I have started using the below on my projects for basic Rails Controller and Model documentation.</p></li>
+</ol>
+
+
+<h6>#</h6>
+
+<h1>OUTER METHOD COMMENTS</h1>
+
+<h6>#</h6>
+
+<h1>******************************</h1>
+
+<h1>INNER METHOD COMMENTS</h1>
+
+<h1>******************************</h1>
+
+<p>One of the hardest things for me when I dove into the Ruby pool was the abundance of &#8216;def&#8217; tags and NO other control characters. My mind becomes glazed and overwhelmed with bigger classes. While Java and C has {}; and other items to help break up the appearance.</p>
+
+<p>This will be a work in progress.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-19T17:39:06-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2007</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/11/19/simple-basic-rails-app-and-code-conventions-for-me/" data-via="" data-counturl="http://blasterpal.github.com/blog/2007/11/19/simple-basic-rails-app-and-code-conventions-for-me/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2007/11/17/rails-flash-messages-and-auto-effect-highlighting/" title="Previous Post: Rails Flash messages and auto Effect highlighting">&laquo; Rails Flash messages and auto Effect highlighting</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2007/11/30/rails-error-argumenterror-interning-empty-string-running-integration-test/" title="Next Post: Rails error 'ArgumentError: interning empty string' running integration test">Rails error 'ArgumentError: interning empty string' running integration test &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

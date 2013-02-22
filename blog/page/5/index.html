@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Hank Beaver</title>
+  <meta name="author" content="Hank Beaver">
+
+  
+  <meta name="description" content="Goals: To auto start with init.d, upon westhost restart, etc.
+Use Apache to front end, via mod_proxy. You&#8217;ll have to follow other sites on &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/page/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hank Beaver</a></h1>
+  
+    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blasterpal.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/05/20/how-to-set-up-mongrel_cluster-on-westhost/">How to Set Up Mongrel_cluster on Westhost</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-20T13:43:42-04:00" pubdate data-updated="true">May 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Goals:</p>
+
+<ul>
+<li><p>To auto start with init.d, upon westhost restart, etc.</p></li>
+<li><p>Use Apache to front end, via mod_proxy.</p></li>
+</ul>
+
+
+<p>You&#8217;ll have to follow other sites on installing gems, etc.  <a href="http://mongrel.rubyforge.org/wiki/MongrelCluster">This Site </a> has some very useful info, namely you need to symlink mongrel_cluster_ctl and ruby to /usr/bin/ (you&#8217;ll have to do a find / -name mongrel_cluster_ctl). Mine was here: /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl</p>
+
+<p>So I linked into /etc/init.d/ like so:</p>
+
+<p>ln -s /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl /etc/init.d/</p>
+
+<p>chkconfig is not installed on westhost, so you have to do the init.d link/scrips the old fashioned way:</p>
+
+<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/S81mongrel_cluster</p>
+
+<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/K19mongrel_cluster</p>
+
+<p>K = Kill, the number means the order</p>
+
+<p>S= Start, &#8220;&#8221;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/04/01/mixin-module-madness-why-self-aint-really-self/">Mixin Module Madness &#8211; Why Self Ain&#8217;t Really Self</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-04-01T10:11:15-04:00" pubdate data-updated="true">Apr 1<span>st</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This all came up b/c I wanted to write a shared mixin module to have attachment_fu ready actions for all my controllers that have attachments. No need to put that crap in every controller. So in a mixin module when you want to do some fun reflection/introspection like so:</p>
+
+<p>&#8230;</p>
+
+<pre><code>    @this_obj = self.controller_name.classify.constantize.find_safe
+(id,logged_in_user.id)
+</code></pre>
+
+<p>&#8230;</p>
+
+<p>In Dev this worked great. Tests were good, my mostly view/template developer partner, approved. Deploy to test and WHAMMO!</p>
+
+<p>&#8230;</p>
+
+<pre><code>    "NameError ("Blogs | ListAll" is not a valid constant name!):
+</code></pre>
+
+<p>&#8230;&#8221;</p>
+
+<p>What gives? Mmm, seems when you include a mixin, that is included in a controller. The self.controller_name will report incorrectly in Test and Prod. So I had to adjust the code a little using a new method:</p>
+
+<pre><code>        @this_obj = self.this_controller_name.classify.constantize.find_safe(
+id,logged_in_user.id)
+</code></pre>
+
+<p>Below is the method(which is basically David&#8217;s code for controller_name).</p>
+
+<pre><code>###############################
+
+
+
+
+#This method is here b/c it is apparent that Rails
+#ActionController.controller_name
+
+
+
+
+# is unreliable in Test and Production for some reason.
+
+
+
+
+# attachment_symbol_name: Blogs | List_all_attachments
+
+
+
+
+# attachment_model ERROR: "Blogs | ListAllAttachment"
+#is not a valid constant name
+
+
+
+
+###############################
+
+
+
+
+def this_controller_name
+
+
+
+
+    self_class = self.class.to_s.sub(/Controller$/, '').underscore
+
+
+
+
+end
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/03/10/cheap-mans-sms-gateway/">Cheap Man&#8217;s SMS Gateway</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-03-10T14:48:15-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In a model or util class, parse number to determine the telecom provider (example: http://www.notepage.net/smtp.htm). Create an email message to the respective email @ address for that provider.</p>
+
+<p><strong>Issues:</strong></p>
+
+<p>SMTP is not as time sensitive.</p>
+
+<p>But for a small web app, is this ok?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/29/what-i-do-the-internet-i-work-on-b-d/">What I Do. The Internet. I Work on B-D.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-29T12:26:30-05:00" pubdate data-updated="true">Feb 29<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Simplified Internet and its interaction, enjoy</p>
+
+<p>A) USER LAYER :: normal usage, browsers
+1.Computer
+2.Operating System (Windows OSX)
+3.Browser (Internet Explorer / Safari)
+4.Internet (Comcast, Verizon)</p>
+
+<p>B) The network :: NETWORK LAYER
+Probably the area we control the LEAST. We can&#8217;t MAKE routers talk faster OR make Sprint love us!!!</p>
+
+<p>C) Website/Hosting/Servers :: SERVER LAYER
+1.Server(s) (which is a fancy name for computer) ie. Dell
+2.Database (where information is stored) ie Oracle, DB2, SQL Server, MySQL
+3.Basic HTML files and images( STATIC CONTENT)
+-> HTML, CSS, JPG, Javascript, Flash</p>
+
+<p>D) Website base language/framework (does the heavy lifting, most of work***) :: APPLICATION_LAYER
+This requires (B)
+-> From Microsoft, Open Source, 3rd party.</p>
+
+<p>E) Our code. :: CODE_LAYER
+Our programs: (this is where I/we work most of the time, you MUST understand A-D though)
+<em>we write code in the Base/fundamental programming languages from D
+</em>we implement Extra modules/libraries other people write</p>
+
+<p>DONE with A,B,C,D</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<p>Web Pages are really akin yelling across canyon!!!!</p>
+
+<h2>Internet Applications in the real world(web pages)</h2>
+
+<p>STEPS FOR ONE WEB REQUEST:
+1. User A) Users  &#8212;> give me a page |NETWORK B) &#8212;> |SERVER C) Joe user want to look at &#8216;XYZ web page&#8217;.
+2. SERVER C) Send &#8216;XYZ web page&#8217; to user |NETWORK B) &#8212;-> traverse network |USER A) User receives response. Views &#8216;XYZ web page.&#8217;</p>
+
+<p>The above is TRUE even for just an image or buying a widget!</p>
+
+<p>*** In the old days of the internet. All web pages were just layer C. They were simple files served up by the server. This harkens back to the days of the home page internet, when everyone had an internet home page like so: &#8220;www.mindspring.com~hbeaver&#8221; which I DID!.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/23/subversion-error-containing-working-copy-admin-area-is-missing-when-generating-rails-doc/">Subversion Error &#8216;Containing Working Copy Admin Area Is Missing&#8217; When Generating Rails Doc&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-23T10:57:29-05:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This error is extremely frustrating. It occurs when the .svn info is missing in a directory. In my example this happens when running &#8216;rake doc:app&#8217;  and I have found only one sequence that will fix this. In my case, I am removing doc from subversion and going to manage outside of source control.</p>
+
+<p>To fix:</p>
+
+<ol>
+<li><p>cd /doc/app</p></li>
+<li><p>mv &#8216;app&#8217; &#8216;app-todelete&#8217;</p></li>
+<li><p>do a new checkout from svn just on the directory you renamed. Like so:
+svn co svn+ssh://usery@mysecre.server.com/var/www/apps/repos/trunk/doc/app</p></li>
+<li><p>The newest version in source should be in the proper location.</p></li>
+<li><p>You will unfortunately have to merge any changes from the old directory, as in my case &#8216;app-todelete&#8217;</p></li>
+</ol>
+
+
+<p>Enjoy!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/20/installing-subversion-on-westhost/">Installing Subversion on Westhost</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-20T10:41:31-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Because of the versions of Westhost apache and other files, the easiest way is not to install the latest and greatest. I had success installing this version: subversion-1.2.0-rc4</p>
+
+<p>I also make my own apps directory that I put in my path.</p>
+
+<p>./configure &#8211;prefix=/apps/subversion</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/15/port-knocking-otp/">Port Knocking + OTP</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-15T08:34:32-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
+
+<p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I&#8217;m going to play with this. The idea:</p>
+
+<ul>
+<li><p>Port knock sequence numbers are based on a secret key and a cipher to create an 16 bit sequence or port numbers. ex. &#8220;7111 31189 40922&#8221;.</p>
+
+<ol>
+<li><p>That is UDP knock: 7111, 31189, and 40922.</p></li>
+<li><p>These numbers change approx. every 1-2 minutes. based on secret key and cipher and date/time seed.</p></li>
+</ol>
+</li>
+<li><p>The payload of each packet is a sequence number + 2 digit OTP number.
+ex: packet 1: &#8220;1|3dz&#8221;, packet 2: &#8220;2|js9&#8221;, packet 3: &#8220;3|34m&#8221;</p></li>
+<li><p>There is a REQUEST packet that goes on another port based on cipher, ex. 5433 (changes daily?)
+The request packet provides the next sequence number,asks for what port to open: 22, ssh in this example that is ENCRYPTED also with IP Address. like so: &#8220;4|22|67.100.40.23&#8221; => encrypted as &#8220;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
+<li><p>The entire sequence is started by a START port number and END port number that changes every day with a simple string as payload. ex: START port: 8765,END port: 64100.So the entire OTP +port knock sequence from my OTP+port knock client:</p></li>
+<li><ul>
+<li><p>UDP:8765=>&#8221;START_PK_SEQ&#8221;</p></li>
+<li><p>UDP: 7111 -> &#8220;1|3dz&#8221;</p></li>
+<li><p>UDP: 31189 => &#8220;2|js9&#8221;</p></li>
+<li><p>UDP: 40922 => &#8220;3|34m&#8221;</p></li>
+<li><p>UDP: 5433 => &#8216;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
+<li><p>UDP:64100=>&#8221;END_PK_SEQ&#8221;Port 22 is now open on the host firewall for the requesting ip based on successfully decrypting packet #5.</p></li>
+</ul>
+</li>
+<li><p>In theory this would be resistant against man-in-the-middle and reply attacks.</p></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/02/10/has_many-associations-using-in-helper-tag-and-a-little-about-blocks/">Has_many Associations, Using in Helper Tag and a Little About Blocks.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-10T09:47:43-05:00" pubdate data-updated="true">Feb 10<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Soon the rest of this blog will deal with a basic overview of has_many associations and a practical use. For now look at this simple tag that uses has_many of a Blog model to show the Interests (or topics) for a given blog. You would use this helper_tag like so in your view, given that you have a single instance of a blog object called ‘blog’</p>
+
+<p>&lt;%= more_ugly_interests_tag(blog) %></p>
+
+<p>I hope this small article might help others:</p>
+
+<pre><code>#########################################
+#Tag to show usage of has_many for a model.
+#Ruby on Rails
+#*this_model* is the actual instance of a blog or photo
+#which has a list of interests.
+#
+#Call tag like this:
+# &lt;%= more_ugly_interests_tag(blog) %&gt;
+#the syntax below uses what Ruby calls a 'block'
+#this is the format:
+# some_variable_that_has_a_list.each { |list_item
+# #do something with each item
+# puts list_item + " !!!!"
+# }
+#########################################
+def more_ugly_interests_tag(this_model)
+
+to_return = "INTERESTS"
+
+this_model.interests.each { |each_interest|
+
+to_return =  &lt;&lt; each_interest &lt;&lt; "
+"
+
+
+}
+
+#now we have end the whole function/method with what we want to return/print
+to_return
+
+end
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101/">Coding/Developing Rails Troubleshooting 101</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-29T07:19:58-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>All the Agile folks would say if you run/create your tests you might not even get this far. However, that&#8217;s not always reality for me.</p>
+
+<ol>
+<li>&#8216;tail -f /development.log&#8217;</li>
+</ol>
+
+
+<p>If you are on OSX, the above is easy.
+On Windows, I&#8217;d suggest looking at Cygwin and getting tail working. It&#8217;s worth it.</p>
+
+<p>a) open terminal.
+b) Clear the screen before you reattempt what is broken. (Use Apple + K on OSX)
+c) Stop tail right after getting the error (CTRL + C)
+d) Look for the first line that is not normal Rails and debug output. See next area.</p>
+
+<ol>
+<li>Skip all the fluff and go for Ruby errors. You will learn to see &#8220;stacktraces&#8221; and errors in Ruby/Rails after a little practice.</li>
+</ol>
+
+
+<p>They will look something akin to this:</p>
+
+<p>1)An error
+2)The file that the error occurred in&#8230;
+3)the line number/and problem code&#8230;
+4)A sample of the code at and around the error.
+&#8230;
+5) A bunch of code that was run prior to this happening.</p>
+
+<ol>
+<li><p>Did you recently change the file in question? If so, revert what you did?</p></li>
+<li><p>Use logger.debug to print out something right before the error to see if your code is making it that far.</p></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2008/01/04/when-to-use-a-partial-and-when-to-use-a-helper-tag/">WHEN to Use a Partial and When to Use a Helper Tag?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-04T13:32:55-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First as you read Rails and learn more you will discover the DRY (Don&#8217;t Repeat Yourself) principle. This means do something once and then don&#8217;t dig another ditch.</p>
+
+<p>So here&#8217;s my opinion, both partials and tags are for DRY.</p>
+
+<p>One usage difference in my opion: Is if the output is only a few lines, then a tag is simpler and cleaner. However, if the output is many, many lines of HTML like a menu then I start to lean toward partial. However,</p>
+
+<p>There is one thing that a tag can do nicely that partials can&#8217;t as cleanly. Arguments can be passed and code run away from the view. Example:</p>
+
+<pre><code>&lt;%=  commentor_pretty_name(blog.login_id) %&gt;
+</code></pre>
+
+<p>here is the actual tag in application_helper.rb:</p>
+
+<pre><code>##############################
+# takes a login_id alone and converts to pretty name for comment/tag
+##############################
+def commentor_pretty_name(login_id)
+
+def_return = "Nil Name"
+begin
+logger.debug("app helper commenter_pretty_name")
+
+
+
+
+#the "||" operand below means that we will use the def_return of "Nil Name" if Login.find returns nil
+Login.find(login_id).unique_name || def_return
+#end
+rescue
+def_return
+end
+
+end
+</code></pre>
+
+<h4>END CODE</h4>
+
+<p>To do the same in a partial you would have to have this:</p>
+
+<pre><code>&lt;%= render :partial =&gt; 'commenter', :locals =&gt; { :login_id =&gt; user.id} %&gt;
+</code></pre>
+
+<p>user.id would be passed as argument AND then on the partial you would need some of the ruby code in the actual partial to lookup the user.</p>
+
+<pre><code>&lt;%   #note no '=' tag this is purely to run ruby code and set variables
+
+@def_return = "Nil Name"
+begin
+logger.debug("app helper commenter_pretty_name")
+@def_return  = Login.find(login_id).unique_name
+#end
+rescue
+@def_return
+end
+%&gt;
+    &lt;%= @def_return  %&gt;
+</code></pre>
+
+<p>Best of both worlds? Use a tag to run the ruby code and then a partial to render? When the tag gets riddled with html/view then this presents a good blend of keeping view and model seperate by using a tag to setup/do ruby work and simple partial to present.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/6/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hank Beaver -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

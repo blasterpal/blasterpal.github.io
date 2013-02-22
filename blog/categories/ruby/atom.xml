@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ruby | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[JRuby - the watershed for enterprise Ruby?]]></title>
+    <link href="http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
+    <updated>2011-07-14T03:18:01-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
+    <content type="html"><![CDATA[<p>It's very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it's becoming moot.</p>
+
+<p><a href="http://www.youtube.com/watch?v=qZcmF3yonjs">http://www.youtube.com/watch?v=qZcmF3yonjs</a>
+<a href="http://www.infoq.com/articles/linkedin-scala-jruby-voldemort">http://www.infoq.com/articles/linkedin-scala-jruby-voldemort</a></p>
+
+<p>In the past few weeks I've had a few situations where integrating with Java or within JVM environments is unavoidable. JRuby is now becoming more viable for us Ruby folk. Instead of fighting against Java-centric organizations, the Ruby community who has Java experience, needs to be open to the idea of JRuby as a true platform and live in harmony with Java, Scala,etc. I think the pivot point might be here for Ruby as it relates to the enterprise.</p>
+
+<p>Please take time to view the articles above and consider Ruby and the JVM together. And the next time a client or project emerges that mentions Java, don't cringe, but get excited.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
+    <updated>2010-12-01T10:31:48-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
+    <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I'd like to share.</p>
+
+<ol>
+<li><p>Learn how to use <a href="http://wiki.opscode.com/display/chef/Shef">Shef</a>, to inspect node. It replaces 'debug' statements when doing runs in templates or recipes.</p>
+
+<p> 'shef -z'</p></li>
+<li><p>If using <a href="http://wiki.opscode.com/display/chef/Knife">Kinfe</a> and a node is acting funny, inspect it via show or edit. For example, you might have to manually edit a run list or a default set of attributes that are an array instead of a hash (both real examples).</p></li>
+<li>Stop using symbols for hash keys in recipes, cookbooks, etc. The Opscode default will be a double quoted string and older versions can just not work.</li>
+<li>Upgrade to latest chef when overrides are not behaving as desired correctly OR override all the attributes for a recipe (even one's you don't want to override) if you are &lt; 0.9.10. However, the latter solution is obviously less desirable.</li>
+</ol>
+
+
+<p>That's all for now.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Varnish cache purge Rake task]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
+    <updated>2009-07-15T16:28:24-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
+    <content type="html"><![CDATA[<p>This example uses Ruby to telnet into Varnish and issue the "url.purge .*" command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
+
+<pre><code>require 'rubygems'
+
+namespace "varnish" do
+
+  desc "Purge ALL urls from Varnish"
+  task :global_purge =&gt; :environment do
+
+    #It WILL timeout, just accept it. Varnish does not have a command prompt.
+    require 'net/telnet'
+    @result = ""
+    begin
+      localhost = Net::Telnet::new("Host" =&gt; "localhost",
+      "Port" =&gt; 6082,
+      "Timeout" =&gt; 5)
+      localhost.cmd("url.purge .*") { |c| @result = c}
+    rescue Exception
+      if @result.include? ("200 0")
+        puts "varnish purged OK."
+      else
+        raise "Varnish not purged."
+      end
+    end
+  end
+
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Debugging/Troubleshooting Rails Applications in Production Enviroments]]></title>
+    <link href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
+    <updated>2009-05-29T12:55:37-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
+    <content type="html"><![CDATA[<p><strong>Introduction</strong></p>
+
+<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I've compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
+
+<p><strong>Non-Technical (READ FIRST)</strong></p>
+
+<ol>
+<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
+<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
+<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
+</ol>
+
+
+<p><strong>Technical</strong></p>
+
+<p>Elimination + log files is my troubleshooting method of choice.</p>
+
+<ol>
+<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
+<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
+<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
+<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
+<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
+<li>The logs should give status regarding database(s), but especially look for the words "timeout" if you have any custom network libraries that fetch data (we do) or "ActiveRecord".  Perhaps even, grep for it.</li>
+<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
+</ol>
+
+
+<p><strong>Other</strong></p>
+
+<ol>
+<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby CMS List]]></title>
+    <link href="http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list/"/>
+    <updated>2008-12-04T02:43:15-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list</id>
+    <content type="html"><![CDATA[<p><strong>Motivation: </strong>
+As an avid Ruby/Rails programmer and longtime CMS coder and user the following is yet another effort to keep a list of current Ruby/Rails CMS's. That is the goal of this post. I will use comments from others to update the list and hopefully keep and up-to-date list for all (including myself) to use. Heck, I would love to have others help review and keep list up to date.</p>
+
+<p><strong>External Resources:</strong></p>
+
+<p>http://www.widgetfinger.com/
+http://www.ajaxlines.com/ajax/stuff/article/top_ruby_cms.php</p>
+
+<p>http://webscripts.softpedia.com/downloadTag/ruby+cms</p>
+]]></content>
+  </entry>
+  
+</feed>

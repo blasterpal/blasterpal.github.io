@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Life and Family | Hank Beaver]]></title>
+  <link href="http://blasterpal.github.com/blog/categories/life-and-family/atom.xml" rel="self"/>
+  <link href="http://blasterpal.github.com/"/>
+  <updated>2013-02-22T08:53:28-05:00</updated>
+  <id>http://blasterpal.github.com/</id>
+  <author>
+    <name><![CDATA[Hank Beaver]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Easy,super funny recipe]]></title>
+    <link href="http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe/"/>
+    <updated>2010-11-17T14:21:50-05:00</updated>
+    <id>http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe</id>
+    <content type="html"><![CDATA[<p>A wonderful winter treat, sure to deliver fun and scolding!</p>
+
+<p>Required: children,2 thermometers for both purposes, a spouse who wants his/her temp. checked.
+Execute Fun: give them thermometer, right as thermometer touches tongue, say, with a little hesitation and urgency at once, 'oh , wait...'</p>
+]]></content>
+  </entry>
+  
+</feed>
