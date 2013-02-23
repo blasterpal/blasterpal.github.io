@@ -9,8 +9,7 @@
   <meta name="author" content="Hank Beaver">
 
   
-  <meta name="description" content="
-">
+  <meta name="description" content="REVISED: ACL, privilege , permission system based on sum of exponents. {REVISED: sum of square exponents from 2 and including 1} Huh? A little theory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,8 +18,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/">
-  <link href="/favicon.png" rel="icon">
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required">
+  <link href="/favicon.ico" rel="icon">
+  
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
@@ -34,19 +34,16 @@
 
 </head>
 
-<body   >
+<body   class="no-sidebar"  >
   <header role="banner"><hgroup>
-  <h1><a href="/">Hank Beaver</a></h1>
+  <h1>Hank Beaver</h1>
   
-    <h2>Open-source, Internet technologist who works for BLiNQ Media located in Atlanta, GA, USA</h2>
+    <h2><a href="/">hb</a></h2>
   
 </hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
+  <nav role="navigation">
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
@@ -91,7 +88,128 @@
   </header>
 
 
-<div class="entry-content">
+<div class="entry-content"><p>REVISED:</p>
+
+<p>ACL, privilege , permission system based on sum of exponents. {REVISED: sum of square exponents from 2 and including 1} Huh?</p>
+
+<p>A little theory:</p>
+
+<p>Look at this NOW: Masking</p>
+
+<p>Idea/Premise:</p>
+
+<p>I present the automatic bar tender. It makes sure people of age get served beverages and also people who have partial liver failure only get beer.</p>
+
+<p>RULES:
+Everyone has a number on their driver’s license. It’s a single number that can’t be forged (please assume this). it’s easy to read and easy to carry. The automatic bartender can read this simply by scanning your license. Let’s call it your “Permission Number”:</p>
+
+<p>Permission Number Examples</p>
+
+<pre><code>List of possible drinks, these numbers are all square exponents of 2 and including
+————————
+
+1 Drink Water
+2 Drink Soda
+4 Drink Beer
+8 Drink Gin
+</code></pre>
+
+<p>The sum of all permission numbers in binary might be represented as:</p>
+
+<pre><code>00001111
+</code></pre>
+
+<p>Permission numbers for our test subjects. These are created by SUMming the permission numbers.</p>
+
+<pre><code>———————
+Sara:
+1 Drink Water
++ 4 Drink Beer
++ 8 Drink Gin
+————
+Permission Number = 13 (00001101)
+
+Fun Bobby:
++ 4 Drink Beer
++ 8 Drink Gin
+————
+Permission Number = 12 (00001100)
+
+Underage Kid:
++ 1 Drink Water
++ 2 Drink Soda
+————–
+Permission Number = 3 (00000011)
+</code></pre>
+
+<p>Ok now that the example people have their numbers. Let’s play fun. The math is really simple. Because each drink permission is subject to masking, I can tell by your single permission number what drinks you can drink.</p>
+
+<p>Ordering Drinks Example(paste into irb for fun!):</p>
+
+<pre><code>#!/usr/bin/ruby
+class Rbar_Tender  #rbar_tender.rb
+
+########################################
+# The bartender. He's actually very stupid.
+########################################
+def self.order_drink(drink_permission,person_permission)
+
+response = "Talk to the manager, I can't serve you now."
+if (person_permission.to_i &amp; drink_permission.to_i) &gt; 0
+response =  "here's your drink, thanks for your business."
+end
+return response
+end
+end #end of class
+
+#basic permissions
+drink_water = 1 #0001b
+drink_soda = 2 #0010b
+drink_beer = 4 #0100b
+drink_gin = 8 #1000b
+
+#people's permissions
+sara_permission = 13 #1101 #assigned during walking into bar with ID.
+
+#open for business
+puts "sara wants a beer..."
+
+#drink_beer.to_i &amp; sara_permission.to_i
+puts Rbar_Tender.order_drink(drink_beer,sara_permission)
+
+puts "\n...a minutes later....\n\n"
+
+puts "sara wants a soda..."
+#drink_soda.to_i &amp; sara_permission.to_i
+puts Rbar_Tender.order_drink(drink_soda,sara_permission)
+</code></pre>
+
+<p>What is your point Hank? Well, in applications and web applications in particular, you need lot’s of permissions to do stuff. I mean literally dozens or hundreds of unique permissions:
+<em>Login to your account.
+</em>Delete pictures.
+*Email a friend.</p>
+
+<p>When someone wants to do something, you check that persons own record if they have access. Below are some examples of permissions you might have to look up each time for each person (NOTE looking this up takes time and resources), I’ve included a 2 exponent example beside it:</p>
+
+<pre><code>HAS_LOGIN_ACCESS (64)
+HAS_DELETE_PICTURE_ACCESS (256)
+HAS_EMAIL_FRIEND_ACCESS (1024)
+HAS_ABILITY_TO_INVADE_IRAQ (73,786,976,295,000,000,000)
+</code></pre>
+
+<p>——
+But wouldn’t it be cooler and use a lot less typing to have a single number, say for me 19. And magically b/c of math, we know what you are permitted to do. No database look ups for each time you need to do something. Your number IS what you can do. And each time you do an ACTION, that action has it’s permission number.</p>
+
+<p>UPDATE: 7/21/2007</p>
+
+<p>The above idea does have one limitation. DUH! The permission numbers grow exponentially as we add permissions. Simply having 66 permissions creates the huge number for HAS_ABILITY_TO_INVADE_IRAQ above. So I will explore something like TCP with a series of 8 or 16 bit binaries and do XOR on those instead. So the above permissions would be like so:</p>
+
+<pre><code>HAS_LOGIN_ACCESS (1000010)
+HAS_DELETE_PICTURE_ACCESS (100000000)
+HAS_EMAIL_FRIEND_ACCESS (10000000000)…
+</code></pre>
+
+<p>H</p>
 </div>
 
 
@@ -100,7 +218,7 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn">Hank Beaver</span></span>
+<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Hank Beaver)" rel="author">Hank Beaver</a></span></span>
 
       
 
@@ -128,9 +246,13 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/" data-via="" data-counturl="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/" data-via="blastepal" data-counturl="http://blasterpal.github.com/blog/2007/09/20/the-mostest-bestest-web-security-acl-idea-ever-maybe-sum-of-exponents-required/" >Tweet</a>
   
   
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
 </div>
 
@@ -140,50 +262,13 @@
         <a class="basic-alignment left" href="/blog/2007/09/20/people-fight-back-against-phishers-and-interjerks/" title="Previous Post: People fight back against Phishers and interjerks.">&laquo; People fight back against Phishers and interjerks.</a>
       
       
-        <a class="basic-alignment right" href="/blog/2007/09/24/compiling-rmagick-on-westhost-tips/" title="Next Post: Compiling RMagick on Westhost => TIPS">Compiling RMagick on Westhost => TIPS &raquo;</a>
+        <a class="basic-alignment right" href="/blog/2007/09/24/compiling-rmagick-on-westhost-tips/" title="next Post: Compiling RMagick on Westhost => TIPS">Compiling RMagick on Westhost => TIPS &raquo;</a>
       
     </p>
   </footer>
 </article>
 
 </div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super funny recipe</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-
-  
-</aside>
 
 
     </div>
@@ -198,7 +283,24 @@
 
 
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
 
 
 
