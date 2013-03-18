@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: mysql | Hank Beaver]]></title>
+  <title><![CDATA[Category: mysql | My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.]]></title>
   <link href="http://blasterpal.github.com/blog/categories/mysql/atom.xml" rel="self"/>
   <link href="http://blasterpal.github.com/"/>
-  <updated>2013-02-22T20:47:53-05:00</updated>
+  <updated>2013-03-18T13:33:16-04:00</updated>
   <id>http://blasterpal.github.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>

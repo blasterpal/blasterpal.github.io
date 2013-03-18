@@ -5,28 +5,38 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Using wget like a web crawler/offline downloader - Hank Beaver</title>
+  <title>Using wget like a web crawler/offline downloader - My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</title>
   <meta name="author" content="Hank Beaver">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   
-  <meta name="description" content="wget -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html
-">
+    
   
-
+  <meta name="description" content=" wget -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html ">
+  
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blasterpal.github.com/blog/2008/11/30/using-wget-like-a-web-crawleroffline-downloader">
-  <link href="/favicon.ico" rel="icon">
-  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/2008/11/30/using-wget-like-a-web-crawleroffline-downloader/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:title" content="Using wget like a web crawler/offline downloader" />
+  <meta name="og:description" content=" wget -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html " />
+  <meta name="og:url" content="http://blasterpal.github.com/blog/2008/11/30/using-wget-like-a-web-crawleroffline-downloader/"/>
+  <meta name="url" content="http://blasterpal.github.com/blog/2008/11/30/using-wget-like-a-web-crawleroffline-downloader/">
+  
+  <meta name="subject" content=""/>
+  <meta name="category" content=""/>
+  
+  <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,35 +45,35 @@
 
 </head>
 
-<body   class="no-sidebar"  >
-  <header role="banner"><hgroup>
-  <h1>Hank Beaver</h1>
-  
-    <h2><a href="/">hb</a></h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation">
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:blasterpal.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
+<body   >
+  <nav role="navigation"><div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="/">My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</a>
+    <ul class="nav">
+      <li><a href="/">Home</a></li>
+      <li><a href="/blog/archives">Archives</a></li>
+    </ul>
+    <ul class="nav" data-subscription="rss">
+      <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+      
+    </ul>
+      
+    <form class="navbar-form" action="http://google.com/search" method="get">
+      <fieldset role="search">
+        <input type="hidden" name="q" value="site:blasterpal.github.com" />
+        <input class="span2" type="text" name="q" results="0" placeholder="Search"/>
+      </fieldset>
+    </form>
+      
+    
+  </div>
+</div>
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
+  <div class="wrapper_single">
+    <div class="container">
+      <article class="span8 offset2" role="article">
+        <div class="article-format">
+
   <header>
     
       <h1 class="entry-title">Using Wget Like a Web Crawler/offline Downloader</h1>
@@ -71,6 +81,15 @@
     
       <p class="meta">
         
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
 
 
 
@@ -82,14 +101,17 @@
   
 
 
-<time datetime="2008-11-30T04:25:24-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2008</time>
+<time datetime="2008-11-30T04:25:24-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2008</time> - 
+        
+
+
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>wget  -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html</p>
+  <div class="entry-content"><p>wget  -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html</p>
 </div>
 
 
@@ -98,7 +120,11 @@
       
   
 
-<span class="byline author vcard">Posted by <span class="fn"><a href="/about" title="About the author (Hank Beaver)" rel="author">Hank Beaver</a></span></span>
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
 
       
 
@@ -131,29 +157,105 @@
 </div>
 
     
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/" title="Previous Post: Using gem dependencies with Rspec == BAD ! !">&laquo; Using gem dependencies with Rspec == BAD ! !</a>
-      
-      
-        <a class="basic-alignment right" href="/blog/2008/12/04/ruby-cms-list/" title="next Post: Ruby CMS List">Ruby CMS List &raquo;</a>
-      
-    </p>
+    
+      <a class="pull-left" href="/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/" title="Previous Post: Using gem dependencies with Rspec == BAD ! !">&laquo; Using gem dependencies with Rspec == BAD ! !</a>
+    
+    
+      <a class="pull-right" href="/blog/2008/12/04/ruby-cms-list/" title="Next Post: Ruby CMS List">Ruby CMS List &raquo;</a>
+    
   </footer>
-</article>
 
 </div>
 
-
+        
+      </article>
     </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hank Beaver -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/blastepal" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @blastepal</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="blastepal">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</a>
+  - Copyright &copy; 2013 - Hank Beaver
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
 </p>
 
+  </div>
 </footer>
-  
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
 
 
 
@@ -187,7 +289,6 @@
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
-
 
 
 

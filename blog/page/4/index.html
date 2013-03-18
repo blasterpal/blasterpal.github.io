@@ -1,32 +1,40 @@
 
+
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hank Beaver</title>
+  <title>My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</title>
   <meta name="author" content="Hank Beaver">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   
-  <meta name="description" content="wget -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html
-">
+    
   
-
+  <meta name="description" content=" desc ">
+  
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blasterpal.github.com/blog/page/4">
-  <link href="/favicon.ico" rel="icon">
-  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/page/4/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:title" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:description" content=" desc " />
+  <meta name="og:url" content="http://blasterpal.github.com/blog/page/4/index.html"/>
+  <meta name="url" content="http://blasterpal.github.com/blog/page/4/index.html">
+  
+  <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,572 +43,392 @@
 
 </head>
 
-<body   class="no-sidebar"  >
-  <header role="banner"><hgroup>
-  <h1>Hank Beaver</h1>
-  
-    <h2><a href="/">hb</a></h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation">
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:blasterpal.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/30/using-wget-like-a-web-crawleroffline-downloader/">Using Wget Like a Web Crawler/offline Downloader</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-30T04:25:24-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>wget  -r -p -U Mozilla http://www.modrails.com/documentation/Users%20guide.html</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/">Using Gem Dependencies With Rspec == BAD ! !</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-11-17T06:29:42-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We had an issue the last couple of weeks on a new Rails project we started here at my gig. All Rails exceptions were quietly logged without showing any stack trace to browser. This was very annoying. Secondly, the RAILS_ENV was reported as &#8220;test&#8221;. mmmm, very suspicious. After some investigation I found the culprit on rails.rb line #1 of rails-rspec gem installed in our vendor dir:</p>
-
-<p>silence_warnings { RAILS_ENV = &#8220;test&#8221; }</p>
-
-<p>Take a look at this to get a little context:</p>
-
-<p>http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies</p>
-
-<p>How can rspec affect your actual Rails environment, script/server, script/console, script/about? I&#8217;ll show you. enter our environment.rb:</p>
-
-<p>config.gem &#8216;rspec-rails&#8217;,
-:version => &#8216;>= 1.1.11&#8217;, :lib => &#8216;spec/rails&#8217;
-config.gem &#8216;rspec&#8217;,
-:version => &#8216;>= 1.1.11&#8217;, :lib => &#8216;spec&#8217;</p>
-
-<p>Aha! So effectively, by including our gems here too (and gaining the added benefits noted above at ryandaigle.com )rather than simply in our spec_helper, we replaced our RAILS_ENV and invoked the Rails equivalent of an exception black hole.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql/">How to Find a Date in Past in Mysql</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-28T09:12:28-04:00" pubdate data-updated="true">Oct 28<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>SELECT SUBDATE(NOW(),INTERVAL 1 HOUR);</p>
-
-<p>SELECT SUBDATE(NOW(),INTERVAL 1 DAY);</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/10/02/where-the-heck-is-my-profile-on-westhost/">Where the Heck Is My .profile on Westhost?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-02T02:57:21-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>~/.bash_profile does not work.</p>
-
-<p>It&#8217;s actually /.bashrc.</p>
-
-<p>So for me. I do this:</p>
-
-<pre><code>ln -s /.bashrc ~/.bash_profile
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/24/my-software-mantra/">My Software Mantra&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-24T10:45:50-04:00" pubdate data-updated="true">Sep 24<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>See this:</p>
-
-<p><a href="http://1000fires.com/wordpress/?page_id=46">My Software Mantras</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/18/using-ruby-to-move-subversion-folders-and-files/">Using Ruby to Move Subversion Folders and Files.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-18T03:15:36-04:00" pubdate data-updated="true">Sep 18<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I want to move all files in this svn dir:</p>
-
-<pre><code>svn list http://svn.atld1/svn-prodops/sysadmin
-</code></pre>
-
-<p>to:</p>
-
-<pre><code>svn list http://svn.atld1/svn-prodops/sysadmin/scripts
-</code></pre>
-
-<p>Doing svn mv would see obvious and using xargs or -exec might work. I prefer not to use any brain energy on a shell script. I just do it in ruby in 5 minutes:</p>
-
-<pre><code>svn list http://svn.atld1/svn-prodops/sysadmin &gt; /tmp/script.list
-</code></pre>
-
-<p>Write this to a ruby file:</p>
-
-<pre><code>f = File.open("/tmp/script.list")
-
-
-
-
-f.each_line {|line|
-
-
-
-
-cmd = "svn mv http://svn.atld1/svn-prodops/sysadmin/#{line.strip}
-http://svn.atld1/svn-prodops/sysadmin/scripts/ -m
-\"moving #{line} to scripts \" "
-
-
-
-
-puts "running: #{cmd}"
-`#{cmd}"
-
-
-
-
-}
-</code></pre>
-
-<p>Now execute the file above after double checking. Viola done even with relevant comments for each move!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/17/my-passenger-config-example/">My Passenger Config Example.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-17T07:22:56-04:00" pubdate data-updated="true">Sep 17<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Passenger (a.k.a mod_rails) is getting some buzz (google it). Looking at the below config and the fact that deployments are automatic from Web Server with a simple file touch.</p>
-
-<p>In http.conf:</p>
-
-<pre><code>LoadModule passenger_module /usr/lib64/ruby/gems/1.8/gems/passenger-2.0.3/ext/apache2/mod_passenger.so
-PassengerRoot /usr/lib64/ruby/gems/1.8/gems/passenger-2.0.3
-PassengerRuby /usr/bin/ruby
-
-
-
-
-&lt;VirtualHost *:80&gt;
-ServerName vwebadm11.atlis1
-#DocumentRoot /var/www/apps/html
-DocumentRoot /var/www/apps/provisioning_webservices/current/public
-ErrorLog logs/prodops_errors_log
-CustomLog logs/prodops_log combined
-#RailsBaseURI /prov_websvc         # Passenger Rails link
-RailsEnv test
-&lt;/VirtualHost&gt;
-
-
-
-
-&lt;Directory "/var/www/apps/provisioning_webservices/current/public"&gt;
-Options FollowSymLinks
-AllowOverride None
-Order allow,deny
-Allow from all
-&lt;/Directory&gt;
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/02/calling-initialize-in-activerecord-model-causes-nilhas_keys-error/">Calling Initialize in ActiveRecord Model Causes nil.has_keys? Error.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-02T03:24:35-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When instantiating a model class this error occurs:</p>
-
-<pre><code>instance = MyModel.new
-
-
-
-
-NoMethodError: You have a nil object when you didn't expect it!
-
-
-
-
-The error occurred while evaluating nil.has_key?
-</code></pre>
-
-<p>This is rectified by placing a <strong>super</strong> within model class.</p>
-
-<pre><code>def initialize
-
-
-
-
-super
-
-
-
-
-logger.debug("initialize VirtualMta: #{self.class}")
-
-
-
-
-end
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues/">Running Finder as Root on OSX - to Solve App Install Issues</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-08-22T07:28:07-04:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>open terminal
-sudo sh
-killall Finder
-/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder</p></blockquote>
-
-<p>Why? I&#8217;ve found sometimes certain applications require root to run/install. Office 2004 and an HP Officejet software are two examples.</p>
-
-<p>UPDATE: Realize this <em>may</em> bork your login/session after this and you are likely going to want to reboot.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions/">&#8216;OTP&#8217; Based Sudo, With Per Process Restrictions.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-07-30T13:05:08-04:00" pubdate data-updated="true">Jul 30<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Is it possible to audit Unix/Linux server root access per task and on temporary basis?</strong></p>
-
-<p>Yes.</p>
-
-<p>Years ago I wrote a &#8216;sudo&#8217; equivalent in W32, but with a big twist. It was called &#8220;RunAuth&#8221;. It used the API &#8220;run as&#8221; mechanisms. It gave admin access based on an OTP (http://en.wikipedia.org/wiki/One_time_password). The OTP was NOT automatic. The person had to call the helpdesk to get a code. It was based on a shared secret and MD5. Secondly, the code provided  defined the exact process that could be executed by the RunAuth client.</p>
-
-<p><strong>Use Case:</strong>
-Field Sales Person wants to install a new HP Printer. User does NOT have local admin. How to install a printer driver without shipping computer to IT?</p>
-
-<p><strong>Solution:</strong>
-Start RunAuth, choose install printer driver, a challenge code is presented. Tell the IT person over the phone the code. They provide a response that immediately executes the install printer wizard as admin. The actual MD5 signature of the DLL or EXE is also validated before running to ensure no trojan or backdoor is created. Upon completion of task, the machine logs out the user or requires reboot.</p>
-
-<p><strong>Point:</strong>
-The same can be accomplished in Linux.
-Think of sudo with one time password access. Why is this important? Because that means admins don&#8217;t have single control over root access. It requires &#8220;dual&#8221; access. Someone else who is not an admin, has to consent to the changes or stated objective to provide the admin a one time sudo password. So if the automated provisioning cannot handle a task or an emergency occurs, there is still a regimented procedure to perform ad hoc tasks,but there is change control enforced at the OS.</p>
-
-<p>I&#8217;d like to have opinions?</p>
-
-<p>H</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/5/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
-    
-  </div>
+<body   >
+  <div id="front-wrapper">
+  <div id="hero">
+    <div id="hero-inner" class="container">
+      <div class="span10 offset1">
+  <h1>
+    My name is <em>Hank Beaver</em>. I&#8217;m a Web developer and DevOps expert.
+  </h1>
+  <h2></h2>
 </div>
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hank Beaver -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <section id="sub-hero">
+    <div class="container">
+      <div class="row">
+  <div class="span4">
+    <h2>about me</h2>
+<p>A little something about me.</p>
+
+  </div>
+  <div class="span6">
+    
+<h2>recent public projects</h2>
+<dl id="gh_repos" class="dl-horizontal" data-github-user="blasterpal" data-github-repo-count="4" data-github-skip-forks="true">
+  <dd class="loading">Status updating&#8230;</dd>
+</dl>
+<script src="/javascripts/github.js" type="text/javascript"> </script>
+<script src="/javascripts/libs/jXHR.js" type="text/javascript"> </script>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+    </div>
+  </section>
+  <div class="container">
+    <div class="row" id="post-container">
+    
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/01/beware-ye-rspec-ers-params/">Beware Asserting Against Rspec @params</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-01T02:40:43-04:00" pubdate data-updated="true">Oct 1<span>st</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>Rspec</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Spent a little time scratching my head on this week. @params is reserved in Rspec controller tests apparently much like Rails. @params will contain extra keys like &#8220;controller&#8221; and &#8220;action&#8221; which if you try and assert against will fail of you do something like this:</p>
+
+<pre>
+
+@params = {:id => 'niceid'}
+...
+Model.expects(:method).with(@params)
+
+</pre>
+
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/">Using Rails for Custom Applications and Avoiding the CMS Trap.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-03T07:38:23-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cms/'>CMS</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/wordpress/'>wordpress</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
+
+<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
+
+<pre><code>wordpress_template.php
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
+//end of wordpress.php
+...
+//function included elsewhere
+function include_rails_service(service_url,type){
+//could return any of following for the resource url
+ switch (type) {
+  case ESI_INCLUDE:
+   return "&lt;esi include ='" + service_url + "'&gt;";
+   break;
+  case SERVICE:
+   include service_url;
+   break;
+  case AJAX:
+//javascript include with service js, doing doc.write
+}
+}
+</code></pre>
+
+<p>The point is Wordpress doesn&#8217;t know about Rails and Rails doesn&#8217;t know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/">Mysql::Error: MySQL Server Has Gone Away With Sinatra + ActiveRecord</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-10T07:17:12-04:00" pubdate data-updated="true">Aug 10<span>th</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/activerecord/'>activerecord</a>, <a class='category' href='/blog/categories/sinatra/'>sinatra</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  &#8220;Mysql::Error: MySQL server has gone away&#8221; message. The resolution is pretty simple:</p>
+
+<pre><code>class NewApp &lt; Sinatra::Default   
+
+  before do
+    ActiveRecord::Base.connection.verify!
+  end
+...
+end #end of Sinatra class
+</code></pre>
+
+<p>I created a Lighthouse ticket before I discovered the resolution. There are also more technical details here: <a href="https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4">https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4</a></p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    </div>
+      <div class="row">
+        <ul class="pager">
+          
+            <li class="previous">
+              <a href="/blog/page/5/">&larr; Older</a>
+            </li>
+          
+          
+            <li class="next">
+              <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+            </li>
+          
+        </ul>
+      </div>
+  </div>
+</div>
+
+
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/blastepal" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @blastepal</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="blastepal">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</a>
+  - Copyright &copy; 2013 - Hank Beaver
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
 </p>
 
+  </div>
 </footer>
-  
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
 
 
 
@@ -634,7 +462,6 @@ Think of sudo with one time password access. Why is this important? Because that
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
-
 
 
 

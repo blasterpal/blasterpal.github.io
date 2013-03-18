@@ -1,32 +1,40 @@
 
+
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hank Beaver</title>
+  <title>My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</title>
   <meta name="author" content="Hank Beaver">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   
-  <meta name="description" content="Goals: To auto start with init.d, upon westhost restart, etc.
-Use Apache to front end, via mod_proxy. You&#8217;ll have to follow other sites on &hellip;">
+    
   
-
+  <meta name="description" content=" desc ">
+  
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blasterpal.github.com/blog/page/5">
-  <link href="/favicon.ico" rel="icon">
-  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/page/5/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:title" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:description" content=" desc " />
+  <meta name="og:url" content="http://blasterpal.github.com/blog/page/5/index.html"/>
+  <meta name="url" content="http://blasterpal.github.com/blog/page/5/index.html">
+  
+  <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -35,731 +43,391 @@ Use Apache to front end, via mod_proxy. You&#8217;ll have to follow other sites 
 
 </head>
 
-<body   class="no-sidebar"  >
-  <header role="banner"><hgroup>
-  <h1>Hank Beaver</h1>
-  
-    <h2><a href="/">hb</a></h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation">
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:blasterpal.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/20/how-to-set-up-mongrel_cluster-on-westhost/">How to Set Up Mongrel_cluster on Westhost</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-20T13:43:42-04:00" pubdate data-updated="true">May 20<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Goals:</p>
-
-<ul>
-<li><p>To auto start with init.d, upon westhost restart, etc.</p></li>
-<li><p>Use Apache to front end, via mod_proxy.</p></li>
-</ul>
-
-
-<p>You&#8217;ll have to follow other sites on installing gems, etc.  <a href="http://mongrel.rubyforge.org/wiki/MongrelCluster">This Site </a> has some very useful info, namely you need to symlink mongrel_cluster_ctl and ruby to /usr/bin/ (you&#8217;ll have to do a find / -name mongrel_cluster_ctl). Mine was here: /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl</p>
-
-<p>So I linked into /etc/init.d/ like so:</p>
-
-<p>ln -s /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl /etc/init.d/</p>
-
-<p>chkconfig is not installed on westhost, so you have to do the init.d link/scrips the old fashioned way:</p>
-
-<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/S81mongrel_cluster</p>
-
-<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/K19mongrel_cluster</p>
-
-<p>K = Kill, the number means the order</p>
-
-<p>S= Start, &#8220;&#8221;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/04/01/mixin-module-madness-why-self-aint-really-self/">Mixin Module Madness &#8211; Why Self Ain&#8217;t Really Self</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-04-01T10:11:15-04:00" pubdate data-updated="true">Apr 1<span>st</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This all came up b/c I wanted to write a shared mixin module to have attachment_fu ready actions for all my controllers that have attachments. No need to put that crap in every controller. So in a mixin module when you want to do some fun reflection/introspection like so:</p>
-
-<p>&#8230;</p>
-
-<pre><code>    @this_obj = self.controller_name.classify.constantize.find_safe
-(id,logged_in_user.id)
-</code></pre>
-
-<p>&#8230;</p>
-
-<p>In Dev this worked great. Tests were good, my mostly view/template developer partner, approved. Deploy to test and WHAMMO!</p>
-
-<p>&#8230;</p>
-
-<pre><code>    "NameError ("Blogs | ListAll" is not a valid constant name!):
-</code></pre>
-
-<p>&#8230;&#8221;</p>
-
-<p>What gives? Mmm, seems when you include a mixin, that is included in a controller. The self.controller_name will report incorrectly in Test and Prod. So I had to adjust the code a little using a new method:</p>
-
-<pre><code>        @this_obj = self.this_controller_name.classify.constantize.find_safe(
-id,logged_in_user.id)
-</code></pre>
-
-<p>Below is the method(which is basically David&#8217;s code for controller_name).</p>
-
-<pre><code>###############################
-
-
-
-
-#This method is here b/c it is apparent that Rails
-#ActionController.controller_name
-
-
-
-
-# is unreliable in Test and Production for some reason.
-
-
-
-
-# attachment_symbol_name: Blogs | List_all_attachments
-
-
-
-
-# attachment_model ERROR: "Blogs | ListAllAttachment"
-#is not a valid constant name
-
-
-
-
-###############################
-
-
-
-
-def this_controller_name
-
-
-
-
-    self_class = self.class.to_s.sub(/Controller$/, '').underscore
-
-
-
-
-end
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/03/10/cheap-mans-sms-gateway/">Cheap Man&#8217;s SMS Gateway</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-03-10T14:48:15-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In a model or util class, parse number to determine the telecom provider (example: http://www.notepage.net/smtp.htm). Create an email message to the respective email @ address for that provider.</p>
-
-<p><strong>Issues:</strong></p>
-
-<p>SMTP is not as time sensitive.</p>
-
-<p>But for a small web app, is this ok?</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/29/what-i-do-the-internet-i-work-on-b-d/">What I Do. The Internet. I Work on B-D.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-29T12:26:30-05:00" pubdate data-updated="true">Feb 29<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Simplified Internet and its interaction, enjoy</p>
-
-<p>A) USER LAYER :: normal usage, browsers
-1.Computer
-2.Operating System (Windows OSX)
-3.Browser (Internet Explorer / Safari)
-4.Internet (Comcast, Verizon)</p>
-
-<p>B) The network :: NETWORK LAYER
-Probably the area we control the LEAST. We can&#8217;t MAKE routers talk faster OR make Sprint love us!!!</p>
-
-<p>C) Website/Hosting/Servers :: SERVER LAYER
-1.Server(s) (which is a fancy name for computer) ie. Dell
-2.Database (where information is stored) ie Oracle, DB2, SQL Server, MySQL
-3.Basic HTML files and images( STATIC CONTENT)
--> HTML, CSS, JPG, Javascript, Flash</p>
-
-<p>D) Website base language/framework (does the heavy lifting, most of work***) :: APPLICATION_LAYER
-This requires (B)
--> From Microsoft, Open Source, 3rd party.</p>
-
-<p>E) Our code. :: CODE_LAYER
-Our programs: (this is where I/we work most of the time, you MUST understand A-D though)
-<em>we write code in the Base/fundamental programming languages from D
-</em>we implement Extra modules/libraries other people write</p>
-
-<p>DONE with A,B,C,D</p>
-
-<hr />
-
-<hr />
-
-<hr />
-
-<p>Web Pages are really akin yelling across canyon!!!!</p>
-
-<h2>Internet Applications in the real world(web pages)</h2>
-
-<p>STEPS FOR ONE WEB REQUEST:
-1. User A) Users  &#8212;> give me a page |NETWORK B) &#8212;> |SERVER C) Joe user want to look at &#8216;XYZ web page&#8217;.
-2. SERVER C) Send &#8216;XYZ web page&#8217; to user |NETWORK B) &#8212;-> traverse network |USER A) User receives response. Views &#8216;XYZ web page.&#8217;</p>
-
-<p>The above is TRUE even for just an image or buying a widget!</p>
-
-<p>*** In the old days of the internet. All web pages were just layer C. They were simple files served up by the server. This harkens back to the days of the home page internet, when everyone had an internet home page like so: &#8220;www.mindspring.com~hbeaver&#8221; which I DID!.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/23/subversion-error-containing-working-copy-admin-area-is-missing-when-generating-rails-doc/">Subversion Error &#8216;Containing Working Copy Admin Area Is Missing&#8217; When Generating Rails Doc&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-23T10:57:29-05:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This error is extremely frustrating. It occurs when the .svn info is missing in a directory. In my example this happens when running &#8216;rake doc:app&#8217;  and I have found only one sequence that will fix this. In my case, I am removing doc from subversion and going to manage outside of source control.</p>
-
-<p>To fix:</p>
-
-<ol>
-<li><p>cd /doc/app</p></li>
-<li><p>mv &#8216;app&#8217; &#8216;app-todelete&#8217;</p></li>
-<li><p>do a new checkout from svn just on the directory you renamed. Like so:
-svn co svn+ssh://usery@mysecre.server.com/var/www/apps/repos/trunk/doc/app</p></li>
-<li><p>The newest version in source should be in the proper location.</p></li>
-<li><p>You will unfortunately have to merge any changes from the old directory, as in my case &#8216;app-todelete&#8217;</p></li>
-</ol>
-
-
-<p>Enjoy!</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/20/installing-subversion-on-westhost/">Installing Subversion on Westhost</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-20T10:41:31-05:00" pubdate data-updated="true">Feb 20<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Because of the versions of Westhost apache and other files, the easiest way is not to install the latest and greatest. I had success installing this version: subversion-1.2.0-rc4</p>
-
-<p>I also make my own apps directory that I put in my path.</p>
-
-<p>./configure &#8211;prefix=/apps/subversion</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/15/port-knocking-otp/">Port Knocking + OTP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-15T08:34:32-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
-
-<p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I&#8217;m going to play with this. The idea:</p>
-
-<ul>
-<li><p>Port knock sequence numbers are based on a secret key and a cipher to create an 16 bit sequence or port numbers. ex. &#8220;7111 31189 40922&#8221;.</p>
-
-<ol>
-<li><p>That is UDP knock: 7111, 31189, and 40922.</p></li>
-<li><p>These numbers change approx. every 1-2 minutes. based on secret key and cipher and date/time seed.</p></li>
-</ol>
-</li>
-<li><p>The payload of each packet is a sequence number + 2 digit OTP number.
-ex: packet 1: &#8220;1|3dz&#8221;, packet 2: &#8220;2|js9&#8221;, packet 3: &#8220;3|34m&#8221;</p></li>
-<li><p>There is a REQUEST packet that goes on another port based on cipher, ex. 5433 (changes daily?)
-The request packet provides the next sequence number,asks for what port to open: 22, ssh in this example that is ENCRYPTED also with IP Address. like so: &#8220;4|22|67.100.40.23&#8221; => encrypted as &#8220;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
-<li><p>The entire sequence is started by a START port number and END port number that changes every day with a simple string as payload. ex: START port: 8765,END port: 64100.So the entire OTP +port knock sequence from my OTP+port knock client:</p></li>
-<li><ul>
-<li><p>UDP:8765=>&#8221;START_PK_SEQ&#8221;</p></li>
-<li><p>UDP: 7111 -> &#8220;1|3dz&#8221;</p></li>
-<li><p>UDP: 31189 => &#8220;2|js9&#8221;</p></li>
-<li><p>UDP: 40922 => &#8220;3|34m&#8221;</p></li>
-<li><p>UDP: 5433 => &#8216;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
-<li><p>UDP:64100=>&#8221;END_PK_SEQ&#8221;Port 22 is now open on the host firewall for the requesting ip based on successfully decrypting packet #5.</p></li>
-</ul>
-</li>
-<li><p>In theory this would be resistant against man-in-the-middle and reply attacks.</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/10/has_many-associations-using-in-helper-tag-and-a-little-about-blocks/">Has_many Associations, Using in Helper Tag and a Little About Blocks.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-10T09:47:43-05:00" pubdate data-updated="true">Feb 10<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Soon the rest of this blog will deal with a basic overview of has_many associations and a practical use. For now look at this simple tag that uses has_many of a Blog model to show the Interests (or topics) for a given blog. You would use this helper_tag like so in your view, given that you have a single instance of a blog object called ‘blog’</p>
-
-<p>&lt;%= more_ugly_interests_tag(blog) %></p>
-
-<p>I hope this small article might help others:</p>
-
-<pre><code>#########################################
-#Tag to show usage of has_many for a model.
-#Ruby on Rails
-#*this_model* is the actual instance of a blog or photo
-#which has a list of interests.
-#
-#Call tag like this:
-# &lt;%= more_ugly_interests_tag(blog) %&gt;
-#the syntax below uses what Ruby calls a 'block'
-#this is the format:
-# some_variable_that_has_a_list.each { |list_item
-# #do something with each item
-# puts list_item + " !!!!"
-# }
-#########################################
-def more_ugly_interests_tag(this_model)
-
-to_return = "INTERESTS"
-
-this_model.interests.each { |each_interest|
-
-to_return =  &lt;&lt; each_interest &lt;&lt; "
-"
-
-
-}
-
-#now we have end the whole function/method with what we want to return/print
-to_return
-
-end
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101/">Coding/Developing Rails Troubleshooting 101</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-29T07:19:58-05:00" pubdate data-updated="true">Jan 29<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>All the Agile folks would say if you run/create your tests you might not even get this far. However, that&#8217;s not always reality for me.</p>
-
-<ol>
-<li>&#8216;tail -f /development.log&#8217;</li>
-</ol>
-
-
-<p>If you are on OSX, the above is easy.
-On Windows, I&#8217;d suggest looking at Cygwin and getting tail working. It&#8217;s worth it.</p>
-
-<p>a) open terminal.
-b) Clear the screen before you reattempt what is broken. (Use Apple + K on OSX)
-c) Stop tail right after getting the error (CTRL + C)
-d) Look for the first line that is not normal Rails and debug output. See next area.</p>
-
-<ol>
-<li>Skip all the fluff and go for Ruby errors. You will learn to see &#8220;stacktraces&#8221; and errors in Ruby/Rails after a little practice.</li>
-</ol>
-
-
-<p>They will look something akin to this:</p>
-
-<p>1)An error
-2)The file that the error occurred in&#8230;
-3)the line number/and problem code&#8230;
-4)A sample of the code at and around the error.
-&#8230;
-5) A bunch of code that was run prior to this happening.</p>
-
-<ol>
-<li><p>Did you recently change the file in question? If so, revert what you did?</p></li>
-<li><p>Use logger.debug to print out something right before the error to see if your code is making it that far.</p></li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/04/when-to-use-a-partial-and-when-to-use-a-helper-tag/">WHEN to Use a Partial and When to Use a Helper Tag?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-04T13:32:55-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First as you read Rails and learn more you will discover the DRY (Don&#8217;t Repeat Yourself) principle. This means do something once and then don&#8217;t dig another ditch.</p>
-
-<p>So here&#8217;s my opinion, both partials and tags are for DRY.</p>
-
-<p>One usage difference in my opion: Is if the output is only a few lines, then a tag is simpler and cleaner. However, if the output is many, many lines of HTML like a menu then I start to lean toward partial. However,</p>
-
-<p>There is one thing that a tag can do nicely that partials can&#8217;t as cleanly. Arguments can be passed and code run away from the view. Example:</p>
-
-<pre><code>&lt;%=  commentor_pretty_name(blog.login_id) %&gt;
-</code></pre>
-
-<p>here is the actual tag in application_helper.rb:</p>
-
-<pre><code>##############################
-# takes a login_id alone and converts to pretty name for comment/tag
-##############################
-def commentor_pretty_name(login_id)
-
-def_return = "Nil Name"
-begin
-logger.debug("app helper commenter_pretty_name")
-
-
-
-
-#the "||" operand below means that we will use the def_return of "Nil Name" if Login.find returns nil
-Login.find(login_id).unique_name || def_return
-#end
-rescue
-def_return
-end
-
-end
-</code></pre>
-
-<h4>END CODE</h4>
-
-<p>To do the same in a partial you would have to have this:</p>
-
-<pre><code>&lt;%= render :partial =&gt; 'commenter', :locals =&gt; { :login_id =&gt; user.id} %&gt;
-</code></pre>
-
-<p>user.id would be passed as argument AND then on the partial you would need some of the ruby code in the actual partial to lookup the user.</p>
-
-<pre><code>&lt;%   #note no '=' tag this is purely to run ruby code and set variables
-
-@def_return = "Nil Name"
-begin
-logger.debug("app helper commenter_pretty_name")
-@def_return  = Login.find(login_id).unique_name
-#end
-rescue
-@def_return
-end
-%&gt;
-    &lt;%= @def_return  %&gt;
-</code></pre>
-
-<p>Best of both worlds? Use a tag to run the ruby code and then a partial to render? When the tag gets riddled with html/view then this presents a good blend of keeping view and model seperate by using a tag to setup/do ruby work and simple partial to present.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/6/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/blog/page/4/">Newer &rarr;</a>
-    
-  </div>
+<body   >
+  <div id="front-wrapper">
+  <div id="hero">
+    <div id="hero-inner" class="container">
+      <div class="span10 offset1">
+  <h1>
+    My name is <em>Hank Beaver</em>. I&#8217;m a Web developer and DevOps expert.
+  </h1>
+  <h2></h2>
 </div>
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hank Beaver -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <section id="sub-hero">
+    <div class="container">
+      <div class="row">
+  <div class="span4">
+    <h2>about me</h2>
+<p>A little something about me.</p>
+
+  </div>
+  <div class="span6">
+    
+<h2>recent public projects</h2>
+<dl id="gh_repos" class="dl-horizontal" data-github-user="blasterpal" data-github-repo-count="4" data-github-skip-forks="true">
+  <dd class="loading">Status updating&#8230;</dd>
+</dl>
+<script src="/javascripts/github.js" type="text/javascript"> </script>
+<script src="/javascripts/libs/jXHR.js" type="text/javascript"> </script>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+    </div>
+  </section>
+  <div class="container">
+    <div class="row" id="post-container">
+    
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/15/varnish-cache-purge-rake-task/">Varnish Cache Purge Rake Task</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-15T16:28:24-04:00" pubdate data-updated="true">Jul 15<span>th</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/varnish/'>varnish</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This example uses Ruby to telnet into Varnish and issue the &#8220;url.purge .*&#8221; command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
+
+<pre><code>require 'rubygems'
+
+namespace "varnish" do
+
+  desc "Purge ALL urls from Varnish"
+  task :global_purge =&gt; :environment do
+
+    #It WILL timeout, just accept it. Varnish does not have a command prompt.
+    require 'net/telnet'
+    @result = ""
+    begin
+      localhost = Net::Telnet::new("Host" =&gt; "localhost",
+      "Port" =&gt; 6082,
+      "Timeout" =&gt; 5)
+      localhost.cmd("url.purge .*") { |c| @result = c}
+    rescue Exception
+      if @result.include? ("200 0")
+        puts "varnish purged OK."
+      else
+        raise "Varnish not purged."
+      end
+    end
+  end
+
+end
+</code></pre>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/">Reminder to Self and World: Varnish Uses POSIX Regex.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-07-14T09:26:45-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/regex/'>regex</a>, <a class='category' href='/blog/categories/varnish/'>varnish</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don&#8217;t work! So putting this in your Varnish VCL will silently do nothing:</p>
+
+<pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>whereas this match:</p>
+
+<pre><code>if (req.url ~ "/[0-9]+(/$|/\?|\?|$)") ...
+</code></pre>
+
+<p>Enjoy.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app/">F5/BigIP Healthcheck Against Thin/Sinatra App</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-06-05T05:18:01-04:00" pubdate data-updated="true">Jun 5<span>th</span>, 2009</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When using a BigIP to load balance a Sinatra app via Thin you will need to provide more than just the GET request string in F5&#8217;s &#8220;send string&#8221; field OR you might get &#8220;Request Invalid!&#8221; error message. Heads up.</p>
+
+<h4>Using this will cause issue:</h4>
+
+<h4></h4>
+
+<pre><code>GET /ops/heartbeat
+</code></pre>
+
+<p><strong>This works:</strong></p>
+
+<h4></h4>
+
+<pre><code>GET /ops/heartbeat HTTP/1.1\r\nHost: \r\nConnection: Close\r\n\r\n
+</code></pre>
+
+<h4></h4>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    </div>
+      <div class="row">
+        <ul class="pager">
+          
+            <li class="previous">
+              <a href="/blog/page/6/">&larr; Older</a>
+            </li>
+          
+          
+            <li class="next">
+              <a class="next" href="/blog/page/4/">Newer &rarr;</a>
+            </li>
+          
+        </ul>
+      </div>
+  </div>
+</div>
+
+
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/blastepal" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @blastepal</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="blastepal">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</a>
+  - Copyright &copy; 2013 - Hank Beaver
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
 </p>
 
+  </div>
 </footer>
-  
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
 
 
 
@@ -793,7 +461,6 @@ end
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
-
 
 
 

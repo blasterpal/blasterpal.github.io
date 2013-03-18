@@ -1,31 +1,40 @@
 
+
 <!DOCTYPE html>
 <!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
 <!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Hank Beaver</title>
+  <title>My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</title>
   <meta name="author" content="Hank Beaver">
+  <link rel="author" href="humans.txt">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   
-  <meta name="description" content="I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too). There are some fantastic &hellip;">
+    
   
-
+  <meta name="description" content=" desc ">
+  
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blasterpal.github.com/blog/page/2">
-  <link href="/favicon.ico" rel="icon">
-  
+  <link rel="canonical" href="http://blasterpal.github.com/blog/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Hank Beaver" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." type="application/atom+xml">
+  <meta name="og:type" content="website" />
+  <meta name="og:site_name" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:title" content="My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert." />
+  <meta name="og:description" content=" desc " />
+  <meta name="og:url" content="http://blasterpal.github.com/blog/page/2/index.html"/>
+  <meta name="url" content="http://blasterpal.github.com/blog/page/2/index.html">
+  
+  <meta name="distribution" content="global">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -34,563 +43,362 @@
 
 </head>
 
-<body   class="no-sidebar"  >
-  <header role="banner"><hgroup>
-  <h1>Hank Beaver</h1>
-  
-    <h2><a href="/">hb</a></h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation">
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:blasterpal.github.com" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/">Using Rails for Custom Applications and Avoiding the CMS Trap.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-03T07:38:23-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
-
-<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
-
-<pre><code>wordpress_template.php
-//some more wonder wordpress stuff
-&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
-//some more wonder wordpress stuff
-&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
-//end of wordpress.php
-...
-//function included elsewhere
-function include_rails_service(service_url,type){
-//could return any of following for the resource url
- switch (type) {
-  case ESI_INCLUDE:
-   return "&lt;esi include ='" + service_url + "'&gt;";
-   break;
-  case SERVICE:
-   include service_url;
-   break;
-  case AJAX:
-//javascript include with service js, doing doc.write
-}
-}
-</code></pre>
-
-<p>The point is Wordpress doesn&#8217;t know about Rails and Rails doesn&#8217;t know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/">Mysql::Error: MySQL Server Has Gone Away With Sinatra + ActiveRecord</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-08-10T07:17:12-04:00" pubdate data-updated="true">Aug 10<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  &#8220;Mysql::Error: MySQL server has gone away&#8221; message. The resolution is pretty simple:</p>
-
-<pre><code>class NewApp &lt; Sinatra::Default   
-
-  before do
-    ActiveRecord::Base.connection.verify!
-  end
-...
-end #end of Sinatra class
-</code></pre>
-
-<p>I created a Lighthouse ticket before I discovered the resolution. There are also more technical details here: <a href="https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4">https://thin.lighthouseapp.com/projects/7212-thin/tickets/101-activerecord-connection-does-not-reconnect-when-using-thinsinatra-but-works-fine-with-just-sinatra#ticket-101-4</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/15/varnish-cache-purge-rake-task/">Varnish Cache Purge Rake Task</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-15T16:28:24-04:00" pubdate data-updated="true">Jul 15<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This example uses Ruby to telnet into Varnish and issue the &#8220;url.purge .*&#8221; command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
-
-<pre><code>require 'rubygems'
-
-namespace "varnish" do
-
-  desc "Purge ALL urls from Varnish"
-  task :global_purge =&gt; :environment do
-
-    #It WILL timeout, just accept it. Varnish does not have a command prompt.
-    require 'net/telnet'
-    @result = ""
-    begin
-      localhost = Net::Telnet::new("Host" =&gt; "localhost",
-      "Port" =&gt; 6082,
-      "Timeout" =&gt; 5)
-      localhost.cmd("url.purge .*") { |c| @result = c}
-    rescue Exception
-      if @result.include? ("200 0")
-        puts "varnish purged OK."
-      else
-        raise "Varnish not purged."
-      end
-    end
-  end
-
-end
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/">Reminder to Self and World: Varnish Uses POSIX Regex.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-14T09:26:45-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don&#8217;t work! So putting this in your Varnish VCL will silently do nothing:</p>
-
-<pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
-</code></pre>
-
-<p>whereas this match:</p>
-
-<pre><code>if (req.url ~ "/[0-9]+(/$|/\?|\?|$)") ...
-</code></pre>
-
-<p>Enjoy.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app/">F5/BigIP Healthcheck Against Thin/Sinatra App</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-05T05:18:01-04:00" pubdate data-updated="true">Jun 5<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When using a BigIP to load balance a Sinatra app via Thin you will need to provide more than just the GET request string in F5&#8217;s &#8220;send string&#8221; field OR you might get &#8220;Request Invalid!&#8221; error message. Heads up.</p>
-
-<h4>Using this will cause issue:</h4>
-
-<h4></h4>
-
-<pre><code>GET /ops/heartbeat
-</code></pre>
-
-<p><strong>This works:</strong></p>
-
-<h4></h4>
-
-<pre><code>GET /ops/heartbeat HTTP/1.1\r\nHost: \r\nConnection: Close\r\n\r\n
-</code></pre>
-
-<h4></h4>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex/">Realtime Response Time Reporting From Rails Logs Using Regex.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-05T05:12:20-04:00" pubdate data-updated="true">Jun 5<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Simple but effective regex to monitor when there are issues. In my example below, this will show all response times > 1 second:</p>
-
-<pre><code> tail -f production.log | egrep "Completed in [0-9]{3,10}"
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/06/03/links-for-2009-06-03/">Links for 2009-06-03</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-06-03T14:05:52-04:00" pubdate data-updated="true">Jun 3<span>rd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://smartrics.blogspot.com/2009/04/jmeter-to-test-robustness-of-system.html">smartrics: JMeter to test robustness of system exposing REST APIs</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/REST">REST</a> <a href="http://delicious.com/blasterpal/uri">uri</a> <a href="http://delicious.com/blasterpal/jmeter">jmeter</a> <a href="http://delicious.com/blasterpal/sampler">sampler</a>)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/">Debugging/Troubleshooting Rails Applications in Production Enviroments</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-29T12:55:37-04:00" pubdate data-updated="true">May 29<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Introduction</strong></p>
-
-<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I&#8217;ve compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
-
-<p><strong>Non-Technical (READ FIRST)</strong></p>
-
-<ol>
-<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
-<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
-<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
-</ol>
-
-
-<p><strong>Technical</strong></p>
-
-<p>Elimination + log files is my troubleshooting method of choice.</p>
-
-<ol>
-<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
-<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
-<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
-<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
-<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
-<li>The logs should give status regarding database(s), but especially look for the words &#8220;timeout&#8221; if you have any custom network libraries that fetch data (we do) or &#8220;ActiveRecord&#8221;.  Perhaps even, grep for it.</li>
-<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
-</ol>
-
-
-<p><strong>Other</strong></p>
-
-<ol>
-<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/26/links-for-2009-05-26/">Links for 2009-05-26</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-26T14:07:52-04:00" pubdate data-updated="true">May 26<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://www.igvita.com/2008/02/19/live-mongrel-debugging-and-recovery/">Live Mongrel Debugging and Recovery - igvita.com</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/mongrel">mongrel</a> <a href="http://delicious.com/blasterpal/debugging">debugging</a> <a href="http://delicious.com/blasterpal/live">live</a> <a href="http://delicious.com/blasterpal/recovery">recovery</a>)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/23/links-for-2009-05-23/">Links for 2009-05-23</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-23T14:34:41-04:00" pubdate data-updated="true">May 23<span>rd</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://developer.apple.com/documentation/Darwin/Reference/Manpages/man1/launchctl.1.html">Mac OS X Manual Page For launchctl(1)</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/launchctl">launchctl</a> <a href="http://delicious.com/blasterpal/osx">osx</a> <a href="http://delicious.com/blasterpal/service">service</a> <a href="http://delicious.com/blasterpal/control">control</a> <a href="http://delicious.com/blasterpal/command">command</a> <a href="http://delicious.com/blasterpal/line">line</a>)</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/3/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-    <a class="next" href="/">Newer &rarr;</a>
-    
-  </div>
+<body   >
+  <div id="front-wrapper">
+  <div id="hero">
+    <div id="hero-inner" class="container">
+      <div class="span10 offset1">
+  <h1>
+    My name is <em>Hank Beaver</em>. I&#8217;m a Web developer and DevOps expert.
+  </h1>
+  <h2></h2>
 </div>
 
     </div>
   </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hank Beaver -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <section id="sub-hero">
+    <div class="container">
+      <div class="row">
+  <div class="span4">
+    <h2>about me</h2>
+<p>A little something about me.</p>
+
+  </div>
+  <div class="span6">
+    
+<h2>recent public projects</h2>
+<dl id="gh_repos" class="dl-horizontal" data-github-user="blasterpal" data-github-repo-count="4" data-github-skip-forks="true">
+  <dd class="loading">Status updating&#8230;</dd>
+</dl>
+<script src="/javascripts/github.js" type="text/javascript"> </script>
+<script src="/javascripts/libs/jXHR.js" type="text/javascript"> </script>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+    </div>
+  </section>
+  <div class="container">
+    <div class="row" id="post-container">
+    
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/01/chef-learnings-1-0/">Chef Learnings 1.0</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-01T10:31:48-05:00" pubdate data-updated="true">Dec 1<span>st</span>, 2010</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/devops/'>Devops</a>, <a class='category' href='/blog/categories/maxmedia/'>MaxMedia</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I&#8217;d like to share.</p>
+
+<ol>
+<li><p>Learn how to use <a href="http://wiki.opscode.com/display/chef/Shef">Shef</a>, to inspect node. It replaces &#8216;debug&#8217; statements when doing runs in templates or recipes.</p>
+
+<p> &#8216;shef -z&#8217;</p></li>
+<li><p>If using <a href="http://wiki.opscode.com/display/chef/Knife">Kinfe</a> and a node is acting funny, inspect it via show or edit. For example, you might have to manually edit a run list or a default set of attributes that are an array instead of a hash (both real examples).</p></li>
+<li>Stop using symbols for hash keys in recipes, cookbooks, etc. The Opscode default will be a double quoted string and older versions can just not work.</li>
+<li>Upgrade to latest chef when overrides are not behaving as desired correctly OR override all the attributes for a recipe (even one&#8217;s you don&#8217;t want to override) if you are &lt; 0.9.10. However, the latter solution is obviously less desirable.</li>
+</ol>
+
+
+<p>That&#8217;s all for now.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/17/easysuper-funny-recipe/">Easy,super Funny Recipe</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-17T14:21:50-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2010</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/life-and-family/'>Life and Family</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A wonderful winter treat, sure to deliver fun and scolding!</p>
+
+<p>Required: children,2 thermometers for both purposes, a spouse who wants his/her temp. checked.
+Execute Fun: give them thermometer, right as thermometer touches tongue, say, with a little hesitation and urgency at once, &#8216;oh , wait&#8230;&#8217;</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/28/tonight-a-dream/">Tonight, a Dream</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-06-28T18:24:41-04:00" pubdate data-updated="true">Jun 28<span>th</span>, 2010</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This weekend Jill, Jude and I visited Chris Kenney to watch his band perform on his front porch in Villa Rica. To say Chris plays guitar well is an understatement. I&#8217;ve Spent time with him and now witnessed him play electric. For his set, he clearly had a distinct style.
+Jill thought he might be offended by this but I could close my eyes and clearly hear Joe Satriani. And it got me recalling my days of listening to him on cassette with my Sony Walkman with a 3 band graphic EQ. Thanks Chris.</p>
+
+<p><a href="Http://www.youtube.com/watch?v=U-zjnVmuTzs&amp;feature=youtube_gdata">flying in a blue dream</a></p>
+
+<p>I was taken back to when I was in high school and playing guitar was the only thing that mattered to me. I was neither a jock nor a band geek, I was a lone guitar guy in high school it seemed. Where now everyone plays. Not in blairsville did they in 1987.</p>
+
+<p>So much of our lives change from adolescence and for the most part our dreams of ourselves are sucked into the vortex of responsibility.</p>
+
+<p>For the rare few who escape this, I send this song. It is not cool by many standards but I have no shame. It is just what I held at the time to be my dream to make music like this. Thus the irony of the title.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    </div>
+      <div class="row">
+        <ul class="pager">
+          
+            <li class="previous">
+              <a href="/blog/page/3/">&larr; Older</a>
+            </li>
+          
+          
+            <li class="next">
+              <a class="next" href="/">Newer &rarr;</a>
+            </li>
+          
+        </ul>
+      </div>
+  </div>
+</div>
+
+
+  <div id="footer-widgets">
+  <div class="container">
+    <div class="row">
+  <div class="span3">
+    <h2>recent posts</h2>
+    <ul class="recent_posts">
+      
+        <li>
+          <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
+        </li>
+      
+        <li>
+          <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
+        </li>
+      
+    </ul>
+    <h2><a href="/blog/archives">archives</a></h2>
+  </div>
+  <div class="span3">
+    
+
+  </div>
+  <div class="span4">
+    
+<h2>twitter</h2>
+<a href="https://twitter.com/blastepal" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @blastepal</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div class="tweet" data-twitter-user="blastepal">
+</div>
+
+
+  </div>
+  <div class="span2">
+    <h2>found on</h2>
+
+<a href="https://github.com/blasterpal/" rel="tooltip" title="Github"><img class="social_icon" title="Github" alt="github icon" src="/images/glyphicons_381_github.png"></a>
+
+
+
+
+
+
+
+<a href="http://twitter.com/blastepal" rel="tooltip" title="Twitter"><img class="social_icon" title="Twitter" alt="Twitter icon" src="/images/glyphicons_391_twitter_t.png"></a>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-left">
+  <a href="/">My name is <em>Hank Beaver</em>. I'm a Web developer and DevOps expert.</a>
+  - Copyright &copy; 2013 - Hank Beaver
+</p>
+<p class="pull-right">
+  <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
+  
+    <span>Designed by <a href="http://www.AdrianArtiles.com">Adrian Artiles</a>.</span>
+  
 </p>
 
+  </div>
 </footer>
-  
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="/javascripts/libs/jquery-1.7.2.min.js" type="text/javascript"><\/script>')</script>
+<script src="/javascripts/libs/bootstrap.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.tweet.js" type="text/javascript"></script>
+<script src="/javascripts/jquery.instagram.js" type="text/javascript"></script>
+<script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
+<script src="/javascripts/custom.js" type="text/javascript"></script>
+
 
 
 
@@ -624,7 +432,6 @@ end
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
-
 
 
 
