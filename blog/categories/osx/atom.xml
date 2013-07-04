@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: OSX | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/osx/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/osx/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Running Finder as root on OSX - to solve app install issues]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues/"/>
     <updated>2008-08-22T07:28:07-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues</id>
+    <id>http://www.hankbeaver.com/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues</id>
     <content type="html"><![CDATA[<blockquote><p>open terminal
 sudo sh
 killall Finder
@@ -31,9 +31,9 @@ killall Finder
   
   <entry>
     <title type="html"><![CDATA[Coding/Developing Rails troubleshooting 101]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101/"/>
     <updated>2008-01-29T07:19:58-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101</id>
+    <id>http://www.hankbeaver.com/blog/2008/01/29/codingdeveloping-rails-troubleshooting-101</id>
     <content type="html"><![CDATA[<p>All the Agile folks would say if you run/create your tests you might not even get this far. However, that's not always reality for me.</p>
 
 <ol>
@@ -73,9 +73,9 @@ d) Look for the first line that is not normal Rails and debug output. See next a
   
   <entry>
     <title type="html"><![CDATA[Building & Install RMagick on OS X, lessons learned]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/"/>
     <updated>2007-12-18T09:01:55-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned</id>
+    <id>http://www.hankbeaver.com/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned</id>
     <content type="html"><![CDATA[<p>There are several ways out there to install RMagick: via ports, package installer, etc. My advice: before you even start working on these.</p>
 
 <ol>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: CMS | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/cms/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/cms/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Using Rails for custom applications and avoiding the CMS trap.]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
     <updated>2009-09-03T07:38:23-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
+    <id>http://www.hankbeaver.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
     <content type="html"><![CDATA[<p>I'm am still captivated by the perfect, simple CMS solution in Ruby/Rails (I'll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
 
 <p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer's time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
@@ -51,9 +51,9 @@ function include_rails_service(service_url,type){
   
   <entry>
     <title type="html"><![CDATA[Ruby CMS List]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/12/04/ruby-cms-list/"/>
     <updated>2008-12-04T02:43:15-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list</id>
+    <id>http://www.hankbeaver.com/blog/2008/12/04/ruby-cms-list</id>
     <content type="html"><![CDATA[<p><strong>Motivation: </strong>
 As an avid Ruby/Rails programmer and longtime CMS coder and user the following is yet another effort to keep a list of current Ruby/Rails CMS's. That is the goal of this post. I will use comments from others to update the list and hopefully keep and up-to-date list for all (including myself) to use. Heck, I would love to have others help review and keep list up to date.</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: activerecord | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/activerecord/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/activerecord/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Mysql::Error: MySQL server has gone away with Sinatra + ActiveRecord]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
     <updated>2009-08-10T07:17:12-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
+    <id>http://www.hankbeaver.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
     <content type="html"><![CDATA[<p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  "Mysql::Error: MySQL server has gone away" message. The resolution is pretty simple:</p>
 
 <pre><code>class NewApp &lt; Sinatra::Default   

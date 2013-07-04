@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: SMTP &amp; Spam | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/smtp-amp-spam/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/smtp-amp-spam/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[You need a SMTP mail server to test ActionMailer, which one? James]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james/"/>
     <updated>2007-10-29T14:39:47-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james</id>
+    <id>http://www.hankbeaver.com/blog/2007/10/29/you-need-a-smtp-mail-server-to-test-actionmailer-which-one-james</id>
     <content type="html"><![CDATA[<p>This is to share my opinion. A very good alternative SMTP server that is cross platform and simple, James from the apache project: <strong>james</strong>.<strong>apache</strong>.org/. You'll need Java installed (but who doesn't these days?)</p>
 
 <p>It's a little bit confusing when you extract it. James is a module that sits on top of Avalon/Pheonix. To get to the nitty gritty and actually configure your server:</p>
@@ -42,9 +42,9 @@
   
   <entry>
     <title type="html"><![CDATA[Cheap - Easy - Simple - And Dirty - Rails Background jobs that don't timeout.]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout/"/>
     <updated>2007-09-20T13:38:29-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout</id>
+    <id>http://www.hankbeaver.com/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout</id>
     <content type="html"><![CDATA[<p>Not to toot my own horn, but you might want to read my post about my Setting pattern b/c I make use of it extensively in all my Rails code as you can see below. I do this to avoid hardcoding anything.</p>
 
 <h1>cheap background jobs in rails</h1>
@@ -95,9 +95,9 @@ logger.debug("blast_background to run: [#{cmd}]")</p>
   
   <entry>
     <title type="html"><![CDATA[Lessons on preventing YOUR valid biz email becoming SPAM]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam/"/>
     <updated>2007-08-21T12:38:06-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam</id>
+    <id>http://www.hankbeaver.com/blog/2007/08/21/lessons-on-avoiding-your-valid-email-becoming-spam</id>
     <content type="html"><![CDATA[<ol>
 <li><p>Set up a SPF record at your DNS for your domain. google this word: "SPF".</p></li>
 <li><p>Get a mail server / host with Domainkeys. Again google the word "DomainKeys" for more info.

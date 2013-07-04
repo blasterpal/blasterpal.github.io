@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: varnish | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/varnish/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/varnish/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Varnish cache purge Rake task]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
     <updated>2009-07-15T16:28:24-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
+    <id>http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
     <content type="html"><![CDATA[<p>This example uses Ruby to telnet into Varnish and issue the "url.purge .*" command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
 
 <pre><code>require 'rubygems'
@@ -51,9 +51,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Reminder to self and world: Varnish uses POSIX regex.]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
     <updated>2009-07-14T09:26:45-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
+    <id>http://www.hankbeaver.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
     <content type="html"><![CDATA[<p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don't work! So putting this in your Varnish VCL will silently do nothing:</p>
 
 <pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...

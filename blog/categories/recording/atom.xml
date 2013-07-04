@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: recording | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/recording/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/recording/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[My perfect music creation platform]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
     <updated>2010-04-19T15:55:35-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
+    <id>http://www.hankbeaver.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
     <content type="html"><![CDATA[<p>I've kept this blog purely in the programming realm and today I shall diverge from this. I have been a musician for many years prior to becoming a programmer. Today's topic will revolve around computer-based music software.</p>
 
 <p>For sometime I've become more and more frustrated with my Tracking and Sequencing setup. Secondly, my plugins and just all around workflow were lacking. I really don't have time to sort through lists of plugins that are mediocre or get frustrated when my program would suddenly crash ( I am omitting the tracking/sequencer I use, because it doesn't matter anymore to me).</p>

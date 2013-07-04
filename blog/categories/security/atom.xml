@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Security | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/security/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/security/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA['OTP' based sudo, with per process restrictions.]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions/"/>
     <updated>2008-07-30T13:05:08-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions</id>
+    <id>http://www.hankbeaver.com/blog/2008/07/30/otp-based-sudo-with-per-process-restrictions</id>
     <content type="html"><![CDATA[<p><strong>Is it possible to audit Unix/Linux server root access per task and on temporary basis?</strong></p>
 
 <p>Yes.</p>
@@ -42,9 +42,9 @@ Think of sudo with one time password access. Why is this important? Because that
   
   <entry>
     <title type="html"><![CDATA[Port Knocking + OTP]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/02/15/port-knocking-otp/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/02/15/port-knocking-otp/"/>
     <updated>2008-02-15T08:34:32-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/02/15/port-knocking-otp</id>
+    <id>http://www.hankbeaver.com/blog/2008/02/15/port-knocking-otp</id>
     <content type="html"><![CDATA[<p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
 
 <p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I'm going to play with this. The idea:</p>
@@ -79,9 +79,9 @@ The request packet provides the next sequence number,asks for what port to open:
   
   <entry>
     <title type="html"><![CDATA[Ruby Extension for GRC's Perfect Paper Passwords V3]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords/"/>
     <updated>2007-12-10T09:25:48-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords</id>
+    <id>http://www.hankbeaver.com/blog/2007/12/10/ruby-extension-for-grcs-perfect-paper-passwords</id>
     <content type="html"><![CDATA[<p>This is DEPRECATED, because Gavin Stark wrote a native ruby class last month. I will leave this up if someone wants a C implementation for OSX, but after that Gavin did the work in Ruby and I encourage looking there:</p>
 
 <p><a href="http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/"> http://hasmanyquestions.wordpress.com/2007/11/23/perfect-paper-passwords-in-ruby/</a></p>
@@ -119,9 +119,9 @@ Ppp3.main(a)</p>
   
   <entry>
     <title type="html"><![CDATA[Quick and Dirty HTTP packet sniffing / inspection on OSX]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx/"/>
     <updated>2007-11-09T04:55:42-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx</id>
+    <id>http://www.hankbeaver.com/blog/2007/11/09/quick-and-dirty-http-packet-sniffing-inspection-on-osx</id>
     <content type="html"><![CDATA[<p>For the life of me I can't get ethereal or any variant to work on my OS X 10.4 ( yes I have X11 installed). So for some method I get ethereal which comes with tethereal ( a command line variant ). The below is how I sniffed my Rails app in action.</p>
 
 <p>/sw/bin/tethereal -V -S -i lo0 -d 'tcp.port==3000,http'</p>
@@ -130,9 +130,9 @@ Ppp3.main(a)</p>
   
   <entry>
     <title type="html"><![CDATA[Rails Logins Simple Action Permissions System]]></title>
-    <link href="http://blasterpal.github.com/blog/2007/09/30/rails-logins-simple-action-permissions-system/"/>
+    <link href="http://www.hankbeaver.com/blog/2007/09/30/rails-logins-simple-action-permissions-system/"/>
     <updated>2007-09-30T11:51:08-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2007/09/30/rails-logins-simple-action-permissions-system</id>
+    <id>http://www.hankbeaver.com/blog/2007/09/30/rails-logins-simple-action-permissions-system</id>
     <content type="html"><![CDATA[<p>applications.rb implements :before_filter that will</p>
 
 <p>model for actions: 'action_permissions'</p>

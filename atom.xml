@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[<em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Ops folk need to learn to become DevOps]]></title>
-    <link href="http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
+    <link href="http://www.hankbeaver.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
     <updated>2013-07-03T23:41:00-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
+    <id>http://www.hankbeaver.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
     <content type="html"><![CDATA[<p>This is simply a list. It relates to web applications. And it&#8217;s for me to think about and you to judge.  I ended up with
 15 and I did cut a few. The are loosely in order as far as the technical
 is concerned.</p>
@@ -68,9 +68,9 @@ running ready to go with SSH logins and everything.</p></li>
   
   <entry>
     <title type="html"><![CDATA[MongoDB GridFS Sanity Checks]]></title>
-    <link href="http://blasterpal.github.com/blog/2011/08/09/mongodb-gridfs-sanity-checks/"/>
+    <link href="http://www.hankbeaver.com/blog/2011/08/09/mongodb-gridfs-sanity-checks/"/>
     <updated>2011-08-09T08:19:42-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2011/08/09/mongodb-gridfs-sanity-checks</id>
+    <id>http://www.hankbeaver.com/blog/2011/08/09/mongodb-gridfs-sanity-checks</id>
     <content type="html"><![CDATA[<p>I want to verify that the data is what I expect across two systems for binaries. Here&#8217;s some sanity check examples:</p>
 
 <p>1) Verify fs.files object count:</p>
@@ -162,9 +162,9 @@ Example output:
   
   <entry>
     <title type="html"><![CDATA[JRuby - the watershed for enterprise Ruby?]]></title>
-    <link href="http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
+    <link href="http://www.hankbeaver.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
     <updated>2011-07-14T03:18:01-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
+    <id>http://www.hankbeaver.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
     <content type="html"><![CDATA[<p>It&#8217;s very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it&#8217;s becoming moot.</p>
 
 <!-- more -->
@@ -181,9 +181,9 @@ Example output:
   
   <entry>
     <title type="html"><![CDATA[Chef Learnings 1.1]]></title>
-    <link href="http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1/"/>
+    <link href="http://www.hankbeaver.com/blog/2011/01/26/chef-learnings-1-1/"/>
     <updated>2011-01-26T04:14:56-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1</id>
+    <id>http://www.hankbeaver.com/blog/2011/01/26/chef-learnings-1-1</id>
     <content type="html"><![CDATA[<p>Today&#8217;s topic, <a href="http://wiki.opscode.com/display/chef/Libraries">Libraries</a> and including them in multiple Cookbooks. Any custom library loaded into a single Cookbook is available to all Cookbooks within your Node. So for example, let&#8217;s say you have a custom function that operates on Data Bags (like I do), it is available to all recipes. For example, if you include in a library one of your base/default cookbooks (like IPTables), then any other recipe can access those methods. The trick is that in your first recipe where you include your custom library, you have monkey patched Chef to include it thereafter:</p>
 
 <pre><code>class Chef::Recipe
@@ -197,9 +197,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0/"/>
     <updated>2010-12-01T10:31:48-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
+    <id>http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0</id>
     <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I&#8217;d like to share.</p>
 
 <ol>
@@ -218,9 +218,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Easy,super funny recipe]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/11/17/easysuper-funny-recipe/"/>
     <updated>2010-11-17T14:21:50-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/11/17/easysuper-funny-recipe</id>
+    <id>http://www.hankbeaver.com/blog/2010/11/17/easysuper-funny-recipe</id>
     <content type="html"><![CDATA[<p>A wonderful winter treat, sure to deliver fun and scolding!</p>
 
 <p>Required: children,2 thermometers for both purposes, a spouse who wants his/her temp. checked.
@@ -230,9 +230,9 @@ Execute Fun: give them thermometer, right as thermometer touches tongue, say, wi
   
   <entry>
     <title type="html"><![CDATA[Tonight, a dream]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/06/28/tonight-a-dream/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/06/28/tonight-a-dream/"/>
     <updated>2010-06-28T18:24:41-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/06/28/tonight-a-dream</id>
+    <id>http://www.hankbeaver.com/blog/2010/06/28/tonight-a-dream</id>
     <content type="html"><![CDATA[<p>This weekend Jill, Jude and I visited Chris Kenney to watch his band perform on his front porch in Villa Rica. To say Chris plays guitar well is an understatement. I&#8217;ve Spent time with him and now witnessed him play electric. For his set, he clearly had a distinct style.
 Jill thought he might be offended by this but I could close my eyes and clearly hear Joe Satriani. And it got me recalling my days of listening to him on cassette with my Sony Walkman with a 3 band graphic EQ. Thanks Chris.</p>
 
@@ -248,9 +248,9 @@ Jill thought he might be offended by this but I could close my eyes and clearly 
   
   <entry>
     <title type="html"><![CDATA[My perfect music creation platform]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/04/19/my-perfect-music-creation-platform/"/>
     <updated>2010-04-19T15:55:35-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
+    <id>http://www.hankbeaver.com/blog/2010/04/19/my-perfect-music-creation-platform</id>
     <content type="html"><![CDATA[<p>I&#8217;ve kept this blog purely in the programming realm and today I shall diverge from this. I have been a musician for many years prior to becoming a programmer. Today&#8217;s topic will revolve around computer-based music software.</p>
 
 <p>For sometime I&#8217;ve become more and more frustrated with my Tracking and Sequencing setup. Secondly, my plugins and just all around workflow were lacking. I really don&#8217;t have time to sort through lists of plugins that are mediocre or get frustrated when my program would suddenly crash ( I am omitting the tracking/sequencer I use, because it doesn&#8217;t matter anymore to me).</p>
@@ -330,9 +330,9 @@ MacBook 2.4 Ghz, 4GB Ram</p>
   
   <entry>
     <title type="html"><![CDATA[Testing Varnish VCL Syntax]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/11/02/testing-varnish-vcl-syntax/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/11/02/testing-varnish-vcl-syntax/"/>
     <updated>2009-11-02T07:15:00-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/11/02/testing-varnish-vcl-syntax</id>
+    <id>http://www.hankbeaver.com/blog/2009/11/02/testing-varnish-vcl-syntax</id>
     <content type="html"><![CDATA[<p>The simplest way to test syntax is to use the administration console via telnet on a Dev/QA Varnish machine. Your current running Varnish should allow your IP/localhost to connect if you have implemented a Varnish ACL.</p>
 
 <ul>
@@ -381,9 +381,9 @@ VCL compiled.
   
   <entry>
     <title type="html"><![CDATA[Starting specific version of thin web server]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/10/15/starting-specific-version-of-thin-web-server/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/10/15/starting-specific-version-of-thin-web-server/"/>
     <updated>2009-10-15T02:40:37-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/10/15/starting-specific-version-of-thin-web-server</id>
+    <id>http://www.hankbeaver.com/blog/2009/10/15/starting-specific-version-of-thin-web-server</id>
     <content type="html"><![CDATA[<p>You may find yourself needing to test something with a specific version of thin, for whatever reason. If you need start up thin with a specific version of gem you have installed this is how you do it:</p>
 
 <pre>thin _1.2.4_ -R config.ru -p 3001 start</pre>
@@ -397,9 +397,9 @@ VCL compiled.
   
   <entry>
     <title type="html"><![CDATA[Beware asserting against Rspec @params]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
     <updated>2009-10-01T02:40:43-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
+    <id>http://www.hankbeaver.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
     <content type="html"><![CDATA[<p>Spent a little time scratching my head on this week. @params is reserved in Rspec controller tests apparently much like Rails. @params will contain extra keys like &#8220;controller&#8221; and &#8220;action&#8221; which if you try and assert against will fail of you do something like this:</p>
 
 <pre>
@@ -415,9 +415,9 @@ Model.expects(:method).with(@params)
   
   <entry>
     <title type="html"><![CDATA[Using Rails for custom applications and avoiding the CMS trap.]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/"/>
     <updated>2009-09-03T07:38:23-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
+    <id>http://www.hankbeaver.com/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap</id>
     <content type="html"><![CDATA[<p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
 
 <p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
@@ -451,9 +451,9 @@ function include_rails_service(service_url,type){
   
   <entry>
     <title type="html"><![CDATA[Mysql::Error: MySQL server has gone away with Sinatra + ActiveRecord]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/"/>
     <updated>2009-08-10T07:17:12-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
+    <id>http://www.hankbeaver.com/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord</id>
     <content type="html"><![CDATA[<p>When working with Sinatra + ActiveRecord + MySQL running on the venerable <a href="http://code.macournoyer.com/thin/">Thin</a> server, you are probably going to see the error after 8 hours(MySQL default connection timeout):  &#8220;Mysql::Error: MySQL server has gone away&#8221; message. The resolution is pretty simple:</p>
 
 <pre><code>class NewApp &lt; Sinatra::Default   
@@ -471,9 +471,9 @@ end #end of Sinatra class
   
   <entry>
     <title type="html"><![CDATA[Varnish cache purge Rake task]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
     <updated>2009-07-15T16:28:24-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
+    <id>http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
     <content type="html"><![CDATA[<p>This example uses Ruby to telnet into Varnish and issue the &#8220;url.purge .*&#8221; command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
 
 <pre><code>require 'rubygems'
@@ -507,9 +507,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Reminder to self and world: Varnish uses POSIX regex.]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/"/>
     <updated>2009-07-14T09:26:45-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
+    <id>http://www.hankbeaver.com/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex</id>
     <content type="html"><![CDATA[<p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don&#8217;t work! So putting this in your Varnish VCL will silently do nothing:</p>
 
 <pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
@@ -526,9 +526,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[F5/BigIP Healthcheck against Thin/Sinatra app]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app/"/>
     <updated>2009-06-05T05:18:01-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app</id>
+    <id>http://www.hankbeaver.com/blog/2009/06/05/f5bigip-healthcheck-against-thinsinatra-app</id>
     <content type="html"><![CDATA[<p>When using a BigIP to load balance a Sinatra app via Thin you will need to provide more than just the GET request string in F5&#8217;s &#8220;send string&#8221; field OR you might get &#8220;Request Invalid!&#8221; error message. Heads up.</p>
 
 <h4>Using this will cause issue:</h4>
@@ -551,9 +551,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Realtime response time reporting from Rails logs using regex.]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex/"/>
     <updated>2009-06-05T05:12:20-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex</id>
+    <id>http://www.hankbeaver.com/blog/2009/06/05/realtime-response-time-reporting-from-rails-logs-using-regex</id>
     <content type="html"><![CDATA[<p>Simple but effective regex to monitor when there are issues. In my example below, this will show all response times > 1 second:</p>
 
 <pre><code> tail -f production.log | egrep "Completed in [0-9]{3,10}"
@@ -563,9 +563,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[links for 2009-06-03]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/06/03/links-for-2009-06-03/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/06/03/links-for-2009-06-03/"/>
     <updated>2009-06-03T14:05:52-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/06/03/links-for-2009-06-03</id>
+    <id>http://www.hankbeaver.com/blog/2009/06/03/links-for-2009-06-03</id>
     <content type="html"><![CDATA[<ul>
 <li></li>
 </ul>
@@ -579,9 +579,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Debugging/Troubleshooting Rails Applications in Production Enviroments]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
     <updated>2009-05-29T12:55:37-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
+    <id>http://www.hankbeaver.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
     <content type="html"><![CDATA[<p><strong>Introduction</strong></p>
 
 <p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I&#8217;ve compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
@@ -621,9 +621,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[links for 2009-05-26]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/05/26/links-for-2009-05-26/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/05/26/links-for-2009-05-26/"/>
     <updated>2009-05-26T14:07:52-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/05/26/links-for-2009-05-26</id>
+    <id>http://www.hankbeaver.com/blog/2009/05/26/links-for-2009-05-26</id>
     <content type="html"><![CDATA[<ul>
 <li></li>
 </ul>

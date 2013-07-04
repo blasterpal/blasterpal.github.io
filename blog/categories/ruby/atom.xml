@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ruby | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[JRuby - the watershed for enterprise Ruby?]]></title>
-    <link href="http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
+    <link href="http://www.hankbeaver.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/"/>
     <updated>2011-07-14T03:18:01-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
+    <id>http://www.hankbeaver.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
     <content type="html"><![CDATA[<p>It's very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it's becoming moot.</p>
 
 <!-- more -->
@@ -34,9 +34,9 @@
   
   <entry>
     <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0/"/>
     <updated>2010-12-01T10:31:48-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
+    <id>http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0</id>
     <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I'd like to share.</p>
 
 <ol>
@@ -55,9 +55,9 @@
   
   <entry>
     <title type="html"><![CDATA[Varnish cache purge Rake task]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task/"/>
     <updated>2009-07-15T16:28:24-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
+    <id>http://www.hankbeaver.com/blog/2009/07/15/varnish-cache-purge-rake-task</id>
     <content type="html"><![CDATA[<p>This example uses Ruby to telnet into Varnish and issue the "url.purge .*" command. The only gotcha is that the varnish telnet server does not issue a command prompt which causes Ruby telnet to timeout and get cranky. Well a little exception handling hacks past this. Enjoy.</p>
 
 <pre><code>require 'rubygems'
@@ -91,9 +91,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Debugging/Troubleshooting Rails Applications in Production Enviroments]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/"/>
     <updated>2009-05-29T12:55:37-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
+    <id>http://www.hankbeaver.com/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments</id>
     <content type="html"><![CDATA[<p><strong>Introduction</strong></p>
 
 <p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I've compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
@@ -133,9 +133,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby CMS List]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/12/04/ruby-cms-list/"/>
     <updated>2008-12-04T02:43:15-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/12/04/ruby-cms-list</id>
+    <id>http://www.hankbeaver.com/blog/2008/12/04/ruby-cms-list</id>
     <content type="html"><![CDATA[<p><strong>Motivation: </strong>
 As an avid Ruby/Rails programmer and longtime CMS coder and user the following is yet another effort to keep a list of current Ruby/Rails CMS's. That is the goal of this post. I will use comments from others to update the list and hopefully keep and up-to-date list for all (including myself) to use. Heck, I would love to have others help review and keep list up to date.</p>
 

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: mysql | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/mysql/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to find a date in past in mysql]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql/"/>
     <updated>2008-10-28T09:12:28-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql</id>
+    <id>http://www.hankbeaver.com/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql</id>
     <content type="html"><![CDATA[<p>SELECT SUBDATE(NOW(),INTERVAL 1 HOUR);</p>
 
 <p>SELECT SUBDATE(NOW(),INTERVAL 1 DAY);</p>

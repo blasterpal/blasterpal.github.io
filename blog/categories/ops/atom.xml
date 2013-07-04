@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ops | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/ops/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/ops/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Ops folk need to learn to become DevOps]]></title>
-    <link href="http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
+    <link href="http://www.hankbeaver.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
     <updated>2013-07-03T23:41:00-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
+    <id>http://www.hankbeaver.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
     <content type="html"><![CDATA[<p>This is simply a list. It relates to web applications. And it's for me to think about and you to judge.  I ended up with
 15 and I did cut a few. The are loosely in order as far as the technical
 is concerned.</p>

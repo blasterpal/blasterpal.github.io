@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rspec | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/rspec/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/rspec/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Beware asserting against Rspec @params]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
+    <link href="http://www.hankbeaver.com/blog/2009/10/01/beware-ye-rspec-ers-params/"/>
     <updated>2009-10-01T02:40:43-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
+    <id>http://www.hankbeaver.com/blog/2009/10/01/beware-ye-rspec-ers-params</id>
     <content type="html"><![CDATA[<p>Spent a little time scratching my head on this week. @params is reserved in Rspec controller tests apparently much like Rails. @params will contain extra keys like "controller" and "action" which if you try and assert against will fail of you do something like this:</p>
 
 <pre>
@@ -33,9 +33,9 @@ Model.expects(:method).with(@params)
   
   <entry>
     <title type="html"><![CDATA[Using gem dependencies with Rspec == BAD ! !]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/"/>
     <updated>2008-11-17T06:29:42-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad</id>
+    <id>http://www.hankbeaver.com/blog/2008/11/17/using-gem-dependencies-with-rspec-bad</id>
     <content type="html"><![CDATA[<p>We had an issue the last couple of weeks on a new Rails project we started here at my gig. All Rails exceptions were quietly logged without showing any stack trace to browser. This was very annoying. Secondly, the RAILS_ENV was reported as "test". mmmm, very suspicious. After some investigation I found the culprit on rails.rb line #1 of rails-rspec gem installed in our vendor dir:</p>
 
 <p>silence_warnings { RAILS_ENV = "test" }</p>

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: software design | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/software-design/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/software-design/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[New favorite tool in toolbox for web development: Charles Web Debugging Proxy]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/"/>
     <updated>2008-12-19T04:41:21-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy</id>
+    <id>http://www.hankbeaver.com/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy</id>
     <content type="html"><![CDATA[<p>I will not regurgitate what <a href="http://www.charlesproxy.com/">Charles' website</a> can already tell you. Charles is a great tool. Moreover, let me add some obvious points for people like myself:</p>
 
 <ul>
@@ -48,9 +48,9 @@
   
   <entry>
     <title type="html"><![CDATA[My software mantra...]]></title>
-    <link href="http://blasterpal.github.com/blog/2008/09/24/my-software-mantra/"/>
+    <link href="http://www.hankbeaver.com/blog/2008/09/24/my-software-mantra/"/>
     <updated>2008-09-24T10:45:50-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2008/09/24/my-software-mantra</id>
+    <id>http://www.hankbeaver.com/blog/2008/09/24/my-software-mantra</id>
     <content type="html"><![CDATA[<p>See this:</p>
 
 <p><a href="http://1000fires.com/wordpress/?page_id=46">My Software Mantras</a></p>

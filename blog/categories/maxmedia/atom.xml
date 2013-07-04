@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MaxMedia | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
-  <link href="http://blasterpal.github.com/blog/categories/maxmedia/atom.xml" rel="self"/>
-  <link href="http://blasterpal.github.com/"/>
-  <updated>2013-07-04T01:10:16-04:00</updated>
-  <id>http://blasterpal.github.com/</id>
+  <link href="http://www.hankbeaver.com/blog/categories/maxmedia/atom.xml" rel="self"/>
+  <link href="http://www.hankbeaver.com/"/>
+  <updated>2013-07-04T10:34:36-04:00</updated>
+  <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
+    <link href="http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0/"/>
     <updated>2010-12-01T10:31:48-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
+    <id>http://www.hankbeaver.com/blog/2010/12/01/chef-learnings-1-0</id>
     <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I'd like to share.</p>
 
 <ol>
