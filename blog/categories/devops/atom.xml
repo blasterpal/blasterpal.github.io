@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Devops | <em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.]]></title>
+  <title><![CDATA[Category: devops | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
   <link href="http://blasterpal.github.com/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://blasterpal.github.com/"/>
-  <updated>2013-04-29T13:23:59-04:00</updated>
+  <updated>2013-07-04T01:10:16-04:00</updated>
   <id>http://blasterpal.github.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
@@ -14,39 +14,55 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Chef Learnings 1.1]]></title>
-    <link href="http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1/"/>
-    <updated>2011-01-26T04:14:56-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2011/01/26/chef-learnings-1-1</id>
-    <content type="html"><![CDATA[<p>Today's topic, <a href="http://wiki.opscode.com/display/chef/Libraries">Libraries</a> and including them in multiple Cookbooks. Any custom library loaded into a single Cookbook is available to all Cookbooks within your Node. So for example, let's say you have a custom function that operates on Data Bags (like I do), it is available to all recipes. For example, if you include in a library one of your base/default cookbooks (like IPTables), then any other recipe can access those methods. The trick is that in your first recipe where you include your custom library, you have monkey patched Chef to include it thereafter:</p>
+    <title type="html"><![CDATA[What Ops folk need to learn to become DevOps]]></title>
+    <link href="http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
+    <updated>2013-07-03T23:41:00-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
+    <content type="html"><![CDATA[<p>This is simply a list. It relates to web applications. And it's for me to think about and you to judge.  I ended up with
+15 and I did cut a few. The are loosely in order as far as the technical
+is concerned.</p>
 
-<pre><code>class Chef::Recipe
-  include DataBagHelper
-end
-</code></pre>
-
-<p>So nice, now I have my custom library available everywhere. This makes me think, why not just have a custom library cookbook, or make my custom libraries part of my base/default recipe included in ALL nodes? So now I have my own methods and functionality available everywhere.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Chef Learnings 1.0]]></title>
-    <link href="http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0/"/>
-    <updated>2010-12-01T10:31:48-05:00</updated>
-    <id>http://blasterpal.github.com/blog/2010/12/01/chef-learnings-1-0</id>
-    <content type="html"><![CDATA[<p>Sitting with Seth from <a href="http://www.opscode.com">Opscode</a> today drinking some coffee. He pointed out a couple of things, I'd like to share.</p>
+<p>There are many skills Ops pros already have that compliment this list,
+like DNS, Unix, etc.</p>
 
 <ol>
-<li><p>Learn how to use <a href="http://wiki.opscode.com/display/chef/Shef">Shef</a>, to inspect node. It replaces 'debug' statements when doing runs in templates or recipes.</p>
-
-<p> 'shef -z'</p></li>
-<li><p>If using <a href="http://wiki.opscode.com/display/chef/Knife">Kinfe</a> and a node is acting funny, inspect it via show or edit. For example, you might have to manually edit a run list or a default set of attributes that are an array instead of a hash (both real examples).</p></li>
-<li>Stop using symbols for hash keys in recipes, cookbooks, etc. The Opscode default will be a double quoted string and older versions can just not work.</li>
-<li>Upgrade to latest chef when overrides are not behaving as desired correctly OR override all the attributes for a recipe (even one's you don't want to override) if you are &lt; 0.9.10. However, the latter solution is obviously less desirable.</li>
+<li><p>Learn how to program, Ruby is a great start (you’ll need it for
+Chef/Puppet anyway, more on that later).</p></li>
+<li><p>Embrace source control. Put all your scripts and tools in source.
+<a href="http://git-scm.com/">http://git-scm.com/</a></p></li>
+<li><p>You should be using public cloud services. <a href="http://aws.amazon.com/s3/">Amazon Web Services
+S3</a> is a great start.
+Host a static website or put your cat gifs there.</p></li>
+<li><p>You need to know how to program against an API. Write some files to
+S3 with Ruby and Fog: <a href="http://fog.io/storage/">http://fog.io/storage/</a> <!-- more --></p></li>
+<li><p>Understand HTTP: Headers (there are a lot), Methods, cookies,
+sessions, Example:
+ <code>
+ ‘Cache-Control’
+</code></p></li>
+<li><p>Document everything as you go, you should be making your knowledge
+easily shared and understandable. Better yet, add READMEs to your code.</p></li>
+<li><p>Be open to pairing and regularly sharing your domain knowledge.</p></li>
+<li><p>Your team should have a standup everyday, even if a distributed
+team, meet on Skype/Hangout and say: what you did yesterday, what you
+are doing today, any blockers.</p></li>
+<li><p>Learn SQL (language).</p></li>
+<li><p>Learn a NoSQL database: <a href="http://www.mongodb.org/">mongoDB</a>, <a href="http://redis.io/">Redis</a>, <a href="http://memcached.org/">memcached</a></p></li>
+<li><p>Use and work with a CDN and/or asset service like <a href="http://aws.amazon.com/cloudfront/">AWS Cloudfront</a></p></li>
+<li><p>Learn <a href="http://wiki.nginx.org/Main">nginx</a> and how to use it as a reverse proxy with caching to an app.</p></li>
+<li><p>Unless it’s core to business, embrace idea of using 3rd party
+services for infrastructure: DevOps is about getting applications to
+market quicker and more stable not about running your own
+infrastructure. Email and DNS are good examples.</p></li>
+<li><p>Reach across aisle to Development, better yet try to pair with a Dev
+on some code or a project. It’s not about them being better than you or
+vice versa, learn from each other’s strengths and complement one
+another.</p></li>
+<li><p>Now learn <a href="http://www.opscode.com/chef/">Chef</a> (or <a href="https://puppetlabs.com/">Puppet</a> if that's your bag) and configure a
+virtual server somewhere from base distro with Wordpress site
+running ready to go with SSH logins and everything.</p></li>
 </ol>
 
-
-<p>That's all for now.</p>
 ]]></content>
   </entry>
   

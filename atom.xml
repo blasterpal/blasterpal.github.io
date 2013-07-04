@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[<em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.]]></title>
+  <title><![CDATA[<em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
   <link href="http://blasterpal.github.com/atom.xml" rel="self"/>
   <link href="http://blasterpal.github.com/"/>
-  <updated>2013-04-29T13:23:59-04:00</updated>
+  <updated>2013-07-04T01:10:16-04:00</updated>
   <id>http://blasterpal.github.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Ops folk need to learn to become DevOps]]></title>
+    <link href="http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/"/>
+    <updated>2013-07-03T23:41:00-04:00</updated>
+    <id>http://blasterpal.github.com/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops</id>
+    <content type="html"><![CDATA[<p>This is simply a list. It relates to web applications. And it&#8217;s for me to think about and you to judge.  I ended up with
+15 and I did cut a few. The are loosely in order as far as the technical
+is concerned.</p>
+
+<p>There are many skills Ops pros already have that compliment this list,
+like DNS, Unix, etc.</p>
+
+<ol>
+<li><p>Learn how to program, Ruby is a great start (you’ll need it for
+Chef/Puppet anyway, more on that later).</p></li>
+<li><p>Embrace source control. Put all your scripts and tools in source.
+<a href="http://git-scm.com/">http://git-scm.com/</a></p></li>
+<li><p>You should be using public cloud services. <a href="http://aws.amazon.com/s3/">Amazon Web Services
+S3</a> is a great start.
+Host a static website or put your cat gifs there.</p></li>
+<li><p>You need to know how to program against an API. Write some files to
+S3 with Ruby and Fog: <a href="http://fog.io/storage/">http://fog.io/storage/</a> <!-- more --></p></li>
+<li><p>Understand HTTP: Headers (there are a lot), Methods, cookies,
+sessions, Example:
+ <code>
+ ‘Cache-Control’
+</code></p></li>
+<li><p>Document everything as you go, you should be making your knowledge
+easily shared and understandable. Better yet, add READMEs to your code.</p></li>
+<li><p>Be open to pairing and regularly sharing your domain knowledge.</p></li>
+<li><p>Your team should have a standup everyday, even if a distributed
+team, meet on Skype/Hangout and say: what you did yesterday, what you
+are doing today, any blockers.</p></li>
+<li><p>Learn SQL (language).</p></li>
+<li><p>Learn a NoSQL database: <a href="http://www.mongodb.org/">mongoDB</a>, <a href="http://redis.io/">Redis</a>, <a href="http://memcached.org/">memcached</a></p></li>
+<li><p>Use and work with a CDN and/or asset service like <a href="http://aws.amazon.com/cloudfront/">AWS Cloudfront</a></p></li>
+<li><p>Learn <a href="http://wiki.nginx.org/Main">nginx</a> and how to use it as a reverse proxy with caching to an app.</p></li>
+<li><p>Unless it’s core to business, embrace idea of using 3rd party
+services for infrastructure: DevOps is about getting applications to
+market quicker and more stable not about running your own
+infrastructure. Email and DNS are good examples.</p></li>
+<li><p>Reach across aisle to Development, better yet try to pair with a Dev
+on some code or a project. It’s not about them being better than you or
+vice versa, learn from each other’s strengths and complement one
+another.</p></li>
+<li><p>Now learn <a href="http://www.opscode.com/chef/">Chef</a> (or <a href="https://puppetlabs.com/">Puppet</a> if that&#8217;s your bag) and configure a
+virtual server somewhere from base distro with Wordpress site
+running ready to go with SSH logins and everything.</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MongoDB GridFS Sanity Checks]]></title>
@@ -31,8 +84,14 @@
 3700 
 </code></pre>
 
-<p>(should be > 3000)
-2) Verify Meta data:</p>
+<p>(should be > 3000)</p>
+
+<p>2) Verify Meta data:</p>
+
+<!-- more -->
+
+
+<p></p>
 
 <pre><code>&gt; db.fs.files.stats();
 
@@ -107,6 +166,9 @@ Example output:
     <updated>2011-07-14T03:18:01-04:00</updated>
     <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
     <content type="html"><![CDATA[<p>It&#8217;s very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it&#8217;s becoming moot.</p>
+
+<!-- more -->
+
 
 <p><a href="http://www.youtube.com/watch?v=qZcmF3yonjs">http://www.youtube.com/watch?v=qZcmF3yonjs</a>
 <a href="http://www.infoq.com/articles/linkedin-scala-jruby-voldemort">http://www.infoq.com/articles/linkedin-scala-jruby-voldemort</a></p>
@@ -570,22 +632,6 @@ end
 <p><a href="http://www.igvita.com/2008/02/19/live-mongrel-debugging-and-recovery/">Live Mongrel Debugging and Recovery - igvita.com</a></p>
 
 <p>(tags: <a href="http://delicious.com/blasterpal/mongrel">mongrel</a> <a href="http://delicious.com/blasterpal/debugging">debugging</a> <a href="http://delicious.com/blasterpal/live">live</a> <a href="http://delicious.com/blasterpal/recovery">recovery</a>)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[links for 2009-05-23]]></title>
-    <link href="http://blasterpal.github.com/blog/2009/05/23/links-for-2009-05-23/"/>
-    <updated>2009-05-23T14:34:41-04:00</updated>
-    <id>http://blasterpal.github.com/blog/2009/05/23/links-for-2009-05-23</id>
-    <content type="html"><![CDATA[<ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://developer.apple.com/documentation/Darwin/Reference/Manpages/man1/launchctl.1.html">Mac OS X Manual Page For launchctl(1)</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/launchctl">launchctl</a> <a href="http://delicious.com/blasterpal/osx">osx</a> <a href="http://delicious.com/blasterpal/service">service</a> <a href="http://delicious.com/blasterpal/control">control</a> <a href="http://delicious.com/blasterpal/command">command</a> <a href="http://delicious.com/blasterpal/line">line</a>)</p>
 ]]></content>
   </entry>
   

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ruby | <em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.]]></title>
+  <title><![CDATA[Category: ruby | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
   <link href="http://blasterpal.github.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://blasterpal.github.com/"/>
-  <updated>2013-04-29T13:23:59-04:00</updated>
+  <updated>2013-07-04T01:10:16-04:00</updated>
   <id>http://blasterpal.github.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
@@ -19,6 +19,9 @@
     <updated>2011-07-14T03:18:01-04:00</updated>
     <id>http://blasterpal.github.com/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby</id>
     <content type="html"><![CDATA[<p>It's very heartening to see large and profitable examples of companies moving away from pure Java to integrating Ruby, leveraging JRuby of course. Not every situation makes sense, but as the articles below point out, developer productivity is by cheaper than some CPU cycles. But now that JRuby is becoming more viable and more event-based programming becomes norm, the performance factor of Ruby will only increase. I say quit talking about performance of Ruby, it's becoming moot.</p>
+
+<!-- more -->
+
 
 <p><a href="http://www.youtube.com/watch?v=qZcmF3yonjs">http://www.youtube.com/watch?v=qZcmF3yonjs</a>
 <a href="http://www.infoq.com/articles/linkedin-scala-jruby-voldemort">http://www.infoq.com/articles/linkedin-scala-jruby-voldemort</a></p>

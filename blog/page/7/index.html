@@ -6,7 +6,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title><em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.</title>
+  <title><em>Hank Beaver</em>. <br>Web & DevOps programmer.</title>
   <meta name="author" content="Hank Beaver">
   <link rel="author" href="humans.txt">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -26,10 +26,10 @@
   <link href="/favicon.png" rel="icon">
   <link href='http://fonts.googleapis.com/css?family=Cantarell' rel='stylesheet' type='text/css'>
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="<em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro." type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="<em>Hank Beaver</em>. <br>Web & DevOps programmer." type="application/atom+xml">
   <meta name="og:type" content="website" />
-  <meta name="og:site_name" content="<em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro." />
-  <meta name="og:title" content="<em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro." />
+  <meta name="og:site_name" content="<em>Hank Beaver</em>. <br>Web & DevOps programmer." />
+  <meta name="og:title" content="<em>Hank Beaver</em>. <br>Web & DevOps programmer." />
   <meta name="og:description" content=" desc " />
   <meta name="og:url" content="http://blasterpal.github.com/blog/page/7/index.html"/>
   <meta name="url" content="http://blasterpal.github.com/blog/page/7/index.html">
@@ -49,7 +49,7 @@
     <div id="hero-inner" class="container">
       <div class="span10 offset1">
   <h1>
-    <em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.
+    <em>Hank Beaver</em>. <br>Web & DevOps programmer.
   </h1>
   <h2></h2>
 </div>
@@ -107,7 +107,98 @@ heart, I love technology.
     <div class="row" id="post-container">
     
     
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
     
+      <h1 class="entry-title"><a href="/blog/2009/05/29/debuggingtroubleshooting-rails-applications-in-production-enviroments/">Debugging/Troubleshooting Rails Applications in Production Enviroments</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-29T12:55:37-04:00" pubdate data-updated="true">May 29<span>th</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Introduction</strong></p>
+
+<p>At my current gig with <a href="http://www.primedia.com">Primedia</a>, we have some pretty high volume Rails sites. Since having highly available sites are essential for our core business, we have to be very attentive to production issues. Below is a list that I&#8217;ve compiled recently in my head and by working with some very bright folks. This doc is to help Ops/Dev remember some basics and tricks when debugging issues. So remember to try this stuff.</p>
+
+<p><strong>Non-Technical (READ FIRST)</strong></p>
+
+<ol>
+<li>If the issue is not a major impact on production, make sure all your troubleshooting is passive! You might introduce an outage if you try serious troubleshooting.</li>
+<li>Confirm the issue with Ops/Infrastructure in your presence, this gets buy-in from with the folks who have official root access.</li>
+<li>As a developer, you should not work alone on production systems except to gather information (if you get temporary access). All changes (in seeking issue mitigation) should be paired with Ops/Infra. This will avoid finger-pointing and headaches later.</li>
+</ol>
+
+
+<p><strong>Technical</strong></p>
+
+<p>Elimination + log files is my troubleshooting method of choice.</p>
+
+<ol>
+<li>Skip the load balancer if possible and hit direct IP/Port of a single app server to eliminate load balancer in mix.</li>
+<li>Enable DEBUG log level and restart app server(s). Preferably, take an app server out of load balancer pool and work on in isolation. Regardless, DEBUG can slow response signficantly so be aware. However, there are situations where DEBUG is the only way to get an indication from Rails what is going on.</li>
+<li>Tail log file of single app IP/Port to squelch noise from other servers and hit just that app server.</li>
+<li>Make sure that the PIDs are not hung,old versions. Look at time/date of PIDS. If the deploy is screwed up, you can be deploying new code and yet the processes running are code from a month ago.</li>
+<li>To be thorough, look at the kernel logs too. In Linux, /var/log/messages etc. You could have something else that is going on.</li>
+<li>The logs should give status regarding database(s), but especially look for the words &#8220;timeout&#8221; if you have any custom network libraries that fetch data (we do) or &#8220;ActiveRecord&#8221;.  Perhaps even, grep for it.</li>
+<li>Use a non-browser client, like Curl or wget to eliminate possible browser issues. Case in point, we had an issue related to ActiveRecord sessions that were migrated to another datacenter. When accessed via Curl there was no issue (Curl does not save cookies by default).</li>
+</ol>
+
+
+<p><strong>Other</strong></p>
+
+<ol>
+<li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
+</ol>
+
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
       <article class="span4">
         <div class="article-format">
 
@@ -165,7 +256,7 @@ heart, I love technology.
 
       </article>
     
-    
+    <!---->
       <article class="span4">
         <div class="article-format">
 
@@ -223,64 +314,6 @@ heart, I love technology.
 
       </article>
     
-    
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/05/15/links-for-2009-05-15/">Links for 2009-05-15</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-05-15T14:04:59-04:00" pubdate data-updated="true">May 15<span>th</span>, 2009</time> - 
-        
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://blog.ashchan.com/archive/2008/06/30/tags-on-git/">Tags on Git @ 知易行难</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/git">git</a> <a href="http://delicious.com/blasterpal/tags">tags</a> <a href="http://delicious.com/blasterpal/tag">tag</a> <a href="http://delicious.com/blasterpal/remove">remove</a> <a href="http://delicious.com/blasterpal/origin">origin</a>)</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -308,15 +341,15 @@ heart, I love technology.
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
+        </li>
+      
+        <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
         </li>
       
         <li>
           <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/01/26/chef-learnings-1-1/">Chef Learnings 1.1</a>
         </li>
       
     </ul>
@@ -364,7 +397,7 @@ heart, I love technology.
 <footer class="footer">
   <div class="container">
     <p class="pull-left">
-  <a href="/"><em>Hank Beaver</em>. <br>Web developer &<br>DevOps pro.</a>
+  <a href="/"><em>Hank Beaver</em>. <br>Web & DevOps programmer.</a>
   - Copyright &copy; 2013 - Hank Beaver
 </p>
 <p class="pull-right">
@@ -385,6 +418,19 @@ heart, I love technology.
 <script src="/javascripts/libs/jquery.masonry.min.js" type="text/javascript"></script>
 <script src="/javascripts/custom.js" type="text/javascript"></script>
 
+
+<script type="text/javascript">
+      var disqus_shortname = 'hankbeaver';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
