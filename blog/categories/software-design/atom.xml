@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: software design | <em>Hank Beaver</em>. <br>Web & DevOps programmer.]]></title>
+  <title><![CDATA[Category: software design | Hank Beaver. Web Architect.]]></title>
   <link href="http://www.hankbeaver.com/blog/categories/software-design/atom.xml" rel="self"/>
   <link href="http://www.hankbeaver.com/"/>
-  <updated>2013-07-08T19:53:11-04:00</updated>
+  <updated>2013-09-01T15:18:08-04:00</updated>
   <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
