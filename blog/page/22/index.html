@@ -129,6 +129,72 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2007/09/20/people-fight-back-against-phishers-and-interjerks/">People Fight Back Against Phishers and Interjerks.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-09-20T13:44:49-04:00" pubdate data-updated="true">Sep 20<span>th</span>, 2007</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/security/'>Security</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ok, this is a very idealistic concept. We all hate SPAM and phishing!! Would you not install an application that would attack BACK at the phishing sites? I would, damn skippy!</p>
+
+<p>If you have not heard of Seti, or SETI do a google and come back.</p>
+
+<p>The idea is simple. A program that runs in the background and when you are not doing anything, like a screensaver. This program will work with other computers to shutdown known phishing web sites by flooding then with web requests.</p>
+
+<p>I can explain the technology later, but suffice, I think it might work.</p>
+
+<p>Comments?</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/09/20/cheap-easy-simple-and-dirty-rails-background-jobs-that-dont-timeout/">Cheap - Easy - Simple - and Dirty - Rails Background Jobs That Don&#8217;t Timeout.</a></h1>
     
     
@@ -306,112 +372,6 @@ signature,update_on,created_at,lock_type</p>
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/09/16/rails-settings-pattern-if-you-want-to-call-it-that/">Rails &#8216;Settings&#8217; Pattern (if You Want to Call It That)</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-09-16T15:01:16-04:00" pubdate data-updated="true">Sep 16<span>th</span>, 2007</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Disclaimer: The below concepts may be a plugin or something I missed in Rails and believe me I&#8217;ve read the manual and API pretty well. I have them bookmarked locally. As a Java programmer, I have the Rails and Ruby APIs open when I work. But again, if all my below is DRY within Rails, please let me know.</p>
-
-<p>Problem: Lot&#8217;s of site wide global settings and variables that should not be repeated. And even more important, they SHOULD NOT be hard-coded. On top of that, we want the globals to be dynamic. Think DRY. Go ahead, scratch your head and maybe even scoff at me.</p>
-
-<p>History:
-Let&#8217;s back up a little and think some C coding. Think #defines. I really like #defines in C. They are a simple way of keep your globals in a logical place. They are even nicely, by convention UPPER_CASE, I like that too. In Java, we have static public variables and as long they are in the inheritance chain or imported, again, same idea. I know ruby has static variables too.</p>
-
-<p>My problem:</p>
-
-<ol>
-<li>I don&#8217;t want static public variables or #defines in my code. I want them in my model, they by and large represent a business or application setting anyway.</li>
-<li>I want them to be editable and reinitialized at runtime or dynamically. Later on that.</li>
-<li>And I want them to be accessible from anywhere that can view a model.</li>
-</ol>
-
-
-<p>Solution:
-A Setting model. Simple and easy to use:</p>
-
-<p>&#8211;>Schema:
-id           | int(11)      | NO   | PRI | NULL                | auto_increment |
-| name         | varchar(32)  | YES  |     | NULL                |                |
-| setting_desc | varchar(255) | YES  |     | NULL                |                |
-| value        | varchar(255) | NO   |     |                     |                |
-| created_at   | datetime     | NO   |     | 0000-00-00 00:00:00 |                |
-| updated_on   | datetime     | NO   |     | 0000-00-00 00:00:00 |                |
-| lock_type    | int(11)      | YES  |     | 0                   |                |</p>
-
-<p>Example entry:
-| 74 | META_KEYWORDS                 | Meta setting for front end pages for &#8216;keywords&#8217; content tag.                                                       | blah, blah,blah | 2007-06-03 08:26:57 | 2007-06-03 08:26:57 |         0 |</p>
-
-<p>Another Example:
-55 | ALWAYS_ADVANCE_SONG           | Debug setting to force song advance everytime listen is called for radio                                           | TRUE</p>
-
-<p>LAst example:
--24 21:32:00 | 2007-03-25 11:22:35 |         0 |
-| 49 | MAX_TICKETING_LISTING         | Maximum number of events per page                                                                                  | 200</p>
-
-<p>Three distinctly different types of &#8220;settings&#8221;, one is purely view, one affects the behavior of a controller, the other affects the number of results in a model. Either way, I get a centralized place to keep all these settings and configuration and have much easier to maintain code.</p>
-
-<p>Here is an example of calling one of the above in your code:</p>
-
-<p>@meta_keywords = Setting.get_setting(&#8220;META_KEYWORDS&#8221;)</p>
-
-<p>Now you can have your code clean and easy to update from a backend, protected url.</p>
-
-<p>Comments?</p>
-
-<p>H</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -439,15 +399,15 @@ id           | int(11)      | NO   | PRI | NULL                | auto_increment 
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -496,7 +456,7 @@ id           | int(11)      | NO   | PRI | NULL                | auto_increment 
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

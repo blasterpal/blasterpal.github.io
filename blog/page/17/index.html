@@ -129,6 +129,92 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/02/15/port-knocking-otp/">Port Knocking + OTP</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-15T08:34:32-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/security/'>Security</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
+
+<p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I&#8217;m going to play with this. The idea:</p>
+
+<ul>
+<li><p>Port knock sequence numbers are based on a secret key and a cipher to create an 16 bit sequence or port numbers. ex. &#8220;7111 31189 40922&#8221;.</p>
+
+<ol>
+<li><p>That is UDP knock: 7111, 31189, and 40922.</p></li>
+<li><p>These numbers change approx. every 1-2 minutes. based on secret key and cipher and date/time seed.</p></li>
+</ol>
+</li>
+<li><p>The payload of each packet is a sequence number + 2 digit OTP number.
+ex: packet 1: &#8220;1|3dz&#8221;, packet 2: &#8220;2|js9&#8221;, packet 3: &#8220;3|34m&#8221;</p></li>
+<li><p>There is a REQUEST packet that goes on another port based on cipher, ex. 5433 (changes daily?)
+The request packet provides the next sequence number,asks for what port to open: 22, ssh in this example that is ENCRYPTED also with IP Address. like so: &#8220;4|22|67.100.40.23&#8221; => encrypted as &#8220;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
+<li><p>The entire sequence is started by a START port number and END port number that changes every day with a simple string as payload. ex: START port: 8765,END port: 64100.So the entire OTP +port knock sequence from my OTP+port knock client:</p></li>
+<li><ul>
+<li><p>UDP:8765=>&#8221;START_PK_SEQ&#8221;</p></li>
+<li><p>UDP: 7111 -> &#8220;1|3dz&#8221;</p></li>
+<li><p>UDP: 31189 => &#8220;2|js9&#8221;</p></li>
+<li><p>UDP: 40922 => &#8220;3|34m&#8221;</p></li>
+<li><p>UDP: 5433 => &#8216;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
+<li><p>UDP:64100=>&#8221;END_PK_SEQ&#8221;Port 22 is now open on the host firewall for the requesting ip based on successfully decrypting packet #5.</p></li>
+</ul>
+</li>
+<li><p>In theory this would be resistant against man-in-the-middle and reply attacks.</p></li>
+</ul>
+
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/02/10/has_many-associations-using-in-helper-tag-and-a-little-about-blocks/">Has_many Associations, Using in Helper Tag and a Little About Blocks.</a></h1>
     
     
@@ -309,122 +395,6 @@ d) Look for the first line that is not normal Rails and debug output. See next a
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/01/04/when-to-use-a-partial-and-when-to-use-a-helper-tag/">WHEN to Use a Partial and When to Use a Helper Tag?</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-01-04T13:32:55-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First as you read Rails and learn more you will discover the DRY (Don&#8217;t Repeat Yourself) principle. This means do something once and then don&#8217;t dig another ditch.</p>
-
-<p>So here&#8217;s my opinion, both partials and tags are for DRY.</p>
-
-<p>One usage difference in my opion: Is if the output is only a few lines, then a tag is simpler and cleaner. However, if the output is many, many lines of HTML like a menu then I start to lean toward partial. However,</p>
-
-<p>There is one thing that a tag can do nicely that partials can&#8217;t as cleanly. Arguments can be passed and code run away from the view. Example:</p>
-
-<pre><code>&lt;%=  commentor_pretty_name(blog.login_id) %&gt;
-</code></pre>
-
-<p>here is the actual tag in application_helper.rb:</p>
-
-<pre><code>##############################
-# takes a login_id alone and converts to pretty name for comment/tag
-##############################
-def commentor_pretty_name(login_id)
-
-def_return = "Nil Name"
-begin
-logger.debug("app helper commenter_pretty_name")
-
-
-
-
-#the "||" operand below means that we will use the def_return of "Nil Name" if Login.find returns nil
-Login.find(login_id).unique_name || def_return
-#end
-rescue
-def_return
-end
-
-end
-</code></pre>
-
-<h4>END CODE</h4>
-
-<p>To do the same in a partial you would have to have this:</p>
-
-<pre><code>&lt;%= render :partial =&gt; 'commenter', :locals =&gt; { :login_id =&gt; user.id} %&gt;
-</code></pre>
-
-<p>user.id would be passed as argument AND then on the partial you would need some of the ruby code in the actual partial to lookup the user.</p>
-
-<pre><code>&lt;%   #note no '=' tag this is purely to run ruby code and set variables
-
-@def_return = "Nil Name"
-begin
-logger.debug("app helper commenter_pretty_name")
-@def_return  = Login.find(login_id).unique_name
-#end
-rescue
-@def_return
-end
-%&gt;
-    &lt;%= @def_return  %&gt;
-</code></pre>
-
-<p>Best of both worlds? Use a tag to run the ruby code and then a partial to render? When the tag gets riddled with html/view then this presents a good blend of keeping view and model seperate by using a tag to setup/do ruby work and simple partial to present.</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -452,15 +422,15 @@ end
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -509,7 +479,7 @@ end
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

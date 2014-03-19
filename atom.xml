@@ -4,7 +4,7 @@
   <title><![CDATA[Hank Beaver. Web Architect.]]></title>
   <link href="http://www.hankbeaver.com/atom.xml" rel="self"/>
   <link href="http://www.hankbeaver.com/"/>
-  <updated>2013-09-01T15:18:08-04:00</updated>
+  <updated>2014-03-19T00:38:07-04:00</updated>
   <id>http://www.hankbeaver.com/</id>
   <author>
     <name><![CDATA[Hank Beaver]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[You think you understand the Beatles but you are wrong.]]></title>
+    <link href="http://www.hankbeaver.com/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/"/>
+    <updated>2014-03-19T00:00:00-04:00</updated>
+    <id>http://www.hankbeaver.com/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong</id>
+    <content type="html"><![CDATA[<h1>Intro</h1>
+
+<p>I&#8217;ve heard it all before. <em>I</em> was one of the detractors. So It&#8217;s practically part of my inner dialogue. The Beatles are no better than:</p>
+
+<ul>
+<li>The Zombies</li>
+<li>The Rolling Stones</li>
+<li>The Beach Boys</li>
+</ul>
+
+
+<p>ad naseaum&#8230;</p>
+
+<h1>The nitty gritty</h1>
+
+<p>And if we spoke to a specific set of albums, I&#8217;d completely agree with you.
+Prior to LSD and Maharishi Mahesh Yogi the Beatles were a similar to many bands
+of that era. But TM, Drugs and a dose of Yoko Ono-style 60&#8217;s art catapulted
+them way beyond yet another British band ripping off American Blues.</p>
+
+<p>I&#8217;m sorry if you don&#8217;t see it that way, but purely from a harmonic, musical point of view, they are not just a blues band like their contemporaries.</p>
+
+<p>Folk, blues, operatic, classical, choral and vaudvillian, the Beatles drew from
+many types of music and were able to become an unparalleled archetype of rock
+that has yet to be matched. In my opinion it was as close to divine as one can
+get to allow these individually gifted musicians to become one unit:
+Providence, in the rock form. Many have tried to emulate, but never will there
+an outfit as talented intrumentally or vocally as this quartet for the
+forseeabable future.</p>
+
+<h1>Proof #1</h1>
+
+<p>So in keeping with this elitist belief, I present clear proof you favorite band ripped off the Beatles.</p>
+
+<p>I won&#8217;t digress into discussions about blues, folk or simple rock. There were
+other bands making great variations of these singular genres at the same time.
+I give you that.</p>
+
+<p>However, if you want to look at Radiohead, Coldplay, Ben Folds Five, and
+countless others who seemed to transcend genres during their time, I present a
+40 year old look into the past. One that encapsulated everything &#8216;alternative&#8217;
+you ever knew. You are required to sit back, put on headphones and truly be objective.</p>
+
+<h2>&#8220;A Day in the Life&#8221; by The Beatles</h2>
+
+<p><a href="http://www.youtube.com/watch?v=P-Q9D4dcYng">http://www.youtube.com/watch?v=P-Q9D4dcYng</a></p>
+
+<p>P.S. If you think Ringo is a bad drummer, you don&#8217;t play drums.</p>
+
+<p>P.S.S. I feel our current stage of recording and production hinders the possibility of the next Beatles coming into existence, but that&#8217;s another matter.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Ops folk need to learn to become DevOps]]></title>
@@ -617,22 +675,6 @@ end
 <li>If you cannot duplicate issue in development, remember to change your configs to look like production mode and run your development workstation in production mode. Rails behaves different in its modes.</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[links for 2009-05-26]]></title>
-    <link href="http://www.hankbeaver.com/blog/2009/05/26/links-for-2009-05-26/"/>
-    <updated>2009-05-26T14:07:52-04:00</updated>
-    <id>http://www.hankbeaver.com/blog/2009/05/26/links-for-2009-05-26</id>
-    <content type="html"><![CDATA[<ul>
-<li></li>
-</ul>
-
-
-<p><a href="http://www.igvita.com/2008/02/19/live-mongrel-debugging-and-recovery/">Live Mongrel Debugging and Recovery - igvita.com</a></p>
-
-<p>(tags: <a href="http://delicious.com/blasterpal/mongrel">mongrel</a> <a href="http://delicious.com/blasterpal/debugging">debugging</a> <a href="http://delicious.com/blasterpal/live">live</a> <a href="http://delicious.com/blasterpal/recovery">recovery</a>)</p>
 ]]></content>
   </entry>
   

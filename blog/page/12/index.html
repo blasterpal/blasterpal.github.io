@@ -129,6 +129,79 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/11/17/using-gem-dependencies-with-rspec-bad/">Using Gem Dependencies With Rspec == BAD ! !</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-17T06:29:42-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2008</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/rspec/'>Rspec</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We had an issue the last couple of weeks on a new Rails project we started here at my gig. All Rails exceptions were quietly logged without showing any stack trace to browser. This was very annoying. Secondly, the RAILS_ENV was reported as &#8220;test&#8221;. mmmm, very suspicious. After some investigation I found the culprit on rails.rb line #1 of rails-rspec gem installed in our vendor dir:</p>
+
+<p>silence_warnings { RAILS_ENV = &#8220;test&#8221; }</p>
+
+<p>Take a look at this to get a little context:</p>
+
+<p>http://ryandaigle.com/articles/2008/4/1/what-s-new-in-edge-rails-gem-dependencies</p>
+
+<p>How can rspec affect your actual Rails environment, script/server, script/console, script/about? I&#8217;ll show you. enter our environment.rb:</p>
+
+<p>config.gem &#8216;rspec-rails&#8217;,
+:version => &#8216;>= 1.1.11&#8217;, :lib => &#8216;spec/rails&#8217;
+config.gem &#8216;rspec&#8217;,
+:version => &#8216;>= 1.1.11&#8217;, :lib => &#8216;spec&#8217;</p>
+
+<p>Aha! So effectively, by including our gems here too (and gaining the added benefits noted above at ryandaigle.com )rather than simply in our spec_helper, we replaced our RAILS_ENV and invoked the Rails equivalent of an exception black hole.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/10/28/how-to-find-a-date-in-past-in-mysql/">How to Find a Date in Past in Mysql</a></h1>
     
     
@@ -248,66 +321,6 @@ posted in
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/24/my-software-mantra/">My Software Mantra&#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-24T10:45:50-04:00" pubdate data-updated="true">Sep 24<span>th</span>, 2008</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/software-design/'>software design</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>See this:</p>
-
-<p><a href="http://1000fires.com/wordpress/?page_id=46">My Software Mantras</a></p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -335,15 +348,15 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -392,7 +405,7 @@ posted in
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

@@ -129,6 +129,97 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/09/02/calling-initialize-in-activerecord-model-causes-nilhas_keys-error/">Calling Initialize in ActiveRecord Model Causes nil.has_keys? Error.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-02T03:24:35-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2008</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When instantiating a model class this error occurs:</p>
+
+<pre><code>instance = MyModel.new
+
+
+
+
+NoMethodError: You have a nil object when you didn't expect it!
+
+
+
+
+The error occurred while evaluating nil.has_key?
+</code></pre>
+
+<p>This is rectified by placing a <strong>super</strong> within model class.</p>
+
+<pre><code>def initialize
+
+
+
+
+super
+
+
+
+
+logger.debug("initialize VirtualMta: #{self.class}")
+
+
+
+
+end
+</code></pre>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/08/22/running-finder-as-root-on-osx-to-solve-app-install-issues/">Running Finder as Root on OSX - to Solve App Install Issues</a></h1>
     
     
@@ -264,79 +355,6 @@ Think of sudo with one time password access. Why is this important? Because that
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/05/20/how-to-set-up-mongrel_cluster-on-westhost/">How to Set Up Mongrel_cluster on Westhost</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-05-20T13:43:42-04:00" pubdate data-updated="true">May 20<span>th</span>, 2008</time> - 
-        
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Goals:</p>
-
-<ul>
-<li><p>To auto start with init.d, upon westhost restart, etc.</p></li>
-<li><p>Use Apache to front end, via mod_proxy.</p></li>
-</ul>
-
-
-<p>You&#8217;ll have to follow other sites on installing gems, etc.  <a href="http://mongrel.rubyforge.org/wiki/MongrelCluster">This Site </a> has some very useful info, namely you need to symlink mongrel_cluster_ctl and ruby to /usr/bin/ (you&#8217;ll have to do a find / -name mongrel_cluster_ctl). Mine was here: /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl</p>
-
-<p>So I linked into /etc/init.d/ like so:</p>
-
-<p>ln -s /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl /etc/init.d/</p>
-
-<p>chkconfig is not installed on westhost, so you have to do the init.d link/scrips the old fashioned way:</p>
-
-<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/S81mongrel_cluster</p>
-
-<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/K19mongrel_cluster</p>
-
-<p>K = Kill, the number means the order</p>
-
-<p>S= Start, &#8220;&#8221;</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -364,15 +382,15 @@ Think of sudo with one time password access. Why is this important? Because that
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -421,7 +439,7 @@ Think of sudo with one time password access. Why is this important? Because that
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

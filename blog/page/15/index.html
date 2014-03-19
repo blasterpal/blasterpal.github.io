@@ -129,6 +129,79 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/05/20/how-to-set-up-mongrel_cluster-on-westhost/">How to Set Up Mongrel_cluster on Westhost</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-05-20T13:43:42-04:00" pubdate data-updated="true">May 20<span>th</span>, 2008</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Goals:</p>
+
+<ul>
+<li><p>To auto start with init.d, upon westhost restart, etc.</p></li>
+<li><p>Use Apache to front end, via mod_proxy.</p></li>
+</ul>
+
+
+<p>You&#8217;ll have to follow other sites on installing gems, etc.  <a href="http://mongrel.rubyforge.org/wiki/MongrelCluster">This Site </a> has some very useful info, namely you need to symlink mongrel_cluster_ctl and ruby to /usr/bin/ (you&#8217;ll have to do a find / -name mongrel_cluster_ctl). Mine was here: /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl</p>
+
+<p>So I linked into /etc/init.d/ like so:</p>
+
+<p>ln -s /usr/local/ruby/lib/ruby/gems/1.8/gems/mongrel_cluster-1.0.5/bin/mongrel_cluster_ctl /etc/init.d/</p>
+
+<p>chkconfig is not installed on westhost, so you have to do the init.d link/scrips the old fashioned way:</p>
+
+<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/S81mongrel_cluster</p>
+
+<p>ln -s /etc/init.d/mongrel_cluster_ctl /etc/rc.d/rc3.d/K19mongrel_cluster</p>
+
+<p>K = Kill, the number means the order</p>
+
+<p>S= Start, &#8220;&#8221;</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/04/01/mixin-module-madness-why-self-aint-really-self/">Mixin Module Madness &#8211; Why Self Ain&#8217;t Really Self</a></h1>
     
     
@@ -308,101 +381,6 @@ end
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/29/what-i-do-the-internet-i-work-on-b-d/">What I Do. The Internet. I Work on B-D.</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-29T12:26:30-05:00" pubdate data-updated="true">Feb 29<span>th</span>, 2008</time> - 
-        
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Simplified Internet and its interaction, enjoy</p>
-
-<p>A) USER LAYER :: normal usage, browsers
-1.Computer
-2.Operating System (Windows OSX)
-3.Browser (Internet Explorer / Safari)
-4.Internet (Comcast, Verizon)</p>
-
-<p>B) The network :: NETWORK LAYER
-Probably the area we control the LEAST. We can&#8217;t MAKE routers talk faster OR make Sprint love us!!!</p>
-
-<p>C) Website/Hosting/Servers :: SERVER LAYER
-1.Server(s) (which is a fancy name for computer) ie. Dell
-2.Database (where information is stored) ie Oracle, DB2, SQL Server, MySQL
-3.Basic HTML files and images( STATIC CONTENT)
--> HTML, CSS, JPG, Javascript, Flash</p>
-
-<p>D) Website base language/framework (does the heavy lifting, most of work***) :: APPLICATION_LAYER
-This requires (B)
--> From Microsoft, Open Source, 3rd party.</p>
-
-<p>E) Our code. :: CODE_LAYER
-Our programs: (this is where I/we work most of the time, you MUST understand A-D though)
-<em>we write code in the Base/fundamental programming languages from D
-</em>we implement Extra modules/libraries other people write</p>
-
-<p>DONE with A,B,C,D</p>
-
-<hr />
-
-<hr />
-
-<hr />
-
-<p>Web Pages are really akin yelling across canyon!!!!</p>
-
-<h2>Internet Applications in the real world(web pages)</h2>
-
-<p>STEPS FOR ONE WEB REQUEST:
-1. User A) Users  &#8212;> give me a page |NETWORK B) &#8212;> |SERVER C) Joe user want to look at &#8216;XYZ web page&#8217;.
-2. SERVER C) Send &#8216;XYZ web page&#8217; to user |NETWORK B) &#8212;-> traverse network |USER A) User receives response. Views &#8216;XYZ web page.&#8217;</p>
-
-<p>The above is TRUE even for just an image or buying a widget!</p>
-
-<p>*** In the old days of the internet. All web pages were just layer C. They were simple files served up by the server. This harkens back to the days of the home page internet, when everyone had an internet home page like so: &#8220;www.mindspring.com~hbeaver&#8221; which I DID!.</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -430,15 +408,15 @@ Our programs: (this is where I/we work most of the time, you MUST understand A-D
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -487,7 +465,7 @@ Our programs: (this is where I/we work most of the time, you MUST understand A-D
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

@@ -129,6 +129,66 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/09/24/my-software-mantra/">My Software Mantra&#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-09-24T10:45:50-04:00" pubdate data-updated="true">Sep 24<span>th</span>, 2008</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/software-design/'>software design</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>See this:</p>
+
+<p><a href="http://1000fires.com/wordpress/?page_id=46">My Software Mantras</a></p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/09/18/using-ruby-to-move-subversion-folders-and-files/">Using Ruby to Move Subversion Folders and Files.</a></h1>
     
     
@@ -312,97 +372,6 @@ Allow from all
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/09/02/calling-initialize-in-activerecord-model-causes-nilhas_keys-error/">Calling Initialize in ActiveRecord Model Causes nil.has_keys? Error.</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-09-02T03:24:35-04:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2008</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When instantiating a model class this error occurs:</p>
-
-<pre><code>instance = MyModel.new
-
-
-
-
-NoMethodError: You have a nil object when you didn't expect it!
-
-
-
-
-The error occurred while evaluating nil.has_key?
-</code></pre>
-
-<p>This is rectified by placing a <strong>super</strong> within model class.</p>
-
-<pre><code>def initialize
-
-
-
-
-super
-
-
-
-
-logger.debug("initialize VirtualMta: #{self.class}")
-
-
-
-
-end
-</code></pre>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -430,15 +399,15 @@ end
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -487,7 +456,7 @@ end
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

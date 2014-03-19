@@ -129,6 +129,63 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2009/03/01/regex-to-find-any-divs-or-spans/">Regex to Find Any Divs or Spans</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-01T10:09:58-05:00" pubdate data-updated="true">Mar 1<span>st</span>, 2009</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I whipped this up to remove all spans and/or divs in an HTML. Don&#8217;t ask why. Here&#8217;s the regex:</p>
+
+<p>&lt; ?(span|div)[a-zA-Z0-9&#8217;&#8221; =]+></p>
+
+<p>Did I mention I love regex?</p>
+
+<p>Enjoy.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2009/01/29/install-ruby-pg-on-osx-leopard/">Install Ruby Pg on OSX Leopard</a></h1>
     
     
@@ -237,88 +294,6 @@ can be consider a form of DevOps).
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/12/19/new-favorite-tool-in-toolbox-for-web-development-charles-http-web-proxy/">New Favorite Tool in Toolbox for Web Development: Charles Web Debugging Proxy</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-12-19T04:41:21-05:00" pubdate data-updated="true">Dec 19<span>th</span>, 2008</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/software-design/'>software design</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I will not regurgitate what <a href="http://www.charlesproxy.com/">Charles&#8217; website</a> can already tell you. Charles is a great tool. Moreover, let me add some obvious points for people like myself:</p>
-
-<ul>
-<li><p>It runs on OSX and quickly.</p></li>
-<li><p>It is affordable (we are getting licenses here this week)</p></li>
-<li><p>It has TONS of features (especially allowing filtering of anything in URL)</p></li>
-<li><p>It auto-magically acts a HTTP Proxy after reboot when Charles is started on ALL HTTP based applications.</p></li>
-</ul>
-
-
-<p>Why you may ask not use <a href="http://getfirebug.com/">Firebug</a>, it&#8217;s free!</p>
-
-<p>If you are doing Javascript work and trying to naildown activity on the wire (outside of the browser), you have to rely on a proxy or sniffer, especially if you are testing many browsers at once. The heavyweight option is indeed to use <a href="http://www.wireshark.org">Wireshark</a> on OSX, like I initially did. But this can add complexity when you are under a deadline.</p>
-
-<p>Also, Firebug has soooo many great features I need to use concurrently, having a good proxy monitor allows me to use Firebugs other incredible features in tandem.</p>
-
-<p>Last week I had such deadlines at my paid gig rewriting a<a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> .NET</a><a href="http://www.rubyslacker.com/wp-admin/www.microsoft.com/net"> 3.5</a> site into <a href="http://www.rubyonrails.org/">Rails 2.1.2</a> . I had to (in a hurry) integrate a slew of user/tracking Javascript events that fired off GET requests to an external site. The query string and/or request HAD to include the variables exactly to ensure our internal datawarehouses didn&#8217;t get borked. Secondly, integrating the tags had to NOT break existing AJAX functionality surrounding the same buttons and links.</p>
-
-<p>Using Firebug to monitor the happiness of Javascript, investigate the DOM and use the console to query, took up most of the Firebug interface and time. Having Charles running in a separate monitor (with the required URLS filtered) made for much,much quicker development and debugging.</p>
-
-<p>Take a look at this example call (notice the Filter line that has part of the host addres). This GET request was fired when a user click a button. Charles verified the request had all the key/value pairs expected: <a href="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7.png"><img src="http://www.rubyslacker.com/wp-content/uploads/2008/12/picture-7-300x135.png" alt="" /></a></p>
-
-<p>Using Charles and Firebug together rounds out Frontend web development, in my case using Rails 2.1.2 and JQuery, and helps keep your velocity up.</p>
-
-<p>Lastly, there are features I have not even explored with Charles. I applaud the guys from Charles for writing such a great tool that saved my week and sanity.</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -346,15 +321,15 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -403,7 +378,7 @@ posted in
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

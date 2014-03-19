@@ -129,6 +129,99 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2009/11/02/testing-varnish-vcl-syntax/">Testing Varnish VCL Syntax</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-11-02T07:15:00-05:00" pubdate data-updated="true">Nov 2<span>nd</span>, 2009</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>The simplest way to test syntax is to use the administration console via telnet on a Dev/QA Varnish machine. Your current running Varnish should allow your IP/localhost to connect if you have implemented a Varnish ACL.</p>
+
+<ul>
+<li><p>Start up Varnish with single command-line</p></li>
+<li><p>Login to console via telnet</p></li>
+<li><p>Load the config you wish to test</p></li>
+<li><p>Use the config.</p></li>
+</ul>
+
+
+<p>On OSX:</p>
+
+<pre><code>sudo /usr/local/sbin/varnishd -F  -a localhost:3000 -b localhost:6081 -T localhost:6082
+</code></pre>
+
+<p>From another console/shell/ open connection to Varnish management console:</p>
+
+<pre><code>telnet localhost 6082
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+</code></pre>
+
+<p>Load config and try to use (the config used in this example has a syntax problem. Therefore, you will see compilation errors:</p>
+
+<pre><code>vcl.load error /Users/hbeaver/code/varnish_demo/config/syntax_error.vcl  
+106 181     
+Message from VCC-compiler:
+Expected one of
+    'acl', 'sub', 'backend',  or 'director'
+Found: '}' at
+(input Line 12 Pos 1)
+}
+#
+Running VCC-compiler failed, exit 1VCL compilation failed
+</code></pre>
+
+<p>Conversely, if the VCL has good syntax you should see no errors:</p>
+
+<pre><code>vcl.load good_config /Users/hbeaver/code/varnish_demo/config/default.vcl 
+200 13      
+VCL compiled.
+</code></pre>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2009/10/15/starting-specific-version-of-thin-web-server/">Starting Specific Version of Thin Web Server</a></h1>
     
     
@@ -248,91 +341,6 @@ Model.expects(:method).with(@params)
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/">Using Rails for Custom Applications and Avoiding the CMS Trap.</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-03T07:38:23-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2009</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/cms/'>CMS</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/wordpress/'>wordpress</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
-
-<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
-
-<pre><code>wordpress_template.php
-//some more wonder wordpress stuff
-&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
-//some more wonder wordpress stuff
-&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
-//end of wordpress.php
-...
-//function included elsewhere
-function include_rails_service(service_url,type){
-//could return any of following for the resource url
- switch (type) {
-  case ESI_INCLUDE:
-   return "&lt;esi include ='" + service_url + "'&gt;";
-   break;
-  case SERVICE:
-   include service_url;
-   break;
-  case AJAX:
-//javascript include with service js, doing doc.write
-}
-}
-</code></pre>
-
-<p>The point is Wordpress doesn&#8217;t know about Rails and Rails doesn&#8217;t know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -360,15 +368,15 @@ function include_rails_service(service_url,type){
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -417,7 +425,7 @@ function include_rails_service(service_url,type){
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

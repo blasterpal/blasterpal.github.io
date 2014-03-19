@@ -129,6 +129,91 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2009/09/03/using-rails-for-custom-applications-and-avoiding-the-cms-trap/">Using Rails for Custom Applications and Avoiding the CMS Trap.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-09-03T07:38:23-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2009</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/cms/'>CMS</a>, <a class='category' href='/blog/categories/rails/'>Rails</a>, <a class='category' href='/blog/categories/wordpress/'>wordpress</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&#8217;m am still captivated by the perfect, simple CMS solution in Ruby/Rails (I&#8217;ll take another framework too).  There are some fantastic projects out there, <a href="http://www.rubyslacker.com/wp-admin/browsercms.org">browsercms.org</a> for example. But posts like <a href="http://aaronlongwell.com/2009/06/the-ruby-on-rails-cms-dilemma.html"> THIS </a>, really drive home the point. If Wordpress is so well suited for a simple site and/or blog, why not just use it? <a href="http://www.igvita.com/2007/07/04/integrating-wordpress-and-rails/">Igvita</a> demonstrates easy Rails integration with <a href="http://www.apache.org">Apache</a> rewrite rules.</p>
+
+<p>There are others out there stating the same thing: while Rails can be used to create a CMS, a developer&#8217;s time is better spent solving business rather than reinventing the wheel in Ruby to keep the whole project/code under one umbrella. And at my current gig, we are starting to retool for this paradigm. Rails and <a href="http://www.sinatrarb.org">Sinatra</a> apps are purely business focuses and super light weight. These service applications can them be glued together via <a href="http://www.w3.org/TR/esi-lang">ESI</a>, rewrites, or Wordpress for consumption. In effect, your complex web app is assembled at request time from a set of simple web services. Here is some mock code to demonstrate:</p>
+
+<pre><code>wordpress_template.php
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app/user/profile',ESI_INCLUDE) ?&gt;
+//some more wonder wordpress stuff
+&lt;?= include_rails_service('http://service.app2/events/weeks/2',SERVICE) ?&gt;
+//end of wordpress.php
+...
+//function included elsewhere
+function include_rails_service(service_url,type){
+//could return any of following for the resource url
+ switch (type) {
+  case ESI_INCLUDE:
+   return "&lt;esi include ='" + service_url + "'&gt;";
+   break;
+  case SERVICE:
+   include service_url;
+   break;
+  case AJAX:
+//javascript include with service js, doing doc.write
+}
+}
+</code></pre>
+
+<p>The point is Wordpress doesn&#8217;t know about Rails and Rails doesn&#8217;t know about Wordpress. Keep them seperate, keep them simple and make life better.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2009/08/10/mysqlerror-mysql-server-has-gone-away-with-sinatra-activerecord/">Mysql::Error: MySQL Server Has Gone Away With Sinatra + ActiveRecord</a></h1>
     
     
@@ -277,74 +362,6 @@ end
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/07/14/reminder-to-self-and-world-varnish-uses-posix-regex/">Reminder to Self and World: Varnish Uses POSIX Regex.</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-07-14T09:26:45-04:00" pubdate data-updated="true">Jul 14<span>th</span>, 2009</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/regex/'>regex</a>, <a class='category' href='/blog/categories/varnish/'>varnish</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What does this mean? Well for starters, those nice little PCRE shorthands for character classes just don&#8217;t work! So putting this in your Varnish VCL will silently do nothing:</p>
-
-<pre><code>if (req.url ~ "/\d+(/$|/\?|\?|$)") ...
-</code></pre>
-
-<p>whereas this match:</p>
-
-<pre><code>if (req.url ~ "/[0-9]+(/$|/\?|\?|$)") ...
-</code></pre>
-
-<p>Enjoy.</p>
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -372,15 +389,15 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -429,7 +446,7 @@ posted in
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

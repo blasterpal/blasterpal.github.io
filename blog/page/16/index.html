@@ -129,6 +129,101 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/02/29/what-i-do-the-internet-i-work-on-b-d/">What I Do. The Internet. I Work on B-D.</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-02-29T12:26:30-05:00" pubdate data-updated="true">Feb 29<span>th</span>, 2008</time> - 
+        
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Simplified Internet and its interaction, enjoy</p>
+
+<p>A) USER LAYER :: normal usage, browsers
+1.Computer
+2.Operating System (Windows OSX)
+3.Browser (Internet Explorer / Safari)
+4.Internet (Comcast, Verizon)</p>
+
+<p>B) The network :: NETWORK LAYER
+Probably the area we control the LEAST. We can&#8217;t MAKE routers talk faster OR make Sprint love us!!!</p>
+
+<p>C) Website/Hosting/Servers :: SERVER LAYER
+1.Server(s) (which is a fancy name for computer) ie. Dell
+2.Database (where information is stored) ie Oracle, DB2, SQL Server, MySQL
+3.Basic HTML files and images( STATIC CONTENT)
+-> HTML, CSS, JPG, Javascript, Flash</p>
+
+<p>D) Website base language/framework (does the heavy lifting, most of work***) :: APPLICATION_LAYER
+This requires (B)
+-> From Microsoft, Open Source, 3rd party.</p>
+
+<p>E) Our code. :: CODE_LAYER
+Our programs: (this is where I/we work most of the time, you MUST understand A-D though)
+<em>we write code in the Base/fundamental programming languages from D
+</em>we implement Extra modules/libraries other people write</p>
+
+<p>DONE with A,B,C,D</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<p>Web Pages are really akin yelling across canyon!!!!</p>
+
+<h2>Internet Applications in the real world(web pages)</h2>
+
+<p>STEPS FOR ONE WEB REQUEST:
+1. User A) Users  &#8212;> give me a page |NETWORK B) &#8212;> |SERVER C) Joe user want to look at &#8216;XYZ web page&#8217;.
+2. SERVER C) Send &#8216;XYZ web page&#8217; to user |NETWORK B) &#8212;-> traverse network |USER A) User receives response. Views &#8216;XYZ web page.&#8217;</p>
+
+<p>The above is TRUE even for just an image or buying a widget!</p>
+
+<p>*** In the old days of the internet. All web pages were just layer C. They were simple files served up by the server. This harkens back to the days of the home page internet, when everyone had an internet home page like so: &#8220;www.mindspring.com~hbeaver&#8221; which I DID!.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2008/02/23/subversion-error-containing-working-copy-admin-area-is-missing-when-generating-rails-doc/">Subversion Error &#8216;Containing Working Copy Admin Area Is Missing&#8217; When Generating Rails Doc&#8230;</a></h1>
     
     
@@ -250,92 +345,6 @@ svn co svn+ssh://usery@mysecre.server.com/var/www/apps/repos/trunk/doc/app</p></
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2008/02/15/port-knocking-otp/">Port Knocking + OTP</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-02-15T08:34:32-05:00" pubdate data-updated="true">Feb 15<span>th</span>, 2008</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/security/'>Security</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>The problem is how to securely lock down your firewalls for very privileged services like SSH or a intranet server?</p>
-
-<p>Is adding port knocking together with OTP a good,solid solution for perimeter defense? I&#8217;m going to play with this. The idea:</p>
-
-<ul>
-<li><p>Port knock sequence numbers are based on a secret key and a cipher to create an 16 bit sequence or port numbers. ex. &#8220;7111 31189 40922&#8221;.</p>
-
-<ol>
-<li><p>That is UDP knock: 7111, 31189, and 40922.</p></li>
-<li><p>These numbers change approx. every 1-2 minutes. based on secret key and cipher and date/time seed.</p></li>
-</ol>
-</li>
-<li><p>The payload of each packet is a sequence number + 2 digit OTP number.
-ex: packet 1: &#8220;1|3dz&#8221;, packet 2: &#8220;2|js9&#8221;, packet 3: &#8220;3|34m&#8221;</p></li>
-<li><p>There is a REQUEST packet that goes on another port based on cipher, ex. 5433 (changes daily?)
-The request packet provides the next sequence number,asks for what port to open: 22, ssh in this example that is ENCRYPTED also with IP Address. like so: &#8220;4|22|67.100.40.23&#8221; => encrypted as &#8220;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
-<li><p>The entire sequence is started by a START port number and END port number that changes every day with a simple string as payload. ex: START port: 8765,END port: 64100.So the entire OTP +port knock sequence from my OTP+port knock client:</p></li>
-<li><ul>
-<li><p>UDP:8765=>&#8221;START_PK_SEQ&#8221;</p></li>
-<li><p>UDP: 7111 -> &#8220;1|3dz&#8221;</p></li>
-<li><p>UDP: 31189 => &#8220;2|js9&#8221;</p></li>
-<li><p>UDP: 40922 => &#8220;3|34m&#8221;</p></li>
-<li><p>UDP: 5433 => &#8216;f321a0a5eb48f2ef2f89f52124bcc11a&#8221;</p></li>
-<li><p>UDP:64100=>&#8221;END_PK_SEQ&#8221;Port 22 is now open on the host firewall for the requesting ip based on successfully decrypting packet #5.</p></li>
-</ul>
-</li>
-<li><p>In theory this would be resistant against man-in-the-middle and reply attacks.</p></li>
-</ul>
-
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -363,15 +372,15 @@ The request packet provides the next sequence number,asks for what port to open:
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -420,7 +429,7 @@ The request packet provides the next sequence number,asks for what port to open:
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

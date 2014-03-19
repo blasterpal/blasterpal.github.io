@@ -129,6 +129,122 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2008/01/04/when-to-use-a-partial-and-when-to-use-a-helper-tag/">WHEN to Use a Partial and When to Use a Helper Tag?</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-01-04T13:32:55-05:00" pubdate data-updated="true">Jan 4<span>th</span>, 2008</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>First as you read Rails and learn more you will discover the DRY (Don&#8217;t Repeat Yourself) principle. This means do something once and then don&#8217;t dig another ditch.</p>
+
+<p>So here&#8217;s my opinion, both partials and tags are for DRY.</p>
+
+<p>One usage difference in my opion: Is if the output is only a few lines, then a tag is simpler and cleaner. However, if the output is many, many lines of HTML like a menu then I start to lean toward partial. However,</p>
+
+<p>There is one thing that a tag can do nicely that partials can&#8217;t as cleanly. Arguments can be passed and code run away from the view. Example:</p>
+
+<pre><code>&lt;%=  commentor_pretty_name(blog.login_id) %&gt;
+</code></pre>
+
+<p>here is the actual tag in application_helper.rb:</p>
+
+<pre><code>##############################
+# takes a login_id alone and converts to pretty name for comment/tag
+##############################
+def commentor_pretty_name(login_id)
+
+def_return = "Nil Name"
+begin
+logger.debug("app helper commenter_pretty_name")
+
+
+
+
+#the "||" operand below means that we will use the def_return of "Nil Name" if Login.find returns nil
+Login.find(login_id).unique_name || def_return
+#end
+rescue
+def_return
+end
+
+end
+</code></pre>
+
+<h4>END CODE</h4>
+
+<p>To do the same in a partial you would have to have this:</p>
+
+<pre><code>&lt;%= render :partial =&gt; 'commenter', :locals =&gt; { :login_id =&gt; user.id} %&gt;
+</code></pre>
+
+<p>user.id would be passed as argument AND then on the partial you would need some of the ruby code in the actual partial to lookup the user.</p>
+
+<pre><code>&lt;%   #note no '=' tag this is purely to run ruby code and set variables
+
+@def_return = "Nil Name"
+begin
+logger.debug("app helper commenter_pretty_name")
+@def_return  = Login.find(login_id).unique_name
+#end
+rescue
+@def_return
+end
+%&gt;
+    &lt;%= @def_return  %&gt;
+</code></pre>
+
+<p>Best of both worlds? Use a tag to run the ruby code and then a partial to render? When the tag gets riddled with html/view then this presents a good blend of keeping view and model seperate by using a tag to setup/do ruby work and simple partial to present.</p>
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/12/18/building-install-rmagick-on-os-x-lessons-learned/">Building & Install RMagick on OS X, Lessons Learned</a></h1>
     
     
@@ -280,69 +396,6 @@ Ppp3.main(a)</p>
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/11/30/rails-error-argumenterror-interning-empty-string-running-integration-test/">Rails Error &#8216;ArgumentError: Interning Empty String&#8217; Running Integration Test</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-30T02:55:23-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2007</time> - 
-        
-
-posted in
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/rails/'>Rails</a>
-  
-</span>
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Causes?</p>
-
-<ol>
-<li>&#8216;require &#8216;action_controller/integration&#8217; is in your environment.rb instead of just production. This is added to allow script/runner to do background jobs,etc as suggested on a site elsewhere I can&#8217;t find. Put this in the specific environment -> config/environments/production.rb&#8217;</li>
-</ol>
-
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -370,15 +423,15 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -427,7 +480,7 @@ posted in
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>

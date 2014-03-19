@@ -129,6 +129,69 @@ can be consider a form of DevOps).
 
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2007/11/30/rails-error-argumenterror-interning-empty-string-running-integration-test/">Rails Error &#8216;ArgumentError: Interning Empty String&#8217; Running Integration Test</a></h1>
+    
+    
+      <p class="meta">
+        
+  
+
+
+  
+    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
+  
+
+ - 
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-11-30T02:55:23-05:00" pubdate data-updated="true">Nov 30<span>th</span>, 2007</time> - 
+        
+
+posted in
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rails/'>Rails</a>
+  
+</span>
+
+
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Causes?</p>
+
+<ol>
+<li>&#8216;require &#8216;action_controller/integration&#8217; is in your environment.rb instead of just production. This is added to allow script/runner to do background jobs,etc as suggested on a site elsewhere I can&#8217;t find. Put this in the specific environment -> config/environments/production.rb&#8217;</li>
+</ol>
+
+</div>
+  
+  
+
+
+</div>
+
+      </article>
+    
+    <!---->
+      <article class="span4">
+        <div class="article-format">
+
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2007/11/19/simple-basic-rails-app-and-code-conventions-for-me/">Simple / Basic Rails App and Code Conventions for ME</a></h1>
     
     
@@ -271,62 +334,6 @@ posted in
 
       </article>
     
-    <!---->
-      <article class="span4">
-        <div class="article-format">
-
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2007/11/16/rails-application-error-rails-application-failed-to-start-properly-fix/">Rails &#8216;Application Error&#8217; &#8216;Rails Application Failed to Start Properly&#8221;&#8217; FIX</a></h1>
-    
-    
-      <p class="meta">
-        
-  
-
-
-  
-    <span class="byline author vcard">by <span class="fn">Hank Beaver</span></span>
-  
-
- - 
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-11-16T13:43:41-05:00" pubdate data-updated="true">Nov 16<span>th</span>, 2007</time> - 
-        
-
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><ol>
-<li><p>Run dispatch.fcgi (if you are using fast CGI) from command line and get no errors. Move to #2.</p></li>
-<li><p>Replace all &#8216;puts&#8217; in your views or code to logger. This will kill Rails when executing.</p></li>
-<li><p>In progress&#8230;..</p></li>
-</ol>
-
-</div>
-  
-  
-
-
-</div>
-
-      </article>
-    
     </div>
       <div class="row">
         <ul class="pager">
@@ -354,15 +361,15 @@ posted in
     <ul class="recent_posts">
       
         <li>
+          <a href="/blog/2014/03/19/you-think-you-understand-the-beatles-but-you-are-wrong/">You think you understand the Beatles but you are wrong.</a>
+        </li>
+      
+        <li>
           <a href="/blog/2013/07/03/what-ops-folk-need-to-learn-to-become-devops/">What Ops folk need to learn to become DevOps</a>
         </li>
       
         <li>
           <a href="/blog/2011/08/09/mongodb-gridfs-sanity-checks/">MongoDB GridFS Sanity Checks</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2011/07/14/jruby-the-watershed-for-enterprise-ruby/">JRuby - the watershed for enterprise Ruby?</a>
         </li>
       
     </ul>
@@ -411,7 +418,7 @@ posted in
   <div class="container">
     <p class="pull-left">
   <a href="/">Hank Beaver. Web Architect.</a>
-  - Copyright &copy; 2013 - Hank Beaver
+  - Copyright &copy; 2014 - Hank Beaver
 </p>
 <p class="pull-right">
   <span>Powered by <a href="http://octopress.org/">Octopress</a>.</span>
